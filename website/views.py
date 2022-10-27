@@ -21,11 +21,11 @@ def athlete():
     # if not, then return the user to their own home page
     flash("you don't have access to this page", category='error')
 
-@views.route('/coach')
+@views.route('/coach-dashboard')
 @login_required
 def coach():
     if current_user.access == 1:
-        return render_template('coach.html', user=current_user)
+        return render_template('coach-dashboard.html', user=current_user)
     flash("you don't have access to this page", category='error')
 
 @views.route('/admin')
@@ -35,11 +35,11 @@ def admin():
         return render_template('admin.html', user=current_user)
     flash("you don't have access to this page", category='error')
 
-@views.route('/superadmin')
+@views.route('/admin_dashboard')
 @login_required
 def superadmin():
     if current_user.access == 3:
-        return render_template('superadmin.html', user=current_user)
+        return render_template('admin_dashboard.html', user=current_user)
     flash("you don't have access to this page", category='error')
 
 @views.route('/database')
@@ -50,11 +50,11 @@ def database():
         return render_template('database.html', user=current_user, database=users)
     flash("you don't have access to this page", category='error')
 
-@views.route('/report')
+@views.route('/reportpage')
 @login_required
 def report():
     if current_user.access == 3:
-        return render_template('report.html', user=current_user)
+        return render_template('reportpage.html', user=current_user)
     flash("you don't have access to this page", category='error')
 
 @views.route('/add')
@@ -63,3 +63,15 @@ def add():
     if current_user.access == 3:
         return render_template('add.html', user=current_user)
     flash("you don't have access to this page", category='error')
+
+@views.route('/teambreakdown')
+@login_required
+def team_breakdown():
+    if current_user.access > 1:
+        return render_template('teambreakdown.html', user=current_user)
+
+@views.route('/breakdown')
+@login_required
+def athlete_breakdown():
+    if current_user.access > 0:
+        return render_template('breakdown.html', user=current_user)

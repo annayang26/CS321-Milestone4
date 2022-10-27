@@ -1,4 +1,13 @@
 <!DOCTYPE html>
+{% if user.is_authenticated %}
+  {% if user.access == 3 or user.access == 2 %}
+    {% set dashboard_url = '/admin_dashboard' %}
+  {% elif user.access == 1 %}
+    {% set dashboard_url = '/coach-dashboard' %}
+  {% elif user.access == 0 %}
+    {% set dashboard_url = '/athlete' %}
+  {% endif %}
+{% endif %}
 <html lang="en">
     <head>
         <meta charset="utf-8" />
@@ -7,7 +16,17 @@
         <link rel="stylesheet" src={{url_for('static', filename='vendor.bundle.base.css')}}> -->
         <link rel="stylesheet" href="/static/materialdesignicons.min.css">
         <link rel="stylesheet" href="/static/vendor.bundle.base.css">
-        <link rel="stylesheet" href="/static/styles.css">
+        <link rel="stylesheet" href="/static/style.css">
+        <link rel="stylesheet" href="/assets/vendors/jvectormap/jquery-jvectormap.css">
+        <link rel="stylesheet" href="/assets/vendors/flag-icon-css/css/flag-icon.min.css">
+        <link rel="stylesheet" href="/assets/vendors/owl-carousel-2/owl.carousel.min.css">
+        <link rel="stylesheet" href="/assets/vendors/owl-carousel-2/owl.theme.default.min.css">
+        {% if user.access == 3%}
+          <link rel="stylesheet" href="/static/admin-dashboard-style.css"/>
+        {% elif user.access == 1 %}
+          <link rel="stylesheet" href="/static/coach-style.css">
+        {% endif %}
+        <!-- <link rel="shortcut icon" href="../static/images/colby.svg" /> -->
 
         <title>{% block title %} Home {% endblock %}</title>
     </head>
@@ -23,11 +42,11 @@
               <div ckass="card-body card-body-padding d-flex">
                     <div class = "card">
                             {% if user.is_authenticated %}
-                                <a class = "nav-item nav-link" id="home" href="/">home</a>
+                                <a class = "nav-item nav-link" id="home" href="{{dashboard_url}}">Home</a>
                                 <a class = "nav-item nav-link" id="logout" href="/logout">Logout</a>
                             {% else %}
                                 <a class = "nav-item nav-link" id="login" href="/login">Login</a>
-                                <a class = "nav-item nav-link" id="sign-up" href="/sign-up">sign-up</a>
+                                <a class = "nav-item nav-link" id="sign-up" href="/sign-up">Sign-up</a>
                             {% endif %}
                     </div>                    
 
@@ -121,7 +140,7 @@
               <span class="nav-link">Navigation</span>
             </li>
             <li class="nav-item menu-items">
-              <a class="nav-link" href="/superadmin">
+              <a class="nav-link" href="{{ dashboard_url }}">
                 <span class="menu-icon">
                   <i class="mdi mdi-speedometer"></i>
                 </span>
@@ -130,7 +149,7 @@
             </li>
             {% if user.access == 3 %}
               <li class="nav-item menu-items">
-                <a class="nav-link" href="/report">
+                <a class="nav-link" href="/reportpage">
                   <span class="menu-icon">
                     <i class="mdi mdi-contacts"></i>
                   </span>
@@ -190,6 +209,23 @@
           integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
           crossorigin="anonymous"
       ></script>
+      <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+      <script src="../static/js/search.js"></script>
+      <script src="../static/vendors/js/vendor.bundle.base.js"></script>
+      <!-- endinject -->
+      <!-- Plugin js for this page -->
+      <script src="../static/vendors/chart.js/Chart.min.js"></script>
+      <!-- End plugin js for this page -->
+      <!-- inject:js -->
+      <script src="../static/js/off-canvas.js"></script>
+      <script src="../static/js/hoverable-collapse.js"></script>
+      <script src="../static/js/misc.js"></script>
+      <script src="../static/js/settings.js"></script>
+      <script src="../static/js/todolist.js"></script>
+      <!-- endinject -->
+      <!-- Custom js for this page -->
+      <script src="../static/js/chart.js"></script>
+      <script src="assets/js/dashboard.js"></script>
 
     </body>
 </html>
