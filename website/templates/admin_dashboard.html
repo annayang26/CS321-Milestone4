@@ -11,29 +11,29 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Admin Dashboard</title>
     <!-- plugins:css -->
-    <link rel="stylesheet" href="website/static/vendors/mdi/css/materialdesignicons.min.css">
-    <link rel="stylesheet" href="website/static/vendors/css/vendor.bundle.base.css">
+    <link rel="stylesheet" href="../static/vendors/mdi/css/materialdesignicons.min.css">
+    <link rel="stylesheet" href="../static/vendors/css/vendor.bundle.base.css">
     <!-- endinject -->
     <!-- Plugin css for this page -->
-    <link rel="stylesheet" href="website/static/vendors/jvectormap/jquery-jvectormap.css">
-    <link rel="stylesheet" href="website/static/vendors/flag-icon-css/css/flag-icon.min.css">
-    <link rel="stylesheet" href="website/static/vendors/owl-carousel-2/owl.carousel.min.css">
-    <link rel="stylesheet" href="website/static/vendors/owl-carousel-2/owl.theme.default.min.css">
+    <link rel="stylesheet" href="../static/vendors/jvectormap/jquery-jvectormap.css">
+    <link rel="stylesheet" href="../static/vendors/flag-icon-css/css/flag-icon.min.css">
+    <link rel="stylesheet" href="../static/vendors/owl-carousel-2/owl.carousel.min.css">
+    <link rel="stylesheet" href="../static/vendors/owl-carousel-2/owl.theme.default.min.css">
     <!-- End Plugin css for this page -->
     <!-- inject:css -->
     <!-- endinject -->
     <!-- Layout styles -->
-    <link rel="stylesheet" href="website/static/css/style.css">
-    <link rel="stylesheet" href="website/static/css/admin-dashboard-style.css"/>
+    <link rel="stylesheet" href="../static/css/style.css">
+    <link rel="stylesheet" href="../static/css/admin-dashboard-style.css"/>
     <!-- End layout styles -->
-    <link rel="shortcut icon" href="website/static/images/colby.svg" />
+    <link rel="shortcut icon" href="../static/images/colby.svg" />
   </head>
   <body>
     <div class="container-scroller">
       <div class="container-fluid page-body-wrapper">
         <nav class="navbar p-0 fixed-top d-flex flex-row" id="admin-topnav">
           <div class="navbar-menu-wrapper flex-grow d-flex align-items-stretch">
-            <a href="website/templates/index.html"><img id="top_logo" src="website/static/images/colby.svg" alt="logo"/></a>
+            <a href="../templates/index.html"><img id="top_logo" src="../static/images/colby.svg" alt="logo"/></a>
             <h1>Admin Dashboard</h1>
             <ul class="navbar-nav navbar-nav-right">
               <li class="nav-item dropdown d-none d-lg-block">
@@ -91,7 +91,7 @@
                   <div class="dropdown-divider"></div>
                   <a class="dropdown-item preview-item">
                     <div class="preview-thumbnail">
-                      <img src="website/static/images/faces/face4.jpg" alt="image" class="rounded-circle profile-pic">
+                      <img src="../static/images/faces/face4.jpg" alt="image" class="rounded-circle profile-pic">
                     </div>
                     <div class="preview-item-content">
                       <p class="preview-subject ellipsis mb-1">Mark send you a message</p>
@@ -101,7 +101,7 @@
                   <div class="dropdown-divider"></div>
                   <a class="dropdown-item preview-item">
                     <div class="preview-thumbnail">
-                      <img src="website/static/images/faces/face2.jpg" alt="image" class="rounded-circle profile-pic">
+                      <img src="../static/images/faces/face2.jpg" alt="image" class="rounded-circle profile-pic">
                     </div>
                     <div class="preview-item-content">
                       <p class="preview-subject ellipsis mb-1">Cregh send you a message</p>
@@ -111,7 +111,7 @@
                   <div class="dropdown-divider"></div>
                   <a class="dropdown-item preview-item">
                     <div class="preview-thumbnail">
-                      <img src="website/static/images/faces/face3.jpg" alt="image" class="rounded-circle profile-pic">
+                      <img src="../static/images/faces/face3.jpg" alt="image" class="rounded-circle profile-pic">
                     </div>
                     <div class="preview-item-content">
                       <p class="preview-subject ellipsis mb-1">Profile picture updated</p>
@@ -172,7 +172,7 @@
               <li class="nav-item dropdown">
                 <a class="nav-link" id="profileDropdown" href="#" data-toggle="dropdown">
                   <div class="navbar-profile">
-                    <img class="img-xs rounded-circle" src="website/static/images/faces/face15.jpg" alt="">
+                    <img class="img-xs rounded-circle" src="../static/images/faces/face15.jpg" alt="">
                     <p class="mb-0 d-none d-sm-block navbar-profile-name">Henry Klein</p>
                     <i class="mdi mdi-menu-down d-none d-sm-block"></i>
                   </div>
@@ -224,67 +224,78 @@
               </nav>
             </div> -->
 
-            <a href='reportjs.html' class="btn btn-primary btn-fw buttons">Reports</a>
-            <a href='#' class="btn btn-primary btn-fw buttons">Edit Permissions</a>
+            <a href='index.html' class="btn btn-primary btn-fw buttons">Reports</a>
+            <a href='edit.html' class="btn btn-primary btn-fw buttons">Edit Permissions</a>
 
 
             <!-- <li class="nav-item menu-items">
               <a class="nav-link" href="pages/chart/chartsjs.html"> -->
             <div class="row">
-                <div class="col-lg-6 grid-margin stretch-card">
+                <div class="col-lg-9 grid-margin stretch-card">
                     <div class="card">
                       <div class="card-body">
                         <h4 class="card-title">Teams</h4>
                         <hr/>
+                        <form class="nav-link d-none d-lg-flex search nav-link-coach search-bar-teams" method="POST" action="{{url_for('search', name=name)}}">
+                          <input type="text" class="live-search-box form-control" placeholder="Search Team">
+                        </form>
                         <div class="table-responsive">
-                          <table class="table">
-                            <thead>
-                              <tr>
-                                <th>Team</th>
-                                <th>Sleep</th>
-                                <th>Quality</th>
-                                <th>Recovery</th>
-                                <th>Calorie Intake</th>
-                              </tr>
-                            </thead>
-                            <tbody>
-                              <tr>
-                                <td>Alpine Skiing (M)</td>
-                                <td>9.0hr</td>
-                                <td>78%</td>
-                                <td>68%</td>
-                                <td>80%</td>
-                              </tr>
-                              <tr>
-                                <td>Alpine Skiing (W)</td>
-                                <td>9.0hr</td>
-                                <td>78%</td>
-                                <td>68%</td>
-                                <td>80%</td>
-                              </tr>
-                              <tr>
-                                <td>Baseball</td>
-                                <td>9.0hr</td>
-                                <td>78%</td>
-                                <td>68%</td>
-                                <td>80%</td>
-                              </tr>
-                              <tr>
-                                <td>Basketball (M)</td>
-                                <td>9.0hr</td>
-                                <td>78%</td>
-                                <td>68%</td>
-                                <td>80%</td>
-                              </tr>
-                              <tr>
-                                <td>Basketball (W)</td>
-                                <td>9.0hr</td>
-                                <td>78%</td>
-                                <td>68%</td>
-                                <td>80%</td>
-                              </tr>
-                            </tbody>
-                          </table>
+                          <div class="athlete-search-head search-head-name"> Name </div>
+                          <div class="athlete-search-head"> Sleep </div>
+                          <div class="athlete-search-head"> Quality </div>
+                          <div class="athlete-search-head"> Recovery </div>
+                          <div class="athlete-search-head search-head-recovery"> Calorie Intake </div>                        
+                          <ul class="live-search-list" type="None">                     
+                            <li>
+                              <div class="team-search-name"> Alpine Skiing (M) </div>
+                              <div class="athlete-search shift-right"> 9.0hr </div>
+                              <div class="athlete-search"> 78% </div>
+                              <div class="athlete-search"> 68% </div>
+                              <div class="athlete-search"> 80% </div>
+                            </li>
+                            <li>
+                              <div class="team-search-name"> Alpine Skiing (W) </div>
+                              <div class="athlete-search shift-right"> 9.0hr </div>
+                              <div class="athlete-search"> 78% </div>
+                              <div class="athlete-search"> 68% </div>
+                              <div class="athlete-search"> 80% </div>
+                            </li>
+                            <li>
+                              <div class="team-search-name"> Baseball </div>
+                              <div class="athlete-search shift-right"> 9.0hr </div>
+                              <div class="athlete-search"> 78% </div>
+                              <div class="athlete-search"> 68% </div>
+                              <div class="athlete-search"> 80% </div>
+                            </li>
+                            <li>
+                              <div class="team-search-name"> Basketball (M) </div>
+                              <div class="athlete-search shift-right"> 9.0hr </div>
+                              <div class="athlete-search"> 78% </div>
+                              <div class="athlete-search"> 68% </div>
+                              <div class="athlete-search"> 80% </div>
+                            </li>
+                            <li>
+                              <div class="team-search-name"> Basketball (W) </div>
+                              <div class="athlete-search shift-right"> 9.0hr </div>
+                              <div class="athlete-search"> 78% </div>
+                              <div class="athlete-search"> 68% </div>
+                              <div class="athlete-search"> 80% </div>
+                            </li>
+                            <li>
+                              <div class="team-search-name"> Crew (M) </div>
+                              <div class="athlete-search shift-right"> 9.0hr </div>
+                              <div class="athlete-search"> 78% </div>
+                              <div class="athlete-search"> 68% </div>
+                              <div class="athlete-search"> 80% </div>
+                            </li>
+                            <li>
+                              <div class="team-search-name"> Crew (W) </div>
+                              <div class="athlete-search shift-right"> 9.0hr </div>
+                              <div class="athlete-search"> 78% </div>
+                              <div class="athlete-search"> 68% </div>
+                              <div class="athlete-search"> 80% </div>
+                            </li>
+                          </ul>
                         </div>
                       </div>
                     </div>
@@ -332,30 +343,6 @@
                       </div>
                     </div>
                   </div>
-                  <div class="col-3 grid-margin stretch-card">
-                    <div class="card">
-                      <div class="card-body">
-                        <form class="nav-link mt-2 mt-md-0 d-none d-lg-flex search">
-                            <input type="text" class="form-control" placeholder="Search Team">
-                        </form>
-                        <div id="wrapper">
-                            <ul>
-                                <li>Men's Soccer</li>
-                                <li>Women's Soccer</li>
-                                <li>Football</li>
-                                <li>Baseball</li>
-                                <li>Softball</li>
-                                <li>Swim</li>
-                                <li>Men's Track</li>
-                                <li>Women's Track</li>
-                                <li>Hockey</li>
-                                <li>Women's Basketball</li>
-                                <li>Men's Basketball</li>
-                            </ul>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
                 </div>
           <!-- content-wrapper ends -->
           <!-- partial:../../partials/_footer.html -->
@@ -373,20 +360,22 @@
     </div>
     <!-- container-scroller -->
     <!-- plugins:js -->
-    <script src="website/static/vendors/js/vendor.bundle.base.js"></script>
+    <script src="../static/vendors/js/vendor.bundle.base.js"></script>
     <!-- endinject -->
     <!-- Plugin js for this page -->
-    <script src="website/static/vendors/chart.js/Chart.min.js"></script>
+    <script src="../static/vendors/chart.js/Chart.min.js"></script>
     <!-- End plugin js for this page -->
     <!-- inject:js -->
-    <script src="website/static/js/off-canvas.js"></script>
-    <script src="website/static/js/hoverable-collapse.js"></script>
-    <script src="website/static/js/misc.js"></script>
-    <script src="website/static/js/settings.js"></script>
-    <script src="website/static/js/todolist.js"></script>
+    <script src="../static/js/off-canvas.js"></script>
+    <script src="../static/js/hoverable-collapse.js"></script>
+    <script src="../static/js/misc.js"></script>
+    <script src="../static/js/settings.js"></script>
+    <script src="../static/js/todolist.js"></script>
     <!-- endinject -->
     <!-- Custom js for this page -->
-    <script src="website/static/js/chart.js"></script>
+    <script src="../static/js/chart.js"></script>
     <!-- End custom js for this page -->
+    <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+    <script src="../static/js/search.js"></script>
   </body>
 </html>
