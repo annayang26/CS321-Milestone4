@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+
+{% block title %} Edit {{user.first_name}} {{user.last_name}}'s Information{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="card">
+        <div class="card-body">
+            <h4 class="card-title">{{user.first_name}} {{user.last_name}}</h4>
+            <div class="container">
+                <form method="post">
+                    <p>
+                        <label for="first_name">First Name</label>
+                        <input type="text" name="first_name"
+                                value={{user.first_name}}
+                                placeholder="First Name">
+                    </p>
+                    <p>
+                        <label for="last_name">Last Name</label>
+                        <input type="text" name="last_name"
+                                value={{user.last_name}}
+                                placeholder="Last Name">
+                    </p>
+                    <p>
+                        <label for="email">Email</label>
+                        <input type="email" name="email"
+                                value={{user.email}}
+                                placeholder="Email">
+                    </p>
+                    <p>
+                        <label for="role"> Role: </label>
+                        <select name="role" id="role">
+                            <option value="athlete">Athlete</option>
+                            <option value="coach">Coach</option>
+                            <option value="admin">Admin</option>
+                        </select>
+                    </p>
+                    <br>
+                    <p>
+                        <button type="confirm">Confirm Changes</button>
+                    </p>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
