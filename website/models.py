@@ -5,15 +5,6 @@ from time import timezone
 from . import db
 from flask_login import UserMixin
 from sqlalchemy.sql import func
-# from flask_appbuilder import ModelView
-
-# assign access level
-# ACCESS ={
-#     'athlete': 0,
-#     'coach': 1,
-#     'admin': 2,
-#     'superadmin': 3
-# }
 
 class User(db.Model, UserMixin):
     

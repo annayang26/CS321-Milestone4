@@ -20,8 +20,6 @@ def athlete():
         return render_template('athlete.html', user=current_user)
     # if not, then return the user to their own home page
     flash("you don't have access to this page", category='error')
-    return render_template('<user.access>.html', user=current_user)
-
 
 @views.route('/coach')
 @login_required
@@ -29,7 +27,6 @@ def coach():
     if current_user.access == 1:
         return render_template('coach.html', user=current_user)
     flash("you don't have access to this page", category='error')
-    return render_template('<user.access>.html', user=current_user)
 
 @views.route('/admin')
 @login_required
@@ -37,7 +34,6 @@ def admin():
     if current_user.access == 2:
         return render_template('admin.html', user=current_user)
     flash("you don't have access to this page", category='error')
-    return render_template('<user.access>.html', user=current_user)
 
 @views.route('/superadmin')
 @login_required
@@ -45,7 +41,6 @@ def superadmin():
     if current_user.access == 3:
         return render_template('superadmin.html', user=current_user)
     flash("you don't have access to this page", category='error')
-    return render_template('<user.access>.html', user=current_user)
 
 @views.route('/database')
 @login_required

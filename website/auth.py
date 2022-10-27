@@ -9,7 +9,6 @@ auth = Blueprint('auth', __name__ )
 
 @auth.route('/login', methods=['GET', 'POST'])
 def login():
-
     if request.method == 'POST':
         email = request.form.get('email')
         password = request.form.get('password')
@@ -104,11 +103,12 @@ def add_user():
                 access = 1
             elif role == "admin":
                 access = 2
+            password1 = '1111111'
             new_user = User(first_name=first_name,
                             last_name=last_name,
                             email=email,
                             access=access,
-                            password=1111111)
+                            password=generate_password_hash(password1, method='sha256'))
             db.session.add(new_user)
             flash('The user is added successfully!', category='success')
             db.session.commit()

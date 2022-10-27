@@ -13,51 +13,6 @@
     </head>
     <body>
       <div class="container-scroller">
-        <!-- <div class="row p-0 m-0 proBanner d-flex" id="proBanner"> 
-          <div class="col-md-12 p-0 m-0">
-            <div ckass="card-body card-body-padding d-flex">
-              <nav class ="navbar navbar-expand-lg navbar-dark bg-dark">
-                  <button class = "navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar">
-                      <span class="navbar-toggler-icon"></span>    
-                  </button>
-                  <div class="collapse navbar-collapse" id="navbar">
-                      <div class = "navbar-nav">
-                          {% if user.is_authenticated %}
-                              <a class = "nav-item nav-link" id="home" href="/">home</a>
-                              <a class = "nav-item nav-link" id="logout" href="/logout">Logout</a>
-                          {% else %}
-                              <a class = "nav-item nav-link" id="login" href="/login">Login</a>
-                              <a class = "nav-item nav-link" id="sign-up" href="/sign-up">sign-up</a>
-                          {% endif %}
-                      </div>
-                  </div>
-              </nav>  
-              
-              {% with messages = get_flashed_messages(with_categories=true) %} 
-              {% if messages %} 
-                  {% for category, message in messages %} 
-                      {% if category == 'error' %}
-                          <div class="alert alert-danger alter-dismissable fade show" role="alert">
-                          {{ message }}
-                          <button type="button" class="close" data-dismiss="alert">
-                              <span aria-hidden="true">&times;</span>
-                          </button>
-                          </div>
-                      {% else %}
-                          <div class="alert alert-success alter-dismissable fade show" role="alert">
-                          {{ message }}
-                          <button type="button" class="close" data-dismiss="alert">
-                              <span aria-hidden="true">&times;</span>
-                          </button>
-                          </div>
-                      {% endif %} 
-                  {% endfor %} 
-                {% endif %} 
-                {% endwith %}             
-            </div>
-          </div>
-        </div> -->
-
         <nav class="sidebar sidebar-offcanvas" id="sidebar">
           <div class="sidebar-brand-wrapper d-none d-lg-flex align-items-center justify-content-center">
             <a class="sidebar-brand brand-logo" href="home.html"><img src="{{url_for('static', filename='ca_mini_logo.png')}}" alt="logo" /></a>
@@ -193,9 +148,9 @@
                 </a>
                 <div class="collapse" id="auth">
                   <ul class="nav flex-column sub-menu">
-                    <li class="nav-item"> <a class="nav-link" href="PEAK.html"> PEAK member </a></li>
+                    <!-- <li class="nav-item"> <a class="nav-link" href="PEAK.html"> PEAK member </a></li>
                     <li class="nav-item"> <a class="nav-link" href="coaches.html"> Coaches </a></li>
-                    <li class="nav-item"> <a class="nav-link" href="athletes.html"> Athletes </a></li>
+                    <li class="nav-item"> <a class="nav-link" href="athletes.html"> Athletes </a></li> -->
                     <li class="nav-item"> <a class="nav-link" href="/database"> Edit </a></li>
                     <li class="nav-item"> <a class="nav-link" href="/add"> Add a User </a></li>
                   </ul>
