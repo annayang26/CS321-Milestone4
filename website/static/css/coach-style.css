@@ -7610,7 +7610,8 @@
     vertical-align: middle; }
   
   table {
-    border-collapse: collapse; }
+    border-collapse: collapse; 
+    overflow: auto;}
   
   caption {
     padding-top: 0.9375rem;
@@ -21391,6 +21392,60 @@
   .inner-card-color-2 {
     color: green;
   }
+
+  .status-img {
+    height: 30px;
+    width: 30px;
+    border-radius: 50%;
+  }
+
+  .athlete-search-head {
+    font-weight: bold;
+    color: #a3a3a3 !important; 
+    display: inline-block;
+    margin-right: 2rem;
+    padding-top: 10px;
+    vertical-align: middle;
+  }
+
+  .athlete-search-name {
+    margin-right: 23%;
+    margin-left: -10px;
+  }
+
+  .athlete-search-else {
+    margin-right: 10px;
+  }
+
+  .athlete-search {
+    margin-left: -2rem;
+    display: inline-block;
+    margin-right: 3rem;
+    color: #5d5e6b;
+    padding-top: 0.75rem;
+  }
+
+  #sortable-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  #sortable-list li.header div {
+    cursor: default;
+  }
+
+  #sortable-list li div {
+    display: inline-block;
+    padding: 3px 5px;
+    height: 1rem;
+  }
+
+  #sortable-list li div.list-item-status {width: 10%;}
+  /* #sortable-list li div.list-item-name {width: 40%;} */
+  /* #sortable-list li div.list-item-quality {width: 5%;}
+  #sortable-list li div.list-item-recovery {width: 5%;}
+  #sortable-list li div.list-item-calorie {width: 5%;} */
   
   /*# sourceMappingURL=maps/style.css.map */
   
