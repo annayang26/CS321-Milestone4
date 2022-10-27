@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+
+{% block title %} Add/Remove User {% endblock %}
+
+{% block content %}
+
+<div class="row">
+    <div class="col-lg-10 grid-margin stretch-card">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title"> Add a User </h4>
+                <form method="post">
+                    <p>
+                        <label for="first_name">First Name</label>
+                        <input type="text" name="first_name" placeholder="First Name"
+                        required>
+                    </p>
+                    <p>
+                        <label for="last_name">Last Name</label>
+                        <input type="text" name="last_name" placeholder="Last Name" required>
+                    </p>
+                    <p>
+                        <label for="email"> Email </label>
+                        <input type="email" name="email" placeholder="Enter Colby email address" required>
+                    </p>
+                    <p>
+                        <label for="role"> Role: </label>
+                        <select name="role" id="role">
+                            <option value="athlete">Athlete</option>
+                            <option value="coach">Coach</option>
+                            <option value="admin">Admin</option>
+                        </select>
+                    </p>
+                    <br>
+                    <p>
+                        <button type="submit">Submit</button>
+                    </p>
+                </form>
+                <hr>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}

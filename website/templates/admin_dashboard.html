@@ -1,0 +1,118 @@
+{% extends "base.html" %}
+
+{% block content%}
+
+<div class="row">
+    <div class="col-lg-9 grid-margin stretch-card">
+        <div class="card">
+          <div class="card-body">
+            <h4 class="card-title">Teams</h4>
+            <hr/>
+              <input type="text" class="live-search-box form-control" placeholder="Search Team">
+            <div class="table-responsive">
+              <div class="athlete-search-head search-head-name"> Name </div>
+              <div class="athlete-search-head"> Sleep </div>
+              <div class="athlete-search-head"> Quality </div>
+              <div class="athlete-search-head"> Recovery </div>
+              <div class="athlete-search-head search-head-recovery"> Calorie Intake </div>                        
+              <ul class="live-search-list" type="None">                     
+                <li>
+                  <div class="team-search-name"> <a class="nav-link" href="/team_breakdown"> Alpine Skiing (M)</a> </div>
+                  <div class="athlete-search shift-right"> 9.0hr </div>
+                  <div class="athlete-search"> 78% </div>
+                  <div class="athlete-search"> 68% </div>
+                  <div class="athlete-search"> 80% </div>
+                </li>
+                <li>
+                  <div class="team-search-name"> Alpine Skiing (W) </div>
+                  <div class="athlete-search shift-right"> 9.0hr </div>
+                  <div class="athlete-search"> 78% </div>
+                  <div class="athlete-search"> 68% </div>
+                  <div class="athlete-search"> 80% </div>
+                </li>
+                <li>
+                  <div class="team-search-name"> Baseball </div>
+                  <div class="athlete-search shift-right"> 9.0hr </div>
+                  <div class="athlete-search"> 78% </div>
+                  <div class="athlete-search"> 68% </div>
+                  <div class="athlete-search"> 80% </div>
+                </li>
+                <li>
+                  <div class="team-search-name"> Basketball (M) </div>
+                  <div class="athlete-search shift-right"> 9.0hr </div>
+                  <div class="athlete-search"> 78% </div>
+                  <div class="athlete-search"> 68% </div>
+                  <div class="athlete-search"> 80% </div>
+                </li>
+                <li>
+                  <div class="team-search-name"> Basketball (W) </div>
+                  <div class="athlete-search shift-right"> 9.0hr </div>
+                  <div class="athlete-search"> 78% </div>
+                  <div class="athlete-search"> 68% </div>
+                  <div class="athlete-search"> 80% </div>
+                </li>
+                <li>
+                  <div class="team-search-name"> Crew (M) </div>
+                  <div class="athlete-search shift-right"> 9.0hr </div>
+                  <div class="athlete-search"> 78% </div>
+                  <div class="athlete-search"> 68% </div>
+                  <div class="athlete-search"> 80% </div>
+                </li>
+                <li>
+                  <div class="team-search-name"> Crew (W) </div>
+                  <div class="athlete-search shift-right"> 9.0hr </div>
+                  <div class="athlete-search"> 78% </div>
+                  <div class="athlete-search"> 68% </div>
+                  <div class="athlete-search"> 80% </div>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-3 grid-margin stretch-card">
+        <div class="card">
+          <div class="card-body">
+            <h4 class="card-title">Sleep</h4>
+            <div class="container">
+                <div class="donut-chart-block block"> 
+                      <div class="donut-chart">
+                          <div id="part1" class="portion-block"><div class="circle"></div></div>
+                          <div id="part2" class="portion-block"><div class="circle"></div></div>
+                          <div id="part3" class="portion-block"><div class="circle"></div></div>
+                          <p class="center">7.1 Hours</p>        
+                      </div>
+                  </div>
+              </div>
+          </div>
+          <div class="card-body">
+            <h4 class="card-title">Recovery</h4>
+            <div class="container">
+                <div class="donut-chart-block block"> 
+                      <div class="donut-chart">
+                          <div id="part1" class="portion-block"><div class="circle"></div></div>
+                          <div id="part2" class="portion-block"><div class="circle"></div></div>
+                          <div id="part3" class="portion-block"><div class="circle"></div></div>
+                          <p class="center">68% Recovered</p>        
+                      </div>
+                  </div>
+              </div>
+          </div>
+          <div class="card-body">
+            <h4 class="card-title">Calorie Intake</h4>
+            <div class="container">
+                <div class="donut-chart-block block"> 
+                      <div class="donut-chart">
+                          <div id="part1" class="portion-block"><div class="circle"></div></div>
+                          <div id="part2" class="portion-block"><div class="circle"></div></div>
+                          <div id="part3" class="portion-block"><div class="circle"></div></div>
+                          <p class="center">90% Consumed</p>        
+                      </div>
+                  </div>
+              </div>
+          </div>
+        </div>
+      </div>
+</div>
+
+{% endblock %}

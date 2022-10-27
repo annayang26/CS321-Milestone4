@@ -1,0 +1,194 @@
+{% extends "base.html" %}
+{% block content %}
+  <div class="page-header">
+    <h3 class="page-title"> Men's Squash Team Dashboard </h3>
+    <nav aria-label="breadcrumb">
+    </nav>
+  </div>
+  <div class="row">
+    <div class="col-sm-4-5 grid-margin stretch-card">
+      <div class="card">
+        <div class="card-body">
+          <h4 class="card-title">Sleep</h4>
+          <canvas id="doughnutChart" width="30" height="30"></canvas>
+        </div>
+      </div>
+    </div>
+    <div class="column">
+      <div class="row-cols-coach grid-margin stretch-card">
+        <div class="card">
+          <div class="card-body">
+            <h4 class="card-title">Recovery</h4>
+            <canvas id="pieChart" width="20" height="20"></canvas>
+          </div>
+        </div>
+      </div>
+      <div class="row-cols-coach grid-margin stretch-card">
+        <div class="card">
+          <div class="card-body">
+            <h4 class="card-title">Calorie Intake</h4>
+            <canvas id="barChart" width="20" height="20"></canvas>
+          </div>
+        </div>
+      </div>
+    </div>  
+    <div class="col-lg-6 grid-margin stretch-card">
+      <div class="card">
+        <div class="card-body">
+          <h4 class="card-title">Athlete Breakdown</h4>
+            <input type="text" class="live-search-box form-control" placeholder="Search athlete">
+          <div class="table-responsive">
+            <div class="athlete-search-head"> Status </div>
+            <div class="athlete-search-head athlete-search-name"> Name </div>
+            <div class="athlete-search-head athlete-search-else"> Quality </div>
+            <div class="athlete-search-head athlete-search-else"> Recovery </div>
+            <div class="athlete-search-head athlete-search-else"> Calorie Intake </div>                        
+            <ul class="live-search-list" type="None">                     
+              <li>
+                <div class="py-1 athlete-search">
+                  <img class="status-img" src="../static/images/color/green.png" alt="image" />
+                </div>
+                <div class="athlete-search" style="margin-left: -2%;"> Player McPlayer </div>
+                <div class="athlete-search" style="margin-left: 1.5%;"> 10% </div>
+                <div class="athlete-search" style="margin-left: -2%;"> 50% </div>
+                <div class="athlete-search" style="margin-left: 1%;"> 89% </div>
+              </li>
+              <li>
+                <div class="py-1 athlete-search">
+                  <img class="status-img" src="../static/images/color/red.png" alt="image" />
+                </div>
+                <div class="athlete-search" style="margin-left: -2%;"> Athlete McAthlete </div>
+                <div class="athlete-search" style="margin-left: -1.5%;"> 15% </div>
+                <div class="athlete-search" style="margin-left: -2%;"> 53% </div>
+                <div class="athlete-search" style="margin-left: 1%;"> 81% </div>
+              </li>
+              <li>
+                <div class="py-1 athlete-search">
+                  <img class="status-img" src="../static/images/color/green.png" alt="image" />
+                </div>
+                <div class="athlete-search" style="margin-left: -2%;"> Football McFootball </div>
+                <div class="athlete-search" style="margin-left: -3.5%;"> 50% </div>
+                <div class="athlete-search" style="margin-left: -2.6%;"> 70% </div>
+                <div class="athlete-search" style="margin-left: 1%;"> 49% </div>
+              </li>
+              <li>
+                <div class="py-1 athlete-search">
+                  <img class="status-img" src="../static/images/color/green.png" alt="image" />
+                </div>
+                <div class="athlete-search" style="margin-left: -2%;"> Baseball McBaseball </div>
+                <div class="athlete-search" style="margin-left: -5%;"> 10% </div>
+                <div class="athlete-search" style="margin-left: -2%;"> 50% </div>
+                <div class="athlete-search" style="margin-left: 1%;"> 89% </div>
+              </li>
+              <li>
+                <div class="py-1 athlete-search">
+                  <img class="status-img" src="../static/images/color/red.png" alt="image" />
+                </div>
+                <div class="athlete-search" style="margin-left: -2%;"> Soccer McSoccer </div>
+                <div class="athlete-search" style="margin-left: -0.5%;"> 87% </div>
+                <div class="athlete-search" style="margin-left: -2.5%;"> 54% </div>
+                <div class="athlete-search" style="margin-left: 1%;"> 98% </div>
+              </li>
+              <li>
+                <div class="py-1 athlete-search">
+                  <img class="status-img" src="../static/images/color/yellow.jpg" alt="image" />
+                </div>
+                <div class="athlete-search" style="margin-left: -2%;"> Golf McGolfie </div>
+                <div class="athlete-search" style="margin-left: 5.7%;"> 78% </div>
+                <div class="athlete-search" style="margin-left: -2.5%;"> 55% </div>
+                <div class="athlete-search" style="margin-left: 1%;"> 46% </div>
+              </li>
+              <li>
+                <div class="py-1 athlete-search">
+                  <img class="status-img" src="../static/images/color/red.png" alt="image" />
+                </div>
+                <div class="athlete-search" style="margin-left: -2%;"> Ski McSki </div>
+                <div class="athlete-search" style="margin-left: 11%;"> 45% </div>
+                <div class="athlete-search" style="margin-left: -2.8%;"> 65% </div>
+                <div class="athlete-search" style="margin-left: 1%;"> 57% </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-6 grid-margin stretch-card">
+      <div class="card">
+        <div class="card-body">
+          <h4 class="card-title">Team Overview</h4>
+          <button type="button" class="btn btn-outline-secondary btn-fw btn-outline-secondary-coach">Last 10 days <i class="mdi mdi-chevron-down"></i> </button>
+          <button type="button" class="btn btn-secondary btn-primary btn-fw btn-secondary-coach"> <i class="mdi mdi-download"></i> Download CSV</button>
+          <canvas id="lineChart" style="height:250px"></canvas>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-6 grid-margin stretch-card">
+      <div class="card">
+        <div class="card-body">
+          <h4 class="card-title">Swim McSwimmie</h4>
+          <p id="coach-passage-color">Can only take part in 50% of the practice, and cannot exceed a heart rate of 120, no cutting allowed.</p>
+          <div class="card card-inner-left-top">
+            <div class="card-body">
+              <div class="row">
+                <i class="mdi mdi-sleep"></i>
+                <div class="column inner-card-title">
+                  <h4>&nbsp; Sleep</h4>
+                  <p class="inner-card-color">&nbsp; Avg. 7.1hr</p>
+                </div>
+                <div class="column inner-card-specify">
+                  <h4>&nbsp; 7.1hr</h4>
+                  <p class="inner-card-color-1">&nbsp; 23%</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="card card-inner-right-top">
+            <div class="card-body">
+              <div class="row">
+                <i class="mdi mdi-thumb-up"></i>
+                <div class="column inner-card-title">
+                  <h4>&nbsp; Quality</h4>
+                  <p class="inner-card-color">&nbsp; Avg. 73%</p>
+                </div>
+                <div class="column inner-card-specify">
+                  <h4>&nbsp; 90%</h4>
+                  <p class="inner-card-color-2">&nbsp; 33%</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="card card-inner-left-bottom">
+            <div class="card-body">
+              <div class="row">
+                <i class="mdi mdi-leaf"></i>
+                <div class="column inner-card-title">
+                  <h4>&nbsp; Recovery</h4>
+                  <p class="inner-card-color">&nbsp; Avg. 50%</p>
+                </div>
+                <div class="column inner-card-specify-2">
+                  <h4>&nbsp; 68%</h4>
+                  <p class="inner-card-color-2">&nbsp; 50%</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="card card-inner-right-bottom">
+            <div class="card-body">
+              <div class="row">
+                <i class="mdi mdi-food-apple"></i>
+                <div class="column inner-card-title">
+                  <h4>&nbsp; Calories</h4>
+                  <p class="inner-card-color">&nbsp; Avg. 90%</p>
+                </div>
+                <div class="column inner-card-specify-2">
+                  <h4>&nbsp; 70%</h4>
+                  <p class="inner-card-color-1">&nbsp; 30%</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}

@@ -1,0 +1,114 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <div class="page-header">
+        <h3 class="page-title"> Swim McSwimmie </h3>
+        <nav aria-label="breadcrumb">
+        </nav>
+    </div>
+<div class="row">
+    <div class="col-md-6 col-xl-4 grid-margin stretch-card">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">Sleep</h4>
+                <canvas id="doughnutChart" style="height:250px"></canvas>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6 col-xl-4 grid-margin stretch-card">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">Recovery</h4>
+                <canvas id="areaChart" style="height:250px"></canvas>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6 col-xl-4 grid-margin stretch-card">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">Calories</h4>
+                <canvas id="pieChart" style="height:250px"></canvas>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+<div class="col-md-8 grid-margin stretch-card">
+<div class="card">
+<div class="card-body">
+    <h4 class="card-title">Overview</h4>
+    <canvas id="lineChart" style="height:250px"></canvas>
+</div>
+</div>                
+</div>
+<div class="col-md-6 col-xl-4 grid-margin stretch-card">
+<div class="card">
+<div class="card-body">
+<div class="d-flex flex-row justify-content-between">
+<h4 class="card-title">Notes</h4>
+<p class="text-muted mb-1 small" href="athlete.html">View all</p>
+</div>
+<div class="preview-list">
+<div class="preview-item border-bottom">
+    <div class="preview-thumbnail">
+    <img src="../static/images/faces-clipart/tra.jpg" alt="image" class="rounded-circle" />
+    </div>
+    <div class="preview-item-content d-flex flex-grow">
+    <div class="flex-grow">
+        <div class="d-flex d-md-block d-xl-flex justify-content-between">
+        <h6 class="preview-subject">Athletic Trainer</h6>
+        <p class="text-muted text-small">5 minutes ago</p>
+        </div>
+        <p class="text-muted">Take it light in the weight room</p>
+    </div>
+    </div>
+</div>
+<div class="preview-item border-bottom">
+    <div class="preview-thumbnail">
+    <img src="../static/images/faces-clipart/psy.jpg" alt="image" class="rounded-circle" />
+    </div>
+    <div class="preview-item-content d-flex flex-grow">
+    <div class="flex-grow">
+        <div class="d-flex d-md-block d-xl-flex justify-content-between">
+        <h6 class="preview-subject">Psychologist</h6>
+        <p class="text-muted text-small">10 Minutes Ago</p>
+        </div>
+        <p class="text-muted">N/A</p>
+    </div>
+    </div>
+</div>
+<div class="preview-item border-bottom">
+    <div class="preview-thumbnail">
+    <img src="../static/images/faces-clipart/nut.jpg" alt="image" class="rounded-circle" />
+    </div>
+    <div class="preview-item-content d-flex flex-grow">
+    <div class="flex-grow">
+        <div class="d-flex d-md-block d-xl-flex justify-content-between">
+        <h6 class="preview-subject">Nutritionist</h6>
+        <p class="text-muted text-small">2 Hours Ago</p>
+        </div>
+        <p class="text-muted">Extra emphasis on vitamin D today</p>
+    </div>
+    </div>
+</div>
+<div class="preview-item border-bottom">
+    <div class="preview-thumbnail">
+    <img src="../static/images/faces-clipart/doc.jpg" alt="image" class="rounded-circle" />
+    </div>
+    <div class="preview-item-content d-flex flex-grow">
+    <div class="flex-grow">
+        <div class="d-flex d-md-block d-xl-flex justify-content-between">
+        <h6 class="preview-subject">Doctor</h6>
+        <p class="text-muted text-small">4 Hours Ago</p>
+        </div>
+        <p class="text-muted">You are now cleared to play!</p>
+    </div>
+    </div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+        
+{% endblock %}
