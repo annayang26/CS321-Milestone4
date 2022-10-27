@@ -21,19 +21,45 @@ hr {
     background-color: grey;
 }
 
-#wrapper {
-    margin-top: 10px;
-    margin-left: -10px;
-    margin-right: auto;
-    overflow: auto;
-    height: 500px;
-    width: 250px;
+.athlete-search-head {
+  font-weight: bold;
+  color: #a3a3a3 !important; 
+  display: inline-block;
+  margin-right: 2rem;
+  padding-top: 10px;
+  vertical-align: middle;
+  margin-right: 50px;
 }
 
-#wrapper ul li {
-    list-style: none;
-    margin-top: 10px;
-    font-size: 24px;
+.search-bar-teams {
+  margin-top: -75px;
+}
+
+.search-head-name {
+  margin-left: 1.75rem;
+  margin-right: 100px;
+}
+
+.live-search-list li {
+  border-top: 1px #5d5e6b solid;
+  margin-left: -2rem;
+  padding: 1rem;
+}
+
+.team-search-name {
+  position: absolute;
+  color: #5d5e6b;
+}
+
+.shift-right {
+  margin-left: 10rem;
+}
+
+.athlete-search {
+  display: inline;
+  margin-right: 5rem;
+  color: #5d5e6b;
+  padding-top: 0.75rem;
 }
 
 /* The following code is taken from https://codepen.io/hilar47/pen/RprXev */
