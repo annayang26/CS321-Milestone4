@@ -8,3 +8,6 @@ Project objective:
 
 Overview:
 In this assignment, you will work with your team on developing a dynamic version of our Athletic Management System.  Your Flask website will use the web pages created in the previous milestone, in addition to functional features such as authentication, user profiles, and visualizations from CSV files.  
+
+## Helpful links (references)
+https://www.digitalocean.com/community/tutorials/how-to-use-flask-sqlalchemy-to-interact-with-databases-in-a-flask-application
