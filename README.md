@@ -51,8 +51,11 @@ The goal of this milestone was to develop a dynamic version of the Athletic Mana
 
 ### Original Sprint
 🔴Friday 21st - Have a solid attempt and meet to discuss specifics and uniformity
+
 🔵Tuesday 25th - Have everything done but small minute details and vuew eachotehrs stuff give feedback
+
 🟢Wednesday 26th – Everyone done with their part meet to merge everything together and put on Github
+
 
 - Login page (Adaobi & Anna)
 - Athlete Pages
