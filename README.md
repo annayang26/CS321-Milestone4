@@ -86,7 +86,7 @@ Unfortunately due to very hectic conflicting schedules much of the progress we m
 ## Contribution List
 | Adaobi | Anna (Scrum Master) | Hayden | Linn | Sam |
 | --- | --- | --- | --- | --- |
-| Login Page | Permissions (Flask + HTML) - Edit - Add user | Admin Dashboard | Interactive Graph | Interactive Team Search |
+| Login Page | Permissions (Flask + HTML) (Edit, Add user) | Admin Dashboard | Interactive Graph | Interactive Team Search |
 | Athlete Dashboard | Login Page | Helped group members with HTML and CSS questions | Coach Dashboard | Super Admin Reports - download PDFs |
 | | Signup Page | README.md | | |
 
