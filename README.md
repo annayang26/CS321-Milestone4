@@ -1,7 +1,6 @@
 ![commit](https://img.shields.io/github/last-commit/annayang26/CS321-Milestone4)
 ![contributer](https://img.shields.io/github/contributors/annayang26/CS321-Milestone4)
 ![open issues](https://img.shields.io/github/issues-raw/annayang26/CS321-Milestone4)
-![closed issues](https://img.shields.io/github/issues-closed-raw/annayang26/CS321-Milestone4)
 ![stars](https://img.shields.io/github/stars/annayang26/CS321-Milestone4?style=social)
 
 # group1-milestone4
