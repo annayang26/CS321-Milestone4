@@ -30,6 +30,68 @@ The goal of this milestone was to develop a dynamic version of the Athletic Mana
   - As an athlete, I can see historical trends in my stats so that I can know how to optimize my performance. (Medium Priority)
 
 ## Results
+### Coach's Dashboard
+![Coach's Dashboard image](/README-img/coach1.png)
+![Coach's Dashboard image](/README-img/coach2.png)
+![Coach's Dashboard image](/README-img/coach3.png)
+
+### Super Admin Dashboard
+![Super Admin Dashboard image](/README-img/admin.png)
+![Team Breakdown image](/README-img/teambreakdown.png)
+
+### Super Admin Permissions
+![Permissions image](/README-img/permissions.png)
+
+### Edit User Information
+![Edit User image](/README-img/edit1.png)
+![Edit User image](/README-img/coach2.png)
+
+### Athlete Dashboard
+![Athlete Dashboard image](/README-img/athlete.png)
+
+### Original Sprint
+🔴Friday 21st - Have a solid attempt and meet to discuss specifics and uniformity
+🔵Tuesday 25th - Have everything done but small minute details and vuew eachotehrs stuff give feedback
+🟢Wednesday 26th – Everyone done with their part meet to merge everything together and put on Github
+
+- Login page (Adaobi & Anna)
+- Athlete Pages
+    - Information View/Dashboard (Adaobi)
+    - Main data breakdown - Sleep, Readiness (Adaobi)
+- Coach Pages 
+    - Dashboard (Linn)
+    - Athlete data breakdown (Adaobi)
+        - Main data breakdown (Adaobi)
+- Admin Pages
+    - Dashboard (Hayden)
+    - Team data breakdown (Linn)
+    - Athlete data breakdown (Adaobi)
+        - Main data breakdown (Adaobi)
+    - Permissions (Anna)
+        - Edit User Information (Anna)
+        - User permissions (Anna)
+        - New user (Anna)
+    - Reports (Sam)
+    - Interactive Team Search (Sam)
+
+In addition to constant communication through text, we met three times throughout the time allotted for milestone 4. We met on Friday the 21st and our goal for this meeting was to have a solid attempt of the parts we had previously agreed to each do and discuss specifics and how we wanted the pages to look so we could have uniformity across the website. We then met on Tuesday 25th and the goal for this meeting was to have the bulk of your page done not including little fixes and details. We also used this time to go over what everyone had done and give feedback. Our final meeting was on Wednesday the 26th and in this meeting it was expected that everyone had all their stuff done because we were going to merge all of our pages together and publish them onto the Github,
+
+### Burndown Chart
+![Burndown Chart image](/README-img/burndown.png)
+
+The burndown chart shows our work throughout the 2 week period we had to do this milestone.
+As you can see progress started off very slow but we all felt there were significant jumps when we met together.
+Unfortunately due to very hectic conflicting schedules much of the progress we made was in the two nights before the due date so I think going forward we are going to try to meet earlier in the week.
+
+## Contribution List
+| Adaobi | Anna (Scrum Master) | Hayden | Linn | Sam |
+| --- | --- | --- | --- | --- |
+| Login Page | Permissions (Flask + HTML) - Edit - Add user | Admin Dashboard | Interactive Graph | Interactive Team Search |
+| Athlete Dashboard | Login Page | Helped group members with HTML and CSS questions | Coach Dashboard | Super Admin Reports - download PDFs |
+| | Signup Page | README.md | | |
+
+## Extensions
+Write your report in Markdown as a readme file in your repository, including table images and appropriate tags and content.
 
 ## Helpful links (references)
 https://www.digitalocean.com/community/tutorials/how-to-use-flask-sqlalchemy-to-interact-with-databases-in-a-flask-application
