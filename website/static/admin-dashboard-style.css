@@ -21,7 +21,7 @@ hr {
     background-color: grey;
 }
 
-.athlete-search-head {
+.team-search-head {
   font-weight: bold;
   color: #a3a3a3 !important; 
   display: inline-block;
@@ -35,12 +35,12 @@ hr {
   margin-top: -75px;
 }
 
-.search-head-name {
+.team-search-head-name {
   margin-left: 1.75rem;
   margin-right: 100px;
 }
 
-.live-search-list li {
+.team-search-row {
   border-top: 1px #5d5e6b solid;
   margin-left: -2rem;
   padding: 1rem;
@@ -51,11 +51,11 @@ hr {
   color: #5d5e6b;
 }
 
-.shift-right {
+.team-table-shift-right {
   margin-left: 10rem;
 }
 
-.athlete-search {
+.team-search {
   display: inline;
   margin-right: 5rem;
   color: #5d5e6b;
