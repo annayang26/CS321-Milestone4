@@ -21,6 +21,15 @@ class User(db.Model, UserMixin):
 
     # determine access level
     access = db.Column(db.Integer, nullable=False) 
+    team = db.Column(db.String(150))
+    
+    # for PEAK members only. 
+    # 1: sports science
+    # 2: strength and training
+    # 3: sports medicine
+    # 4: performance psychology
+    # 5: nutrition
+    branch = db.Column(db.Integer) 
 
     def __repr__(self):
         return f'<User {self.first_name}>'

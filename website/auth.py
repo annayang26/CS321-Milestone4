@@ -17,7 +17,7 @@ def login():
         if user:
             if check_password_hash(user.password, password):
                 flash('Login successfully!', category='success')
-                login_user(user, remember=True)
+                login_user(user, remember=True)                                                                         
                 if user.access == 0:
                     return redirect(url_for('views.athlete'))
                 elif user.access == 1:
@@ -67,20 +67,25 @@ def sign_up():
             # if the user email is this, make them the superadmin
             if email == "superadmin@colby.edu":
                 access = 3
+                # branch = 0
             elif email == "admin1@colby.edu":
                 access = 2
+                # branch = 0
             elif email == "coach@colby.edu":
                 access = 1
+                # branch = 0
             else:
                 access = 0
-            new_user = User(email=email, first_name=first_name, last_name = last_name, access=access, password=generate_password_hash(password1, method='sha256'))
+                # branch = 0
+            new_user = User(email=email, first_name=first_name, last_name = last_name, access=access, \
+                            password=generate_password_hash(password1, method='sha256'), branch=0, team=None)
             db.session.add(new_user)
             db.session.commit()
             login_user(new_user, remember=True)
             flash('Account created!', category='success')
             if new_user.access == 3:
                 return redirect(url_for('views.superadmin'))
-            return redirect(url_for('views.athlete'))
+            return redirect(url_for('auth.login'))
 
     return render_template("signup.html", user=current_user)
 
@@ -124,6 +129,12 @@ def edit(user_id):
         last_name = request.form['last_name']
         email = request.form['email']
         role = request.form.get('role')
+        if user.access == 2:
+            branch = request.form['branch']
+            user.branch = branch
+        elif user.access == 1 or user.access == 0: 
+            team = request.form['team']
+            user.team = team
 
         user.first_name = first_name
         user.last_name = last_name

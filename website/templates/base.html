@@ -21,9 +21,10 @@
         <link rel="stylesheet" href="/assets/vendors/flag-icon-css/css/flag-icon.min.css">
         <link rel="stylesheet" href="/assets/vendors/owl-carousel-2/owl.carousel.min.css">
         <link rel="stylesheet" href="/assets/vendors/owl-carousel-2/owl.theme.default.min.css">
+        <link rel="stylesheet" href="/static/add_page.css">
         {% if user.access == 3%}
           <link rel="stylesheet" href="/static/admin-dashboard-style.css"/>
-        {% elif user.access == 1 %}
+        {% elif user.access == 1 or user.access == 0 %}
           <link rel="stylesheet" href="/static/coach-style.css">
         {% endif %}
         <!-- <link rel="shortcut icon" href="../static/images/colby.svg" /> -->
@@ -225,6 +226,7 @@
       <!-- Custom js for this page -->
       <script src="../static/js/chart.js"></script>
       <script src="assets/js/dashboard.js"></script>
+      <script src="/static/js/add_page.js"></script>
 
     </body>
 </html>
