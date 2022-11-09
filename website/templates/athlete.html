@@ -1,49 +1,19 @@
-
 {% extends "base.html" %}
 
 {% block content %}
-
     <!-- partial -->
-    <div class="container-fluid page-body-wrapper">
-      <div class="container-fluid page-body-wrapper">
+    <!-- <div class="container-fluid page-body-wrapper">
+      <div class="container-fluid page-body-wrapper"> -->
         <!-- partial:partials/_navbar.html -->
-        <nav class="navbar p-0 fixed-top d-flex flex-row">
+        <!-- <nav class="navbar p-0 fixed-top d-flex flex-row">
           <div class="navbar-brand-wrapper d-flex d-lg-none align-items-center justify-content-center">
             <a class="navbar-brand brand-logo-mini" href="athlete.html"><img src="../static/images/ca_mini_logo.png" alt="logo" /></a>
-          </div>
-          <div class="navbar-menu-wrapper flex-grow d-flex align-items-stretch">
+          </div> -->
+          <!-- <div class="navbar-menu-wrapper flex-grow d-flex align-items-stretch"> -->
             <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
               <span class="mdi mdi-menu"></span>
             </button>
-            <ul class="navbar-nav w-100">
-              <li class="nav-item w-100">
-                <form class="nav-link mt-2 mt-md-0 d-none d-lg-flex search">
-                  <h1 class="page-title"> Welcome, Player A </h1>
-                </form>
-              </li>
-            </ul>
             <ul class="navbar-nav navbar-nav-right">
-        
-              <li class="nav-item dropdown">
-                <a class="nav-link" id="profileDropdown" href="#" data-toggle="dropdown">
-                  <div class="navbar-profile">
-                    <img class="img-xs rounded-circle" src="../static/images/faces-clipart/pic-2.png" alt="">
-                    <p class="mb-0 d-none d-sm-block navbar-profile-name">Player A</p>
-                    <i class="mdi mdi-menu-down d-none d-sm-block"></i>
-              </li>
-            <li class="nav-item nav-settings d-none d-lg-block">
-              <a class="nav-link" href="#">
-                <i class="mdi mdi-view-grid"></i>
-              </a>
-            </li>
-            <li class="nav-item dropdown">
-              <a class="nav-link" id="profileDropdown" href="#" data-toggle="dropdown">
-                <div class="navbar-profile">
-                  <img class="img-xs rounded-circle" src="assets/images/faces-clipart/pic-2.png" alt="">
-                  <p class="mb-0 d-none d-sm-block navbar-profile-name">Player A</p>
-                  <i class="mdi mdi-menu-down d-none d-sm-block"></i>
-                </div>
-              </a>
               <div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list" aria-labelledby="profileDropdown">
                 <h6 class="p-3 mb-0">Profile</h6>
                 <div class="dropdown-divider"></div>
@@ -76,16 +46,16 @@
           <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button" data-toggle="offcanvas">
             <span class="mdi mdi-format-line-spacing"></span>
           </button>
-        </div>
-      </nav>
+        <!-- </div>
+      </nav> -->
       <!-- partial -->
-      <div class="main-panel">
-        <div class="content-wrapper">
+      <!-- <div class="main-panel">
+        <div class="content-wrapper"> -->
           <div class="row">
             <div class="col-md-6 col-xl-4 grid-margin stretch-card">
               <div class="card">
-                <div class="card-body">
-                  <h4 class="card-title" <a class="nav-link" href="/sleep"> Sleep </a></h4>
+                <div class="card-body"> 
+                  <h4 class="card-title"> <a class="nav-link" href="sleep.html"> Sleep </a> </h4>
                   <canvas id="doughnutChart" style="height:250px"></canvas>
                 </div>
               </div>
@@ -93,7 +63,7 @@
             <div class="col-md-6 col-xl-4 grid-margin stretch-card">
               <div class="card">
                 <div class="card-body">
-                  <h4 class="card-title">Recovery</h4>
+                  <h4 class="card-title"> <a class="nav-link" href="recovery.html"> Recovery </a> </h4>
                   <canvas id="areaChart" style="height:250px"></canvas>
                 </div>
               </div>
@@ -101,7 +71,7 @@
             <div class="col-md-6 col-xl-4 grid-margin stretch-card">
               <div class="card">
                 <div class="card-body">
-                  <h4 class="card-title">Calories</h4>
+                  <h4 class="card-title"> <a class ="nav-link" href="calories.html"> Calories </a> </h4>
                   <canvas id="pieChart" style="height:250px"></canvas>
                 </div>
               </div>
@@ -111,7 +81,7 @@
             <div class="col-md-8 grid-margin stretch-card">
               <div class="card">
                 <div class="card-body">
-                  <h4 class="card-title">Overview</h4>
+                  <h4 class="card-title"> <a class = "nav-link" href="overview.html"> Overview </a> </h4>
                   <canvas id="lineChart" style="height:250px"></canvas>
                 </div>
               </div>                
@@ -121,12 +91,12 @@
             <div class="card-body">
               <div class="d-flex flex-row justify-content-between">
                 <h4 class="card-title">Notes</h4>
-                <p class="text-muted mb-1 small" href="athlete.html">View all</p>
+                <p class="text-muted mb-1 small"> <a class="nav-link" href="notes.html"> View all </a> </p>
               </div>
               <div class="preview-list">
                 <div class="preview-item border-bottom">
                   <div class="preview-thumbnail">
-                    <img src="assets/images/faces-clipart/tra.jpg" alt="image" class="rounded-circle" />
+                    <img src="../static/images/faces-clipart/tra.jpg" alt="image" class="rounded-circle" />
                   </div>
                   <div class="preview-item-content d-flex flex-grow">
                     <div class="flex-grow">
@@ -140,7 +110,7 @@
                 </div>
                 <div class="preview-item border-bottom">
                   <div class="preview-thumbnail">
-                    <img src="/assets/images/faces-clipart/psy.jpg" alt="image" class="rounded-circle" />
+                    <img src="../static/images/faces-clipart/psy.jpg" alt="image" class="rounded-circle" />
                   </div>
                   <div class="preview-item-content d-flex flex-grow">
                     <div class="flex-grow">
@@ -154,7 +124,7 @@
                 </div>
                 <div class="preview-item border-bottom">
                   <div class="preview-thumbnail">
-                    <img src="/assets/images/faces-clipart/nut.jpg" alt="image" class="rounded-circle" />
+                    <img src="../static/images/faces-clipart/nut.jpg" alt="image" class="rounded-circle" />
                   </div>
                   <div class="preview-item-content d-flex flex-grow">
                     <div class="flex-grow">
@@ -168,7 +138,7 @@
                 </div>
                 <div class="preview-item border-bottom">
                   <div class="preview-thumbnail">
-                    <img src="/assets/images/faces-clipart/doc.jpg" alt="image" class="rounded-circle" />
+                    <img src="../static/images/faces-clipart/doc.jpg" alt="image" class="rounded-circle" />
                   </div>
                   <div class="preview-item-content d-flex flex-grow">
                     <div class="flex-grow">
@@ -183,21 +153,21 @@
               </div>
             </div>
           </div>
-        </div>
-      </div>
+        <!-- </div>
+      </div> -->
         <!-- content-wrapper ends -->
         <!-- partial:partials/_footer.html -->
-        <footer class="footer">
+        <!-- <footer class="footer">
           <div class="d-sm-flex justify-content-center justify-content-sm-between">
             <span class="text-muted d-block text-center text-sm-left d-sm-inline-block">Copyright © Colby Athletic Management System 2022</span>
             <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center"> <a href="https://colbyathletics.com/" target="_blank">Check out the Colby Athletics Website</a></span>
           </div>
-        </footer>
+        </footer> -->
         <!-- partial -->
-      </div>
+      <!-- </div> -->
       <!-- main-panel ends -->
-    </div>
+    <!-- </div> -->
     <!-- page-body-wrapper ends -->
-    </div>
+    <!-- </div> -->
 
 {% endblock %}
