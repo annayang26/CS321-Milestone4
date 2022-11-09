@@ -35,7 +35,7 @@
     </head>
     <body>
       <div class="container-scroller">
-        {% if user.access == 1%}
+        {% if user.access == 1 or user.access == 0 %}
           <nav class="navbar p-0 fixed-top d-flex flex-row navbar-coach">
             <div class="navbar-menu-wrapper flex-grow d-flex align-items-stretch">
               <a href="index.html"><img id="coach-logo" src="../static/images/colby.svg" alt="logo" /></a>
