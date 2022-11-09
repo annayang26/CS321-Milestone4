@@ -54,6 +54,13 @@ def database():
 @login_required
 def report():
     if current_user.access == 3:
+        return render_template('reportchoose.html', user=current_user)
+    flash("you don't have access to this page", category='error')
+
+@views.route('/reportgen')
+@login_required
+def reports():
+    if current_user.access == 3:
         return render_template('reportpage.html', user=current_user)
     flash("you don't have access to this page", category='error')
 
