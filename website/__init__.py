@@ -3,6 +3,7 @@ from venv import create
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy 
 from os import path 
+import os
 from flask_login import LoginManager, current_user, login_required, UserMixin 
 from dotenv import load_dotenv 
 
