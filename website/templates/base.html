@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+{% if user.is_authenticated %}
+  {% if user.access == 3 or user.access == 2 %}
+    {% set dashboard_url = '/admin_dashboard' %}
+  {% elif user.access == 1 %}
+    {% set dashboard_url = '/coach-dashboard' %}
+  {% elif user.access == 0 %}
+    {% set dashboard_url = '/athlete' %}
+  {% endif %}
+{% endif %}
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <!-- <link rel="stylesheet" src={{url_for('static', filename='materialdesignicons.min.css')}}>
+        <link rel="stylesheet" src={{url_for('static', filename='vendor.bundle.base.css')}}> -->
+        <link rel="stylesheet" href="../static/materialdesignicons.min.css">
+        <link rel="stylesheet" href="../static/vendor.bundle.base.css">
+        <link rel="stylesheet" href="../static/style.css">
+        <link rel="stylesheet" href="../static/vendors/jvectormap/jquery-jvectormap.css">
+        <link rel="stylesheet" href="../static/vendors/flag-icon-css/css/flag-icon.min.css">
+        <link rel="stylesheet" href="../static/vendors/owl-carousel-2/owl.carousel.min.css">
+        <link rel="stylesheet" href="../static/vendors/owl-carousel-2/owl.theme.default.min.css">
+        <link rel="stylesheet" href="../static/vendors/mdi/css/materialdesignicons.min.css">
+        <link rel="stylesheet" href="../static/vendors/css/vendor.bundle.base.css">
+        <link rel="shortcut icon" href="../static/images/favicon.png" />
+        <link rel="stylesheet" href="../static/admin-dashboard-style.css"/>
+        <link rel="stylesheet" href="../static/coach-style.css">
+        <!-- {% if user.access == 3%}
+          <link rel="stylesheet" href="../static/admin-dashboard-style.css"/>
+        {% elif user.access == 1 %}
+          <link rel="stylesheet" href="../static/coach-style.css">
+        {% endif %} -->
+        <!-- <link rel="shortcut icon" href="../static/images/colby.svg" /> -->
+
+        <title>{% block title %} Home {% endblock %}</title>
+    </head>
+    <body>
+      <div class="container-scroller">
+        {% if user.access == 1 or user.access == 0 %}
+          <nav class="navbar p-0 fixed-top d-flex flex-row navbar-coach">
+            <div class="navbar-menu-wrapper flex-grow d-flex align-items-stretch">
+              <a href="index.html"><img id="coach-logo" src="../static/images/colby.svg" alt="logo" /></a>
+              <h1 id="coach-title"> Athletic Management System </h1>
+              <ul class="navbar-nav navbar-nav-right">
+                <li class="nav-item nav-settings d-none d-lg-block">
+                  <a class="nav-link" href="#">
+                    <i class="mdi mdi-view-grid"></i>
+                  </a>
+                </li>
+                <li class="nav-item dropdown border-left">
+                  <a class="nav-link count-indicator dropdown-toggle" id="messageDropdown" href="#" data-toggle="dropdown" aria-expanded="false">
+                    <i class="mdi mdi-email"></i>
+                    <span class="count bg-success"></span>
+                  </a>
+                  <div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list" aria-labelledby="messageDropdown">
+                    <h6 class="p-3 mb-0">Messages</h6>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item preview-item">
+                      <div class="preview-thumbnail">
+                        <img src="../static/images/faces/coach.jpg" alt="image" class="rounded-circle profile-pic">
+                      </div>
+                      <div class="preview-item-content">
+                        <p class="preview-subject ellipsis mb-1">Anne send you a message</p>
+                        <p class="text-muted mb-0"> 1 Minutes ago </p>
+                      </div>
+                    </a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item preview-item">
+                      <div class="preview-thumbnail">
+                        <img src="../static/images/faces/face2.jpg" alt="image" class="rounded-circle profile-pic">
+                      </div>
+                      <div class="preview-item-content">
+                        <p class="preview-subject ellipsis mb-1">Cregh send you a message</p>
+                        <p class="text-muted mb-0"> 15 Minutes ago </p>
+                      </div>
+                    </a>
+                    <div class="dropdown-divider"></div>
+                    <div class="dropdown-divider"></div>
+                    <p class="p-3 mb-0 text-center">4 new messages</p>
+                  </div>
+                </li>
+                <li class="nav-item dropdown border-left">
+                  <a class="nav-link count-indicator dropdown-toggle" id="notificationDropdown" href="#" data-toggle="dropdown">
+                    <i class="mdi mdi-bell"></i>
+                    <span class="count bg-danger"></span>
+                  </a>
+                  <div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list" aria-labelledby="notificationDropdown">
+                    <h6 class="p-3 mb-0">Notifications</h6>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item preview-item">
+                      <div class="preview-thumbnail">
+                        <div class="preview-icon bg-dark rounded-circle">
+                          <i class="mdi mdi-calendar text-success"></i>
+                        </div>
+                      </div>
+                      <div class="preview-item-content">
+                        <p class="preview-subject mb-1">Event today</p>
+                        <p class="text-muted ellipsis mb-0"> Just a reminder that you have an event today </p>
+                      </div>
+                    </a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item preview-item">
+                      <div class="preview-thumbnail">
+                        <div class="preview-icon bg-dark rounded-circle">
+                          <i class="mdi mdi-settings text-danger"></i>
+                        </div>
+                      </div>
+                      <div class="preview-item-content">
+                        <p class="preview-subject mb-1">Settings</p>
+                        <p class="text-muted ellipsis mb-0"> Update dashboard </p>
+                      </div>
+                    </a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item preview-item">
+                      <div class="preview-thumbnail">
+                        <div class="preview-icon bg-dark rounded-circle">
+                          <i class="mdi mdi-link-variant text-warning"></i>
+                        </div>
+                      </div>
+                      <div class="preview-item-content">
+                        <p class="preview-subject mb-1">Launch Admin</p>
+                        <p class="text-muted ellipsis mb-0"> New admin wow! </p>
+                      </div>
+                    </a>
+                    <div class="dropdown-divider"></div>
+                    <p class="p-3 mb-0 text-center">See all notifications</p>
+                  </div>
+                </li>
+                <li class="nav-item dropdown show">
+                  <a class="nav-link" id="profileDropdown" href="#" data-toggle="dropdown">
+                    <div class="navbar-profile">
+                      <img class="img-xs rounded-circle" src="../static/images/faces/coach.jpg" alt="">
+                      <p class="mb-0 d-none d-sm-block navbar-profile-name">Chris Abplanalp</p>
+                      <i class="mdi mdi-menu-down d-none d-sm-block"></i>
+                    </div>
+                  </a>
+                  <div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list" aria-labelledby="profileDropdown">
+                    <h6 class="p-3 mb-0">Profile</h6>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item preview-item">
+                      <div class="preview-thumbnail">
+                        <div class="preview-icon bg-dark rounded-circle">
+                          <i class="mdi mdi-settings text-success"></i>
+                        </div>
+                      </div>
+                      <div class="preview-item-content">
+                        <p class="preview-subject mb-1">Settings</p>
+                      </div>
+                    </a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item preview-item nav-item nav-link" id="logout" href="/logout">
+                      <div class="preview-thumbnail">
+                        <div class="preview-icon bg-dark rounded-circle">
+                          <i class="mdi mdi-logout text-danger"></i>
+                        </div>
+                      </div>
+                      <div class="preview-item-content">
+                        <p class="preview-subject mb-1">Log out</p>
+                      </div>
+                    </a>
+                    <div class="dropdown-divider"></div>
+                    <p class="p-3 mb-0 text-center">Advanced settings</p>
+                  </div>
+                </li>
+              </ul>
+              <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button" data-toggle="offcanvas">
+                <span class="mdi mdi-format-line-spacing"></span>
+              </button>
+            </div>
+          </nav>
+        {% else %} 
+          <nav class="sidebar sidebar-offcanvas" id="sidebar">
+            <div class="sidebar-brand-wrapper d-none d-lg-flex align-items-center justify-content-center">
+              <a class="sidebar-brand brand-logo" href="https://colbyathletics.com/" target="_blank"><img src="{{url_for('static', filename='ca_mini_logo.png')}}" alt="logo" /></a>
+            </div>
+            <div class="row p-0 m-0 proBanner d-flex" id="proBanner"> 
+              <div class="col-md-12 p-0 m-0">
+                <div ckass="card-body card-body-padding d-flex">
+                      <div class = "card">
+                              {% if user.is_authenticated %}
+                                  <a class = "nav-item nav-link" id="home" href="{{dashboard_url}}">Home</a>
+                                  <a class = "nav-item nav-link" id="logout" href="/logout">Logout</a>
+                              {% else %}
+                                  <a class = "nav-item nav-link" id="login" href="/login">Login</a>
+                                  <a class = "nav-item nav-link" id="sign-up" href="/sign-up">Sign-up</a>
+                              {% endif %}
+                      </div>                    
+
+                  {% with messages = get_flashed_messages(with_categories=true) %} 
+                  {% if messages %} 
+                      {% for category, message in messages %} 
+                          {% if category == 'error' %}
+                              <div class="alert alert-danger alter-dismissable fade show" role="alert">
+                              {{ message }}
+                              <button type="button" class="close" data-dismiss="alert">
+                                  <span aria-hidden="true">&times;</span>
+                              </button>
+                              </div>
+                          {% else %}
+                              <div class="alert alert-success alter-dismissable fade show" role="alert">
+                              {{ message }}
+                              <button type="button" class="close" data-dismiss="alert">
+                                  <span aria-hidden="true">&times;</span>
+                              </button>
+                              </div>
+                          {% endif %} 
+                      {% endfor %} 
+                    {% endif %} 
+                    {% endwith %}             
+                </div>
+              </div>
+            </div>
+            
+            {% if user.is_authenticated %}
+            <ul class="nav">
+              <li class="nav-item profile">
+                <div class="profile-desc">
+                  <div class="profile-pic">
+                    <div class="count-indicator">
+                      <img class="img-xs rounded-circle " src="{{url_for('static', filename='pic-1.png')}}" alt="">
+                      <span class="count bg-success"> </span>
+                    </div>
+                    <div class="profile-name">
+                      <!-- {% with user = current_user %} -->
+                      <h5 class="mb-0 font-weight-normal"> {{user.first_name}} {{user.last_name}} </h5>
+                      {% if user.access == 3 %}
+                        <span> SuperAdmin </span>
+                      {% elif user.access == 2 %}
+                        <span> Admin </span>
+                      {% elif user.access == 1 %}
+                        <span> Coach </span>
+                      {% else %}
+                        <span> Athlete </span>
+                      {% endif %}
+                      <!-- {% endwith %} -->
+                    </div>
+                  </div>
+                  <a href="#" id="profile-dropdown" data-toggle="dropdown"><i class="mdi mdi-dots-vertical"></i></a>
+                  <div class="dropdown-menu dropdown-menu-right sidebar-dropdown preview-list" aria-labelledby="profile-dropdown">
+                    <a href="#" class="dropdown-item preview-item">
+                      <div class="preview-thumbnail">
+                        <div class="preview-icon bg-dark rounded-circle">
+                          <i class="mdi mdi-settings text-primary"></i>
+                        </div>
+                      </div>
+                      <div class="preview-item-content">
+                        <p class="preview-subject ellipsis mb-1 text-small">Account settings</p>
+                      </div>
+                    </a>
+                    <div class="dropdown-divider"></div>
+                    <a href="#" class="dropdown-item preview-item">
+                      <div class="preview-thumbnail">
+                        <div class="preview-icon bg-dark rounded-circle">
+                          <i class="mdi mdi-onepassword  text-info"></i>
+                        </div>
+                      </div>
+                      <div class="preview-item-content">
+                        <p class="preview-subject ellipsis mb-1 text-small">Change Password</p>
+                      </div>
+                    </a>
+                    <div class="dropdown-divider"></div>
+                    <a href="#" class="dropdown-item preview-item">
+                      <div class="preview-thumbnail">
+                        <div class="preview-icon bg-dark rounded-circle">
+                          <i class="mdi mdi-calendar-today text-success"></i>
+                        </div>
+                      </div>
+                      <div class="preview-item-content">
+                        <p class="preview-subject ellipsis mb-1 text-small">To-do list</p>
+                      </div>
+                    </a>
+                  </div>
+                </div>
+              </li>
+              <li class="nav-item nav-category">
+                <span class="nav-link">Navigation</span>
+              </li>
+              <li class="nav-item menu-items">
+                <a class="nav-link" href="{{ dashboard_url }}">
+                  <span class="menu-icon">
+                    <i class="mdi mdi-speedometer"></i>
+                  </span>
+                  <span class="menu-title">Dashboard</span>
+                </a>
+              </li>
+              {% if user.access == 3 %}
+                <li class="nav-item menu-items">
+                  <a class="nav-link" href="/reportpage">
+                    <span class="menu-icon">
+                      <i class="mdi mdi-contacts"></i>
+                    </span>
+                    <span class="menu-title"> Reports </span>
+                  </a>
+                </li>
+              
+                <li class="nav-item menu-items">
+                  <a class="nav-link" data-toggle="collapse" href="#auth" aria-expanded="false" aria-controls="auth">
+                    <span class="menu-icon">
+                      <i class="mdi mdi-security"></i>
+                    </span>
+                    <span class="menu-title">Permission Control</span>
+                    <i class="menu-arrow"></i>
+                  </a>
+                  <div class="collapse" id="auth">
+                    <ul class="nav flex-column sub-menu">
+                      <!-- <li class="nav-item"> <a class="nav-link" href="PEAK.html"> PEAK member </a></li>
+                      <li class="nav-item"> <a class="nav-link" href="coaches.html"> Coaches </a></li>
+                      <li class="nav-item"> <a class="nav-link" href="athletes.html"> Athletes </a></li> -->
+                      <li class="nav-item"> <a class="nav-link" href="/database"> Edit </a></li>
+                      <li class="nav-item"> <a class="nav-link" href="/add"> Add a User </a></li>
+                    </ul>
+                  </div>
+                </li>
+              {% endif %}
+            </ul>
+            {% endif %}
+          </nav>
+        {% endif %}
+
+        
+        <div class="container-fluid page-body-wrapper">
+          <div class="navbar p-0 fixed-top d-flex flex-row">
+              <br>      
+          </div>
+          <div class="main-panel">
+              <div class="content-wrapper">
+                {% block content%}
+                {% endblock %} 
+              </div>
+            </div>    
+        </div>
+   
+      </div>
+      <script
+          src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+          integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+          crossorigin="anonymous"
+      ></script>
+      <script
+          src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+          integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+          crossorigin="anonymous"
+      ></script>
+      <script
+          src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+          integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+          crossorigin="anonymous"
+      ></script>
+      <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+      <script src="../static/js/search.js"></script>
+      <script src="../static/vendors/js/vendor.bundle.base.js"></script>
+      <!-- endinject -->
+      <!-- Plugin js for this page -->
+      <script src="../static/vendors/chart.js/Chart.min.js"></script>
+      <!-- End plugin js for this page -->
+      <!-- inject:js -->
+      <script src="../static/js/off-canvas.js"></script>
+      <script src="../static/js/hoverable-collapse.js"></script>
+      <script src="../static/js/misc.js"></script>
+      <script src="../static/js/settings.js"></script>
+      <script src="../static/js/todolist.js"></script>
+      <!-- endinject -->
+      <!-- Custom js for this page -->
+      <script src="../static/js/chart.js"></script>
+      <script src="../static/js/dashboard.js"></script>
+ 
+      
+      <!-- added by Linn -->
+      <script src="../static/vendors/js/vendor.bundle.base.js"></script>
+      <!-- endinject -->
+      <!-- Plugin js for this page -->
+      <script src="../static/vendors/chart.js/Chart.min.js"></script>
+      <!-- End plugin js for this page -->
+      <!-- inject:js -->
+      <script src="../static/js/off-canvas.js"></script>
+      <script src="../static/js/hoverable-collapse.js"></script>
+      <script src="../static/js/misc.js"></script>
+      <script src="../static/js/settings.js"></script>
+      <script src="../static/js/todolist.js"></script>
+      <!-- endinject -->
+      <!-- Custom js for this page -->
+      <script src="../static/js/chart.js"></script>
+      <script src="../static/js/dashboard.js"></script>
+      <script src="/static/js/add_page.js"></script>
+      
+      <!-- End custom js for this page -->
+
+      <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+      <script src="../static/js/search.js"></script>
+      
+
+    </body>
+</html>
