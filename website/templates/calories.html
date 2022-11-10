@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% block content %}
+  <div class="page-header">
+    <h3 class="page-title"> {% block title %} {{user.first_name}} {{user.last_name}}'s Calorie Intake{% endblock %}
+      Dashboard </h3>
+    <nav aria-label="breadcrumb">
+    </nav>
+  </div>
+  <div class="row">
+    <div class="col-sm-4-5 grid-margin stretch-card">
+      <div class="card">
+        <div class="card-body">
+          <h4 class="card-title">Calories</h4>
+          <button type="button" class="btn btn-secondary btn-primary btn-fw btn-secondary-coach"> <i class="mdi mdi-download"></i> Download CSV</button>
+          <canvas id="pieChart" style="height:250px"></canvas>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-7 grid-margin stretch-card">
+        <div class="card">
+          <div class="card-body">
+            <h4 class="card-title">Calorie Breakdown</h4>              
+            <script src="https://apps.elfsight.com/p/platform.js" defer></script>
+            <div class="elfsight-app-09e53038-bc8c-41cc-b03a-6935de45eb9e"></div>
+{% endblock %}

@@ -1,0 +1,92 @@
+{% extends "base.html" %}
+{% block content %}
+  <div class="page-header">
+    <h3 class="page-title"> {% block title %} {{user.first_name}} {{user.last_name}}'s Sleep{% endblock %}
+      Dashboard </h3>
+    <nav aria-label="breadcrumb">
+    </nav>
+  </div>
+  <div class="row">
+    <div class="col-sm-4-5 grid-margin stretch-card">
+      <div class="card">
+        <div class="card-body">
+          <h4 class="card-title">Sleep</h4>
+          <button type="button" class="btn btn-secondary btn-primary btn-fw btn-secondary-coach"> <i class="mdi mdi-download"></i> Download CSV</button>
+          <canvas id="doughnutChart" width="30" height="30"></canvas>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-7 grid-margin stretch-card">
+      <div class="card">
+        <div class="card-body">
+          <h4 class="card-title">Sleep Breakdown</h4>
+            <!-- <input type="text" class="live-search-box form-control" placeholder="Search athlete"> -->
+          <div class="table-responsive">
+            <div class="athlete-search-head"> Status </div>
+            <div class="athlete-search-head athlete-search-name"> Date </div>
+            <div class="athlete-search-head athlete-search-else"> Quality </div>
+            <div class="athlete-search-head athlete-search-else"> &emsp; Hours </div>                   
+            <ul class="live-search-list" type="None">                     
+              <li>
+                <div class="py-1 athlete-search">
+                  <img class="status-img" src="../static/images/color/green.png" alt="image" />
+                </div>
+                <div class="athlete-search" style="margin-left: -2%;"> 9 November&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </div>
+                <div class="athlete-search" style="margin-left: 1.5%;"> 90% </div>
+                <div class="athlete-search" style="margin-left: -2%;"> &nbsp;7.5hrs </div>
+              </li>
+              <li>
+                <div class="py-1 athlete-search">
+                  <img class="status-img" src="../static/images/color/red.png" alt="image" />
+                </div>
+                <div class="athlete-search" style="margin-left: -2%;"> 8 November&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </div>
+                <div class="athlete-search" style="margin-left: 1.5%;"> 45% </div>
+                <div class="athlete-search" style="margin-left: -2%;"> &nbsp;3hrs </div>
+            </li>
+              </li>
+              <li>
+                <div class="py-1 athlete-search">
+                  <img class="status-img" src="../static/images/color/green.png" alt="image" />
+                </div>
+                <div class="athlete-search" style="margin-left: -2%;"> 7 November&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </div>
+                <div class="athlete-search" style="margin-left: 1.5%;"> 100% </div>
+                <div class="athlete-search" style="margin-left: -2%;"> 9.5hrs </div>
+              </li>
+              <li>
+                <div class="py-1 athlete-search">
+                  <img class="status-img" src="../static/images/color/green.png" alt="image" />
+                </div>
+                <div class="athlete-search" style="margin-left: -2%;"> 6 November&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </div>
+                <div class="athlete-search" style="margin-left: 1.5%;"> 95% </div>
+                <div class="athlete-search" style="margin-left: -2%;"> &nbsp;8hrs </div>
+              </li>
+              <li>
+                <div class="py-1 athlete-search">
+                  <img class="status-img" src="../static/images/color/red.png" alt="image" />
+                </div>
+                <div class="athlete-search" style="margin-left: -2%;"> 5 November&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </div>
+                <div class="athlete-search" style="margin-left: 1.5%;"> 20% </div>
+                <div class="athlete-search" style="margin-left: -2%;"> &nbsp;2hrs </div>
+              </li>
+              <li>
+                <div class="py-1 athlete-search">
+                  <img class="status-img" src="../static/images/color/yellow.jpg" alt="image" />
+                </div>
+                <div class="athlete-search" style="margin-left: -2%;"> 4 November&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </div>
+                <div class="athlete-search" style="margin-left: 1.5%;"> 72% </div>
+                <div class="athlete-search" style="margin-left: -2%;"> &nbsp;6hrs </div>
+              </li>
+              <li>
+                <div class="py-1 athlete-search">
+                  <img class="status-img" src="../static/images/color/red.png" alt="image" />
+                </div>
+                <div class="athlete-search" style="margin-left: -2%;"> 3 November&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </div>
+                <div class="athlete-search" style="margin-left: 1.5%;"> 20% </div>
+                <div class="athlete-search" style="margin-left: -2%;"> &nbsp;1hrs </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+{% endblock %}
