@@ -4,7 +4,7 @@
 
 {% block content %}
 <div class="row">
-    <div class="card">
+    <div class="stretch-card">
         <div class="card-body">
             <h4 class="card-title">{{user.first_name}} {{user.last_name}}</h4>
             <div class="container">
@@ -35,6 +35,23 @@
                             <option value="admin">Admin</option>
                         </select>
                     </p>
+                    {% if user.access == 1 or user.access == 0 %}
+                        <p>
+                            <label for="team"> Team: </label>
+                            <input type="text" name="team" placeholder={{user.team}} class="live-search-box form-control">
+                        </p>
+                    {% elif user.access == 2 %}
+                        <p>
+                            <label for="branch"> Branch: </label>
+                            <select name="branch" id="branch">
+                                <option value="Strength and Training">Strength and Training</option>
+                                <option value="Sports Science">Sports Science</option>
+                                <option value="Sports Medicine">Sports Medicine</option>
+                                <option value="Performance Psychology">Performance Psychology</option>
+                                <option value="Nutrition">Nutrition</option>
+                            </select>
+                        </p>
+                    {% endif %}
                     <br>
                     <p>
                         <button type="confirm">Confirm Changes</button>
