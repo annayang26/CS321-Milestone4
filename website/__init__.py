@@ -4,14 +4,16 @@ from flask import Flask
 from flask_sqlalchemy import SQLAlchemy 
 from os import path 
 from flask_login import LoginManager, current_user, login_required, UserMixin 
+from dotenv import load_dotenv 
 
+load_dotenv()
 db = SQLAlchemy()
 DB_NAME ="database.db"
 
 def create_app():
     app = Flask(__name__)
     app.config['SECRET_KEY'] = 'secret-key-goes-here'
-    app.config['SQLALCHEMY_DATABASE_URI'] = f'sqlite:///{DB_NAME}'
+    app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL')
     db.init_app(app)
 
     from .views import views
@@ -21,7 +23,7 @@ def create_app():
     app.register_blueprint(auth, url_prefix='/')
 
     from .models import User
-    create_database(app)
+    # create_database(app)
 
     loging_manager = LoginManager()
     loging_manager.login_view = 'auth.login'
