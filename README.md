@@ -5,6 +5,7 @@
 
 <p align="center">
     <img src="https://img.shields.io/badge/CS321-Group1Milestone4-blue">
+    <img src="https://img.shields.io/badge/CS321-Group1Milestone5-blue">
 </p>
 
 # 📈 Colby College Athletic Management System (Flask Web App)
