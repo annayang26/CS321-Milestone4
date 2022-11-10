@@ -124,8 +124,8 @@ def add_user():
 def upload():
     flash(request.method)
     if request.method == 'POST':
-        sleep_data_df = pd.read_csv("CS321-Milestone4\website\data\sleep.csv")
-        sleep_data_df.to_csv("CS321-Milestone4\website\data\sleep.csv")
+        sleep_data_df = pd.read_csv("/data/sleep.csv")
+        sleep_data_df.to_csv("/data/sleep.csv")
         return render_template('upload.html',tables=[sleep_data_df.to_html()],titles=[''], user=current_user, sleepData=sleep_data_df)
     else:
         # It's working because it shows None after you leave and come back meaning
