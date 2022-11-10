@@ -30,4 +30,5 @@ class User(db.Model, UserMixin):
     
     def get_access(self):
         return self.access
+        
 

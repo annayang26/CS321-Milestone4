@@ -3,7 +3,8 @@ from venv import create
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy 
 from os import path 
-from flask_login import LoginManager, current_user, login_required, UserMixin 
+from flask_login import LoginManager, current_user, login_required, UserMixin
+from datetime import timedelta 
 
 db = SQLAlchemy()
 DB_NAME ="database.db"
@@ -12,6 +13,7 @@ def create_app():
     app = Flask(__name__)
     app.config['SECRET_KEY'] = 'secret-key-goes-here'
     app.config['SQLALCHEMY_DATABASE_URI'] = f'sqlite:///{DB_NAME}'
+    app.permanent_session_lifetime = timedelta(minutes=5)
     db.init_app(app)
 
     from .views import views
