@@ -15,7 +15,10 @@ DB_NAME ="database.db"
 def create_app():
     app = Flask(__name__)
     app.config['SECRET_KEY'] = 'secret-key-goes-here'
-    app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL')
+    db_uri = os.environ.get('DATABASE_URL')
+    if db_uri.startswith("postgres://"):
+        db_uri = uri.replace("postgres://", "postgresql://", 1)
+    app.config['SQLALCHEMY_DATABASE_URI'] = db_uri
     db.init_app(app)
     migrate = Migrate(app, db)
 
