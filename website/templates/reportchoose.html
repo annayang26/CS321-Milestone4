@@ -1,0 +1,84 @@
+{% extends "base.html" %}
+{% block content %}
+  <div class="page-header">
+    <h3 class="page-title"> Report </h3>
+    <nav aria-label="breadcrumb">
+      <ol class="breadcrumb">
+      </ol>
+    </nav>
+  </div>
+
+  <input type="text" class="live-search-box" placeholder="search teams" />
+
+    <ul class="live-search-list" type="None" style="color:  #ffffff;" >
+    <b>Mens Sports</b>
+    <li><a class="live-search-list" a href="{{url_for('views.reports')}}" style="color:  #ffffff;">Alpine Skiing</a></li>
+    <li><a class="live-search-list" a href="{{url_for('views.reports')}}" style="color:  #ffffff;">Baseball</a></li>
+    <li><a class="live-search-list" a href="{{url_for('views.reports')}}" style="color:  #ffffff;">Basketball</a></li>
+    <li><a class="live-search-list" a href="{{url_for('views.reports')}}" style="color:  #ffffff;">Crew</a></li>
+    <li><a class="live-search-list" a href="{{url_for('views.reports')}}" style="color:  #ffffff;">Cross Country</a></li>
+    <li><a class="live-search-list" a href="{{url_for('views.reports')}}" style="color:  #ffffff;">Football</a></li>
+    <li><a class="live-search-list" a href="{{url_for('views.reports')}}" style="color:  #ffffff;">Golf</a></li>
+    <li><a class="live-search-list" a href="{{url_for('views.reports')}}" style="color:  #ffffff;">Ice Hockey</a></li>
+    <li><a class="live-search-list" a href="{{url_for('views.reports')}}" style="color:  #ffffff;">Lacrosse</a></li>
+    <li><a class="live-search-list" a href="{{url_for('views.reports')}}" style="color:  #ffffff;">Nordic Skiing</a></li>
+    <li><a class="live-search-list" a href="{{url_for('views.reports')}}" style="color:  #ffffff;">Soccer</a></li>
+    <li><a class="live-search-list" a href="{{url_for('views.reports')}}" style="color:  #ffffff;">Squash</a></li>
+    <li><a class="live-search-list" a href="{{url_for('views.reports')}}" style="color:  #ffffff;">Swimming & Diving</a></li>
+    <li><a class="live-search-list" a href="{{url_for('views.reports')}}" style="color:  #ffffff;">Tennis</a></li>
+    <li><a class="live-search-list" a href="{{url_for('views.reports')}}" style="color:  #ffffff;">Track & Field</a></li>
+    <br/>
+    <br/>
+    <b>Womens Sports</b>
+    <li><a class="live-search-list" a href="{{url_for('views.reports')}}" style="color:  #ffffff;">Alpine Skiing</a></li>
+    <li><a class="live-search-list" a href="{{url_for('views.reports')}}" style="color:  #ffffff;">Basketball</a></li>
+    <li><a class="live-search-list" a href="{{url_for('views.reports')}}" style="color:  #ffffff;">Crew</a></li>
+    <li><a class="live-search-list" a href="{{url_for('views.reports')}}" style="color:  #ffffff;">Cross Country</a></li>
+    <li><a class="live-search-list" a href="{{url_for('views.reports')}}" style="color:  #ffffff;">Field Hockey</a></li>
+    <li><a class="live-search-list" a href="{{url_for('views.reports')}}" style="color:  #ffffff;">Ice Hockey</a></li>
+    <li><a class="live-search-list" a href="{{url_for('views.reports')}}" style="color:  #ffffff;">Lacrosse</a></li>
+    <li><a class="live-search-list" a href="{{url_for('views.reports')}}" style="color:  #ffffff;">Nordic Skiing</a></li>
+    <li><a class="live-search-list" a href="{{url_for('views.reports')}}" style="color:  #ffffff;">Soccer</a></li>
+    <li><a class="live-search-list" a href="{{url_for('views.reports')}}" style="color:  #ffffff;">Softball</a></li>
+    <li><a class="live-search-list" a href="{{url_for('views.reports')}}" style="color:  #ffffff;">Squash</a></li>
+    <li><a class="live-search-list" a href="{{url_for('views.reports')}}" style="color:  #ffffff;">Swimming & Diving</a></li>
+    <li><a class="live-search-list" a href="{{url_for('views.reports')}}" style="color:  #ffffff;">Tennis</a></li>
+    <li><a class="live-search-list" a href="{{url_for('views.reports')}}" style="color:  #ffffff;">Track & Field</a></li>
+
+
+<script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+  
+<script type="text/javascript">
+    jQuery(document).ready(function($){
+  
+$('.live-search-list li').each(function(){
+$(this).attr('data-search-term', $(this).text().toLowerCase());
+});
+  
+$('.live-search-box').on('keyup', function(){
+  
+var searchTerm = $(this).val().toLowerCase();
+  
+    $('.live-search-list li').each(function(){
+  
+      if (searchTerm.length == 0) {
+            $(this).show();
+      } 
+        if ($(this).filter('[data-search-term *= ' + searchTerm + ']').length > 0 || searchTerm.length < 1) {
+            $(this).show();
+        } else {
+            $(this).hide();
+        }
+  
+    });
+  
+});
+  
+});
+</script>
+  
+</body>
+</html>
+
+{% endblock %}
+

@@ -5,39 +5,80 @@
 {% block content %}
 
 <div class="row">
-    <div class="col-lg-10 grid-margin stretch-card">
-        <div class="card">
-            <div class="card-body">
-                <h4 class="card-title"> Add a User </h4>
-                <form method="post">
-                    <p>
-                        <label for="first_name">First Name</label>
-                        <input type="text" name="first_name" placeholder="First Name"
-                        required>
-                    </p>
-                    <p>
-                        <label for="last_name">Last Name</label>
-                        <input type="text" name="last_name" placeholder="Last Name" required>
-                    </p>
-                    <p>
-                        <label for="email"> Email </label>
-                        <input type="email" name="email" placeholder="Enter Colby email address" required>
-                    </p>
-                    <p>
-                        <label for="role"> Role: </label>
-                        <select name="role" id="role">
-                            <option value="athlete">Athlete</option>
-                            <option value="coach">Coach</option>
-                            <option value="admin">Admin</option>
-                        </select>
-                    </p>
-                    <br>
-                    <p>
-                        <button type="submit">Submit</button>
-                    </p>
-                </form>
-                <hr>
-            </div>
+    <div class="col-lg-12"> <!--grid-margin stretch-card ! -->
+        <div class="tab">
+            <button class="tablinks" onclick="openPage(event, 'admin')" id="defaultOpen">Add Admin</button>
+            <button class="tablinks" onclick="openPage(event, 'nonadmin')">Add Coach/Athlete</button>
+        </div>
+        <div id="admin" class="tabcontent">
+            <h4>Add Admin</h4>
+            <form method="post">
+                <p>
+                    <label for="first_name">First Name</label>
+                    <input type="text" name="first_name" placeholder="First Name">
+                </p>
+                <p>
+                    <label for="last_name">Last Name</label>
+                    <input type="text" name="last_name" placeholder="Last Name">
+                </p>
+                <p>
+                    <label for="email"> Email </label>
+                    <input type="email" name="email" placeholder="Enter Colby email address" required>
+                </p>
+                <p>
+                    <label for="role"> Role: </label>
+                    <select name="role" id="role">
+                        <option value="admin">Admin</option>
+                    </select>
+                </p>
+                <p>
+                    <label for="branch"> Branch:</label>
+                    <select name="branch" id="branch">
+                        <option value="Strength and Training">Strength and Training</option>
+                        <option value="Sports Science">Sports Science</option>
+                        <option value="Sports Medicine">Sports Medicine</option>
+                        <option value="Performance Psychology">Performance Psychology</option>
+                        <option value="Nutrition">Nutrition</option>
+                    </select>
+                </p>
+                <br>
+                <p>
+                    <button type="submit">Submit</button>
+                </p>
+            </form>
+        </div>
+        <div id="nonadmin" class="tabcontent">
+            <h4>Add Coach/Athlete</h4>
+            <form method="post">
+                <p>
+                    <label for="first_name">First Name</label>
+                    <input type="text" name="first_name" placeholder="First Name">
+                </p>
+                <p>
+                    <label for="last_name">Last Name</label>
+                    <input type="text" name="last_name" placeholder="Last Name">
+                </p>
+                <p>
+                    <label for="email"> Email </label>
+                    <input type="email" name="email" placeholder="Enter Colby email address" required>
+                </p>
+                <p>
+                    <label for="role">Role:</label>
+                    <select name="role" id="role">
+                        <option value="admin">Coach</option>
+                        <option value="athlete">Athlete</option>
+                    </select>
+                </p>
+                <p>
+                    <label for="team">Team:</label>
+                    <input type="text" name="team" placeholder="Seach Team" class="live-search-box form-control">
+                </p>
+                <br>
+                <p>
+                    <button type="submit">Submit</button>
+                </p>
+            </form>
+
         </div>
     </div>
 </div>
