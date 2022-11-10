@@ -10,10 +10,10 @@
 
 # 📈 Colby College Athletic Management System (Flask Web App)
 
-## Abstract
+## Abstract (Milestone 4)
 The goal of this milestone was to develop a dynamic version of the Athletic Management System we have been working on. We used Flask to make a website that implemented the pages we had made for milestone 3 in html and css. Some of the dynamic features we added were a functional search bar, downloadable pdfs, permission controls, user login and user profiles. In addition, we implemented Flask modules to utilize functional features, such as authentication, and a database. We then put our files on the Github repository that our scrum master (Anna) had created and gave a short presentation to the class on what we had created.
 
-## Sprint Backlog
+## Sprint Backlog (Milestone 4)
 - Super Admin User Stories - ESTIMATE: High Priority Drafts (1 week), Medium Priority (5 days), Low Priority (2 days)
   - As a super admin, I want to control the permissions (for both coaches and athletes) so that I can monitor who has access to the data and protect student athletes’ personal data (High Priority) - COMPLETED
   - As a super admin, I want to see all student-athletes data to track trends to inform the relevant people about injuries, wellbeing, etc. (High Priority) - COMPLETED
@@ -30,8 +30,8 @@ The goal of this milestone was to develop a dynamic version of the Athletic Mana
   - As an athlete, I want to have access to my own injury status, mental health information, and notes from the support staff so that I understand what is going on with my body. (Medium Priority) - COMPLETE
   - As an athlete, I can see historical trends in my stats so that I can know how to optimize my performance. (Medium Priority)
 
-## Results
-### Coach's Dashboard
+## Results (Milestone 4)
+### Coach's Dashboard 
 ![Coach's Dashboard image](/README-img/coach1.png)
 ![Coach's Dashboard image](/README-img/coach2.png)
 ![Coach's Dashboard image](/README-img/coach3.png)
@@ -50,7 +50,7 @@ The goal of this milestone was to develop a dynamic version of the Athletic Mana
 ### Athlete Dashboard
 ![Athlete Dashboard image](/README-img/athlete.png)
 
-### Original Sprint
+### Original Sprint (Milestone 4)
 🔴Friday 21st - Have a solid attempt and meet to discuss specifics and uniformity
 
 🔵Tuesday 25th - Have everything done but small minute details and vuew eachotehrs stuff give feedback
@@ -80,22 +80,22 @@ The goal of this milestone was to develop a dynamic version of the Athletic Mana
 
 In addition to constant communication through text, we met three times throughout the time allotted for milestone 4. We met on Friday the 21st and our goal for this meeting was to have a solid attempt of the parts we had previously agreed to each do and discuss specifics and how we wanted the pages to look so we could have uniformity across the website. We then met on Tuesday 25th and the goal for this meeting was to have the bulk of your page done not including little fixes and details. We also used this time to go over what everyone had done and give feedback. Our final meeting was on Wednesday the 26th and in this meeting it was expected that everyone had all their stuff done because we were going to merge all of our pages together and publish them onto the Github,
 
-### Burndown Chart
+### Burndown Chart (Milestone 4)
 ![Burndown Chart image](/README-img/burndown.png)
 
 The burndown chart shows our work throughout the 2 week period we had to do this milestone.
 As you can see progress started off very slow but we all felt there were significant jumps when we met together.
 Unfortunately due to very hectic conflicting schedules much of the progress we made was in the two nights before the due date so I think going forward we are going to try to meet earlier in the week.
 
-## Contribution List
+## Contribution List (Milestone 4)
 | Adaobi | Anna (Scrum Master) | Hayden | Linn | Sam |
 | --- | --- | --- | --- | --- |
 | Login Page | Permissions (Flask + HTML) (Edit, Add user) | Admin Dashboard | Interactive Graph | Interactive Team Search |
 | Athlete Dashboard | Login Page | Helped group members with HTML and CSS questions | Coach Dashboard | Super Admin Reports - download PDFs |
 | | Signup Page | README.md | | |
 
-## Extensions
+## Extensions (Milestone 4)
 Write your report in Markdown as a readme file in your repository, including table images and appropriate tags and content.
 
-## Helpful links (references)
+## Helpful links (references) (Milestone 4)
 https://www.digitalocean.com/community/tutorials/how-to-use-flask-sqlalchemy-to-interact-with-databases-in-a-flask-application
