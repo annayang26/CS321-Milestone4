@@ -17,7 +17,7 @@ def create_app():
     app.config['SECRET_KEY'] = 'secret-key-goes-here'
     db_uri = os.environ.get('DATABASE_URL')
     if db_uri.startswith("postgres://"):
-        db_uri = uri.replace("postgres://", "postgresql://", 1)
+        db_uri = db_uri.replace("postgres://", "postgresql://", 1)
     app.config['SQLALCHEMY_DATABASE_URI'] = db_uri
     db.init_app(app)
     migrate = Migrate(app, db)
