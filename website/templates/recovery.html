@@ -1,0 +1,89 @@
+{% extends "base.html" %}
+{% block content %}
+  <div class="page-header">
+    <h3 class="page-title"> {% block title %} {{user.first_name}} {{user.last_name}}'s Recovery{% endblock %}
+      Dashboard </h3>
+    <nav aria-label="breadcrumb">
+    </nav>
+  </div>
+  <div class="row">
+    <div class="col-sm-4-5 grid-margin stretch-card">
+      <div class="card">
+        <div class="card-body">
+          <h4 class="card-title">Recovery</h4>
+          <button type="button" class="btn btn-secondary btn-primary btn-fw btn-secondary-coach"> <i class="mdi mdi-download"></i> Download CSV</button>
+          <canvas id="areaChart" style="height:250px"></canvas>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-7 grid-margin stretch-card">
+        <div class="card">
+          <div class="card-body">
+            <h4 class="card-title">Recovery Breakdown</h4>
+            <p id="coach-passage-color">You can only take part in 50% of practice today</p>
+            <p id="coach-passage-color"> Do not exceed a heart rate of 120, no sprints allowed.</p>
+            <div class="card card-inner-left-top">
+              <div class="card-body">
+                <div class="row">
+                  <i class="mdi mdi-av-timer"></i>
+                  <div class="column inner-card-title">
+                    <h4>&nbsp; Time </h4>
+                    <p class="inner-card-color">&nbsp; Avg. 7.1hr</p>
+                  </div>
+                  <div class="column inner-card-specify">
+                    <h4>&nbsp; 2.5hr</h4>
+                    <p class="inner-card-color-1">&nbsp; 80%</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="card card-inner-right-top">
+              <div class="card-body">
+                <div class="row">
+                  <i class="mdi mdi-run"></i>
+                  <div class="column inner-card-title">
+                    <h4>&nbsp; Trimp</h4>
+                    <p class="inner-card-color">&nbsp; Avg 85</p>
+                  </div>
+                  <div class="column inner-card-specify">
+                    <h4>&nbsp; 70</h4>
+                    <p class="inner-card-color-2">&nbsp; 33%</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="card card-inner-left-bottom">
+              <div class="card-body">
+                <div class="row">
+                  <i class="mdi mdi-leaf"></i>
+                  <div class="column inner-card-title">
+                    <h4>&nbsp; Recovery</h4>
+                    <p class="inner-card-color">&nbsp; Avg. 50%</p>
+                  </div>
+                  <div class="column inner-card-specify-2">
+                    <h4>&nbsp; 68%</h4>
+                    <p class="inner-card-color-2">&nbsp; 50%</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="card card-inner-right-bottom">
+              <div class="card-body">
+                <div class="row">
+                  <i class="mdi mdi-heart-pulse"></i>
+                  <div class="column inner-card-title">
+                    <h4>&nbsp; Max HR</h4>
+                    <p class="inner-card-color">&nbsp; Avg 198</p>
+                  </div>
+                  <div class="column inner-card-specify-2">
+                    <h4>&nbsp; 201</h4>
+                    <p class="inner-card-color-1">&nbsp; 30%</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+{% endblock %}
