@@ -37,9 +37,8 @@ The goal of this milestone was to deploy the dynamic version of the Athletic Man
 ![Team Breakdown image](/README-img/teambreakdown.png)
 
 ### Coach's View
-![Coach's Dashboard image](/README-img/coach1.png)
-![Coach's Dashboard image](/README-img/coach2.png)
-![Coach's Dashboard image](/README-img/coach3.png)
+![Coach's Dashboard image](/README-img/coachdash.png)
+![Coach's Dashboard image](/README-img/coachathletebreakdown.png)
 
 ### Athlete's View
 ![Athlete's Dashboard image](/README-img/athletedashboard.png)
