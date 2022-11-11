@@ -33,8 +33,9 @@ The goal of this milestone was to deploy the dynamic version of the Athletic Man
 ## Results (Milestone 5)
 
 ### Super Admin's View
-![Super Admin Dashboard image](/README-img/admin.png)
-![Team Breakdown image](/README-img/teambreakdown.png)
+![Super Admin add admin user page image](/README-img/adminaddpage.png)
+![Super Admin add athlete/coach user page image](/README-img/adminaddpage2.png)
+![Super Admin generate reports page image](/README-img/adminreports.png)
 
 ### Coach's View
 ![Coach's Dashboard image](/README-img/coachdash.png)
