@@ -61,6 +61,21 @@ The goal of this milestone was to deploy the dynamic version of the Athletic Man
 |Helped update CSS and HTML, using base.html so it was consistent for coach and athlete| Fixed bugs from the last milestone, including edit page not able to stay with current_user authentication | |Merged & resolved conflicts (develop -> main) | Helped upload csv|
 
 ## Extensions (Milestone 5)
+Calculated team velocity for our team (an Agile metric).
+![Sprint Report](/README-img/sprintvelocity.png)
+As you can see in the agile velocity report creating the database for users and graphs was our highest priority and most complicated sprint. A lot of progress was made on that but we didn't quite complete everything. We were able to pretty much complete all the work we had set out to do and we pretty accurately predicted how much we would be able to do.
+
+Sprint 1- Create database for users and graphs - put into tables 
+Sprint 2 - Style/CSS
+Sprint 3 - Athlete breakdown pages
+Sprint 4 - Edit permission: choose team for coaches and athletes 
+Sprint 5 - Add user: bulk-add users with email
+Sprint 6 - Add forget password button
+Sprint 7 - Add delete user button for admin
+Sprint 8 - Report page linked to reportpage.html and not Index.html
+
+Wrote our report in Markdown as a readme file in our repository, including table images and appropriate tags and content.
+
 
 ## Reference/Acknowledgements (Milestone 5)
 We appreciate Giuseppe Stelluto for helping us with deploying our website using Heroku. 
