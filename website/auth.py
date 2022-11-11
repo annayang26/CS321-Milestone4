@@ -174,5 +174,5 @@ def edit(user_id):
 
         flash('The user information has been changed', category='success')
 
-        return redirect(url_for('auth.edit', user_id=user.id))
-    return render_template('edit.html', user=user)
+        return redirect(url_for('auth.edit', current_user=current_user, user_id=user.id))
+    return render_template('edit.html', user=current_user, edit_user=user)
