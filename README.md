@@ -43,7 +43,7 @@ The goal of this milestone was to deploy the dynamic version of the Athletic Man
 
 ### Athlete's View
 ![Athlete's Dashboard image](/README-img/athletedashboard.png)
-![Athlete's Sleep Data image](/README-img/athleteslepedashboard.png)
+![Athlete's Sleep Data image](/README-img/athletesleepdashboard.png)
 ![Athlete's Recovery Data image](/README-img/athleterecoverydashboard.png)
 ![Athlete's Calorie Intake Data image](/README-img/athletecaloriedahsboard.png)
 
