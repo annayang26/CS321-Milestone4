@@ -46,6 +46,9 @@ The goal of this milestone was to deploy the dynamic version of the Athletic Man
 
 ## Extensions (Milestone 5)
 
+## Reference/Acknowledgements (Milestone 5)
+We appreciate Giuseppe Stelluto for helping us with deploying our website using Heroku. 
+
 ## Abstract (Milestone 4)
 The goal of this milestone was to develop a dynamic version of the Athletic Management System we have been working on. We used Flask to make a website that implemented the pages we had made for milestone 3 in html and css. Some of the dynamic features we added were a functional search bar, downloadable pdfs, permission controls, user login and user profiles. In addition, we implemented Flask modules to utilize functional features, such as authentication, and a database. We then put our files on the Github repository that our scrum master (Anna) had created and gave a short presentation to the class on what we had created.
 
