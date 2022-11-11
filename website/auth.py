@@ -78,7 +78,7 @@ def sign_up():
                 access = 0
                 # branch = 0
             new_user = User(email=email, first_name=first_name, last_name = last_name, access=access, \
-                            password=generate_password_hash(password1, method='sha256'), branch=0, team=None)
+                            password=generate_password_hash(password1, method='sha256'), branch=None, team=None)
             db.session.add(new_user)
             db.session.commit()
             login_user(new_user, remember=True)
