@@ -32,9 +32,15 @@ The goal of this milestone was to deploy the dynamic version of the Athletic Man
 
 ## Results (Milestone 5)
 
-### Original Sprints (Milestone 5)
+### Super Admin's View
 
-### Burndown Chart (Milestone 5)
+### Coach's View
+
+### Athlete's View
+
+### Original Sprints 
+
+### Burndown Chart 
 
 ## Contribution List (Milestone 5)
 
