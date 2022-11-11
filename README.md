@@ -54,6 +54,11 @@ The goal of this milestone was to deploy the dynamic version of the Athletic Man
 ![Burndown Chart](/README-img/burndownchart.png)
 
 ## Contribution List (Milestone 5)
+| Adaobi (Scrum Master) | Anna | Hayden | Linn | Sam | Dylan| Bryan |
+| ---                   | ---  | ---    | ---  | --- | ---  | ---   |
+| Created athlete breakdown pages | Add team/branch to the User Model | Fixed CSS link issues | Fix coach dashboard’s HTML & CSS | Linked report pages |
+| Added Instagram widget on athlete breakdown| Add “team/branch” to add user and edit users function with updated CSS and js to allow choosing between tabs | Helped fix search bar so it resets | Helped fix athlete dashboard’s HTML & CSS | Helped fix search bar so it resets |Helped update CSS and HTML, using base.html so it was consistent for coach and athlete|
+|                       | Fixed bugs from the last milestone, including edit page not able to stay with current_user authentication | |Merged & resolved conflicts (develop -> main) | Helped upload csv|
 
 ## Extensions (Milestone 5)
 
