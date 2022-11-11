@@ -37,7 +37,7 @@
                                         <td> Coach </td> 
                                         <td> {{person.team}} </td>
                                         <td> <a href="{{ url_for('auth.edit', user_id=person.id) }}">Edit</a></td>  
-                                    {% else%}     
+                                    {% elif person.access == 0 %}     
                                         <td> Athlete </td> 
                                         <td> {{person.team}} </td>
                                         <td> <a href="{{ url_for('auth.edit', user_id=person.id) }}">Edit</a></td>  

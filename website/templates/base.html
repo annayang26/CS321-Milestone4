@@ -1,7 +1,9 @@
 <!DOCTYPE html>
 {% if user.is_authenticated %}
-  {% if user.access == 3 or user.access == 2 %}
+  {% if user.access == 3 %}
     {% set dashboard_url = '/admin_dashboard' %}
+  {% elif user.access == 2 %}
+    {% set dashboard_url = '/peak' %}
   {% elif user.access == 1 %}
     {% set dashboard_url = '/coach-dashboard' %}
   {% elif user.access == 0 %}
@@ -12,30 +14,21 @@
     <head>
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <!-- <link rel="stylesheet" src={{url_for('static', filename='materialdesignicons.min.css')}}>
-        <link rel="stylesheet" src={{url_for('static', filename='vendor.bundle.base.css')}}> -->
-        <link rel="stylesheet" href="../static/materialdesignicons.min.css">
-        <link rel="stylesheet" href="../static/vendor.bundle.base.css">
-        <link rel="stylesheet" href="../static/style.css">
-        <link rel="stylesheet" href="../static/vendors/jvectormap/jquery-jvectormap.css">
-        <link rel="stylesheet" href="../static/vendors/flag-icon-css/css/flag-icon.min.css">
-        <link rel="stylesheet" href="../static/vendors/owl-carousel-2/owl.carousel.min.css">
-        <link rel="stylesheet" href="../static/vendors/owl-carousel-2/owl.theme.default.min.css">
-        <link rel="stylesheet" href="../static/vendors/mdi/css/materialdesignicons.min.css">
-        <link rel="stylesheet" href="../static/vendors/css/vendor.bundle.base.css">
+        <link rel="stylesheet" href="/static/materialdesignicons.min.css">
+        <link rel="stylesheet" href="/static/vendor.bundle.base.css">
+        <link rel="stylesheet" href="/static/style.css">
+        <link rel="stylesheet" href="/static/vendors/jvectormap/jquery-jvectormap.css">
+        <link rel="stylesheet" href="/static/vendors/flag-icon-css/css/flag-icon.min.css">
+        <link rel="stylesheet" href="/static/vendors/owl-carousel-2/owl.carousel.min.css">
+        <link rel="stylesheet" href="/static/vendors/owl-carousel-2/owl.theme.default.min.css">
+        <link rel="stylesheet" href="/static/vendors/mdi/css/materialdesignicons.min.css">
+        <link rel="stylesheet" href="/static/vendors/css/vendor.bundle.base.css">
 
-        <link rel="shortcut icon" href="../static/images/colby.svg" />
-        <link rel="stylesheet" href="../static/admin-dashboard-style.css"/>
-        <link rel="stylesheet" href="../static/coach-style.css">
+        <link rel="shortcut icon" href="/static/images/colby.svg" />
+        <link rel="stylesheet" href="/static/admin-dashboard-style.css"/>
+        <link rel="stylesheet" href="/static/coach-style.css">
         <link rel="stylesheet" href="/static/add_page.css">
-        <!-- {% if user.access == 3%}
-          <link rel="stylesheet" href="../static/admin-dashboard-style.css"/>
-        {% elif user.access == 1 %}
-          <link rel="stylesheet" href="../static/coach-style.css">
-        {% endif %} -->
-
-        <!-- <link rel="shortcut icon" href="../static/images/colby.svg" /> -->
-
+        
         <title>{% block title %} Home {% endblock %}</title>
     </head>
     <body>

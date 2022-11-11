@@ -28,11 +28,11 @@ def coach():
         return render_template('coach-dashboard.html', user=current_user)
     flash("you don't have access to this page", category='error')
 
-@views.route('/admin')
+@views.route('/peak')
 @login_required
-def admin():
+def peak():
     if current_user.access == 2:
-        return render_template('admin.html', user=current_user)
+        return render_template('peak.html', user=current_user)
     flash("you don't have access to this page", category='error')
 
 @views.route('/admin_dashboard')

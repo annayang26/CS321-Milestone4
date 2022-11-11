@@ -23,7 +23,7 @@ def login():
                 elif user.access == 1:
                     return redirect(url_for('views.coach'))
                 elif user.access == 2:
-                    return redirect(url_for('views.admin'))
+                    return redirect(url_for('views.peak'))
                 elif user.access == 3:
                     return redirect(url_for('views.superadmin'))
                 else:
@@ -96,6 +96,12 @@ def add_user():
         first_name = request.form['first_name']
         last_name = request.form['last_name'] 
         role = request.form.get('role')
+        if role == "admin":
+            branch = request.form.get('branch')
+            team = branch
+        elif role == "coach" or role == "athlete":
+            team = request.form['team']
+            branch = team 
 
         user = User.query.filter_by(email=email).first()
         if user:
@@ -113,7 +119,9 @@ def add_user():
                             last_name=last_name,
                             email=email,
                             access=access,
-                            password=generate_password_hash(password1, method='sha256'))
+                            password=generate_password_hash(password1, method='sha256'),
+                            branch=branch, 
+                            team=team)
             db.session.add(new_user)
             flash('The user is added successfully!', category='success')
             db.session.commit()
