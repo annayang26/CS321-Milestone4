@@ -63,6 +63,7 @@ The goal of this milestone was to deploy the dynamic version of the Athletic Man
 ## Extensions (Milestone 5)
 Calculated team velocity for our team (an Agile metric).
 ![Sprint Report](/README-img/sprintvelocity.png)
+
 As you can see in the agile velocity report creating the database for users and graphs was our highest priority and most complicated sprint. A lot of progress was made on that but we didn't quite complete everything. We were able to pretty much complete all the work we had set out to do and we pretty accurately predicted how much we would be able to do.
 
 Sprint 1- Create database for users and graphs - put into tables 
