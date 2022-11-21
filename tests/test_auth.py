@@ -19,9 +19,10 @@ def test_signup(client):
     response = client.get('/sign-up')
     assert response.status_code == 200
     assert b'email' in response.data
-    assert b'password' in response.data
     assert b'firstname' in response.data
     assert b'lastname' in response.data
+    assert b'password1' in response.data
+    assert b'password2' in response.data
 
     with client:
         response = client.post("/sign-up", 
