@@ -3,12 +3,12 @@ import json
 import pytest 
 
 def create_account_super(client):
-    client.post("/signup",
+    client.post("/sign-up",
                 data={"email": "superadmin@colby.edu",
-                        "first_name": "Super",
-                        "last_name": "Admin",
-                        "password1": "1111111",
-                        "password2": "1111111"})
+                      "firstname": "Super",
+                      "lastname": "Admin",
+                      "password1": "1111111",
+                      "password2": "1111111"})
 
     client.post("/login",
                 data={"email": "superadmin@colby.edu",
@@ -16,10 +16,10 @@ def create_account_super(client):
 
 
 def create_account_coach(client):
-    client.post("/signup",
+    client.post("/sign-up",
                 data={"email": "coach@colby.edu",
-                        "first_name": "Coach",
-                        "last_name": "One",
+                        "firstname": "Coach",
+                        "lastname": "One",
                         "password1": "1111111",
                         "password2": "1111111"})
 
@@ -29,10 +29,10 @@ def create_account_coach(client):
 
 
 def create_account_athlete(client):
-    client.post("/signup",
+    client.post("/sign-up",
                 data={"email": "athlete@colby.edu",
-                        "first_name": "Athlete",
-                        "last_name": "One",
+                        "firstname": "Athlete",
+                        "lastname": "One",
                         "password1": "1111111",
                         "password2": "1111111"})
 
@@ -42,4 +42,8 @@ def create_account_athlete(client):
 
 
 def test_access(client):
-    print(client.access)
+    create_account_super(client)
+
+    response = client.get('/')
+    assert 
+#     assert client.access == 3

@@ -1,4 +1,4 @@
-from website import create_app
+from website import auth
 import json
 import pytest 
 
@@ -11,23 +11,25 @@ def test_failed_login(client):
     with client:
         response = client.post("/login",
                                 data={"email": "athlete@gmail.com",
-                                        "password": "1111111"})
+                                      "password": "1111111"})
         assert response.status_code == 200
-        assert b'User does not exist' in response.data
+        assert b'Email does not exist' in response.data
 
 def test_signup(client):
-    response = client.get('/signup')
+    response = client.get('/sign-up')
     assert response.status_code == 200
     assert b'email' in response.data
     assert b'password' in response.data
+    assert b'firstname' in response.data
+    assert b'lastname' in response.data
 
     with client:
-        response = client.post("/signup", 
+        response = client.post("/sign-up", 
                                 data={"email": "superadmin@colby.edu",
-                                        "first_name": "Super",
-                                        "last_name": "Admin",
-                                        "password1": "1111111",
-                                        "password2": "1111111"})
+                                      "firstname": "Super",
+                                      "lastname": "Admin",
+                                      "password1": "1111111",
+                                      "password2": "1111111"})
 
         assert response.status_code == 302 # redirect to home page
         assert b'Redirecting' in response.data
@@ -39,31 +41,50 @@ def test_success_login(client):
     assert b'password' in response.data
 
     with client:
-        response = client.post("/signup",
+        response = client.post("/sign-up",
                                 data={"email": "superadmin@colby.edu",
-                                        "first_name": "Super",
-                                        "last_name": "Admin",
+                                        "firstname": "Super",
+                                        "lastname": "Admin",
                                         "password1": "1111111",
                                         "password2": "1111111"})
         response = client.post("/login",
                                 data={"email": "superadmin@colby.edu",
-                                        "password": "1111111"})
-        print("\n\n", response.data)
+                                      "password": "1111111"})
         assert response.status_code == 302
-        assert b'Redirecting' in response.data
+        # assert b'dashboard' in response.data
 
 def test_logout(client):
     with client: 
         response = client.post("/signup",
                                 data={"email": "superadmin@colby.edu",
-                                        "first_name": "Super",
-                                        "last_name": "Admin",
+                                        "firstname": "Super",
+                                        "lastname": "Admin",
                                         "password1": "1111111",
                                         "password2": "1111111"})
         response = client.post("/login",
                                 data={"email": "superadmin@colby.edu",
                                         "password": "1111111"})
         response = client.get("/logout", follow_redirects=True)
-        print("\n\n", response.data)
         assert response.status_code == 200
         assert b'login' in response.data
+
+def test_add_user_success(client):
+    response = client.get('/add')
+    assert response.status_code == 302
+#     assert b'email' in response.data
+#     assert b'first_name' in response.data
+#     assert b'last_name' in response.data
+#     assert b'role' in response.data
+    # assert b'admin' in response.data
+
+    with client:
+        response = client.post("/add",
+                                data={"email":"athleteNew@colby.edu",
+                                      "first_name":"Athlete",
+                                      "last_name":"New",
+                                      "role":"athlete"})
+        assert response.status_code == 400
+        assert b'The user is added successfully!' in response.data
+
+def test_edit(client):
+        pass
