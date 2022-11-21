@@ -41,9 +41,21 @@ def create_account_athlete(client):
                         "password": "1111111"})
 
 
+def test_athlete_access(client):
+    create_account_athlete(client)
+
+    response = client.get('/sleep', follow_redirects=True)
+    assert response.status_code == 200 # redirect to sleep breakdown
+
+    response = client.get('/recovery', follow_redirects=True)
+    assert response.status_code == 200 # redirect to recovery breakdown
+
+
+    response = client.get('/calories', follow_redirects=True)
+    assert response.status_code == 200 # redirect to calories breakdown
+
 def test_super_access(client):
     create_account_super(client)
-
     response = client.get('/add', follow_redirects=True)
     assert response.status_code == 200
 
