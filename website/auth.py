@@ -162,15 +162,20 @@ def add_user():
 def upload():
     flash(request.method)
     if request.method == 'POST':
+        # This is how the file is read when project is being ran on github
         sleep_data_df = pd.read_csv("/data/sleep.csv")
-        sleep_data_df.to_csv("/data/sleep.csv")
-        return render_template('upload.html',tables=[sleep_data_df.to_html()],titles=[''], user=current_user, sleepData=sleep_data_df)
+        # This is how the file is read when project is being ran locally
+        # sleep_data_df = pd.read_csv("C:\CS321-Milestone4\website\data\sleep.csv", error_bad_lines=False)
+        # sleep_data_df.to_csv("/data/sleep.csv")
+        # I commented out this line because it used to show a sring representation on top of the table which was very annoying
+        # return render_template('upload.html',tables=[sleep_data_df.to_html()],titles=[''], user=current_user, sleepData=sleep_data_df)
+        return render_template('upload.html',tables=[sleep_data_df.to_html()],titles=[''], user=current_user)
     else:
         # It's working because it shows None after you leave and come back meaning
         # that there's no post funcion
         #Use pandas to display the datas
         sleep_data_df = None
-    return render_template("upload.html", user=current_user, sleepData = sleep_data_df)
+    return render_template("upload.html", user=current_user, sleepData=sleep_data_df)
     
 @auth.route('/<int:user_id>/edit/', methods=('GET', 'POST'))
 def edit(user_id):

@@ -1,6 +1,6 @@
 # views.py
 # show route to different html files
-from . import db
+# from . import db
 from .models import User
 from flask import Blueprint, render_template, request, flash, redirect, url_for
 from urllib import request
