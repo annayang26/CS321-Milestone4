@@ -158,51 +158,20 @@ def add_user():
 
         return redirect(url_for('views.add'))
 
-<<<<<<< HEAD
-=======
-# @auth.route()
-# def readFile(file):
-#     data = np.genfromtxt(file)
-
-# @auth.route("/upload", methods=('Get', 'POST'))
->>>>>>> main
 @auth.route('/upload', methods=('GET', 'POST'))
 def upload():
     flash(request.method)
     if request.method == 'POST':
-<<<<<<< HEAD
         sleep_data_df = pd.read_csv("/data/sleep.csv")
         sleep_data_df.to_csv("/data/sleep.csv")
         return render_template('upload.html',tables=[sleep_data_df.to_html()],titles=[''], user=current_user, sleepData=sleep_data_df)
-=======
-        sleep_data_df = pd.read_csv("CS321-Milestone4\website\data\sleep.csv")
-        sleep_data_df.to_csv("CS321-Milestone4\website\data\sleep.csv")
-        return render_template('upload.html',tables=[sleep_data_df.to_html()],titles=[''], user=current_user, sleepData=sleep_data_df)
- 
-    
-    
->>>>>>> main
     else:
         # It's working because it shows None after you leave and come back meaning
         # that there's no post funcion
         #Use pandas to display the datas
         sleep_data_df = None
-<<<<<<< HEAD
     return render_template("upload.html", user=current_user, sleepData = sleep_data_df)
     
-=======
-
-
-    return render_template("upload.html", user=current_user, sleepData = sleep_data_df)
-    
-
-    
-    
-    
-
-
-
->>>>>>> main
 @auth.route('/<int:user_id>/edit/', methods=('GET', 'POST'))
 def edit(user_id):
     user = User.query.get_or_404(user_id)
@@ -235,12 +204,5 @@ def edit(user_id):
 
         flash('The user information has been changed', category='success')
 
-<<<<<<< HEAD
         return redirect(url_for('auth.edit', current_user=current_user, user_id=user.id))
     return render_template('edit.html', user=current_user, edit_user=user)
-=======
-        return redirect(url_for('auth.edit', user_id=user.id))
-    return render_template('edit.html', user=user)
-
-
->>>>>>> main
