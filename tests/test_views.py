@@ -41,9 +41,27 @@ def create_account_athlete(client):
                         "password": "1111111"})
 
 
-def test_access(client):
+def test_super_access(client):
     create_account_super(client)
 
-    response = client.get('/')
-    assert 
-#     assert client.access == 3
+    response = client.get('/add', follow_redirects=True)
+    assert response.status_code == 200
+
+    response = client.get('/database', follow_redirects=True)
+    assert response.status_code == 200
+    assert b'Edit' in response.data
+
+    response = client.get('/edit/1', follow_redirects=True)
+    assert response.status_code == 200
+    assert b'first_name' in response.data
+
+def test_coach_access(client):
+    create_account_coach(client)
+    response = client.get('/coach-dashboard', follow_redirects=True)
+    assert response.status_code == 200
+
+    response = client.get('/breakdown', follow_redirects=True)
+    assert response.status_code == 200
+
+
+

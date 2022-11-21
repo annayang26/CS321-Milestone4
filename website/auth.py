@@ -67,16 +67,12 @@ def sign_up():
             # if the user email is this, make them the superadmin
             if email == "superadmin@colby.edu":
                 access = 3
-                # branch = 0
             elif email == "admin1@colby.edu":
                 access = 2
-                # branch = 0
             elif email == "coach@colby.edu":
                 access = 1
-                # branch = 0
             else:
                 access = 0
-                # branch = 0
             new_user = User(email=email, first_name=first_name, last_name = last_name, access=access, \
                             password=generate_password_hash(password1, method='sha256'), branch=None, team=None)
             db.session.add(new_user)
@@ -142,7 +138,7 @@ def upload():
         sleep_data_df = None
     return render_template("upload.html", user=current_user, sleepData = sleep_data_df)
     
-@auth.route('/<int:user_id>/edit/', methods=('GET', 'POST'))
+@auth.route('/edit/<int:user_id>', methods=('GET', 'POST'))
 def edit(user_id):
     user = User.query.get_or_404(user_id)
 

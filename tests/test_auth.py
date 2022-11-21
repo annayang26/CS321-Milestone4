@@ -71,11 +71,6 @@ def test_logout(client):
 def test_add_user_success(client):
     response = client.get('/add')
     assert response.status_code == 302
-#     assert b'email' in response.data
-#     assert b'first_name' in response.data
-#     assert b'last_name' in response.data
-#     assert b'role' in response.data
-    # assert b'admin' in response.data
 
     with client:
         response = client.post("/add",
@@ -83,8 +78,8 @@ def test_add_user_success(client):
                                       "first_name":"Athlete",
                                       "last_name":"New",
                                       "role":"athlete"})
-        assert response.status_code == 400
-        assert b'The user is added successfully!' in response.data
+        assert response.status_code == 302
+        assert b'add' in response.data
 
 def test_edit(client):
         pass
