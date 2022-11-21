@@ -1,11 +1,41 @@
 # authentication
-from flask import Blueprint, render_template, request, flash, redirect, url_for
+import os
+import random
+
+from flask import Blueprint, render_template, request, flash, redirect, session, url_for
 from .models import User 
 from werkzeug.security import generate_password_hash, check_password_hash
 from . import db 
-from flask_login import login_user, login_required, logout_user, current_user 
+from flask_login import login_user, login_required, logout_user, current_user
+import numpy as np 
+# from data import Data
+import pandas as pd
+
+import matplotlib.pyplot as plt
+
+import os
+import random
+import numpy as np
+import matplotlib.pyplot as plt
+import pandas as pd
+#import scipy as sp
+
+from mpl_toolkits.mplot3d import Axes3D
+
+plt.style.use(['seaborn-colorblind', 'seaborn-darkgrid'])
+plt.rcParams.update({'font.size': 10})
+plt.rcParams.update({'figure.figsize': [8,8]})
+
+np.set_printoptions(suppress=True, precision=5)
+
+
 
 auth = Blueprint('auth', __name__ )
+
+Emails = []
+
+SuperAminList = []
+AthleteList = []
 
 @auth.route('/login', methods=['GET', 'POST'])
 def login():
@@ -132,15 +162,20 @@ def add_user():
 def upload():
     flash(request.method)
     if request.method == 'POST':
+        # This is how the file is read when project is being ran on github
         sleep_data_df = pd.read_csv("/data/sleep.csv")
-        sleep_data_df.to_csv("/data/sleep.csv")
-        return render_template('upload.html',tables=[sleep_data_df.to_html()],titles=[''], user=current_user, sleepData=sleep_data_df)
+        # This is how the file is read when project is being ran locally
+        # sleep_data_df = pd.read_csv("C:\CS321-Milestone4\website\data\sleep.csv", error_bad_lines=False)
+        # sleep_data_df.to_csv("/data/sleep.csv")
+        # I commented out this line because it used to show a sring representation on top of the table which was very annoying
+        # return render_template('upload.html',tables=[sleep_data_df.to_html()],titles=[''], user=current_user, sleepData=sleep_data_df)
+        return render_template('upload.html',tables=[sleep_data_df.to_html()],titles=[''], user=current_user)
     else:
         # It's working because it shows None after you leave and come back meaning
         # that there's no post funcion
         #Use pandas to display the datas
         sleep_data_df = None
-    return render_template("upload.html", user=current_user, sleepData = sleep_data_df)
+    return render_template("upload.html", user=current_user, sleepData=sleep_data_df)
     
 @auth.route('/<int:user_id>/edit/', methods=('GET', 'POST'))
 def edit(user_id):
