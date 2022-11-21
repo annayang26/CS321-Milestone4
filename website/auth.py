@@ -23,7 +23,7 @@ def login():
                 elif user.access == 1:
                     return redirect(url_for('views.coach'))
                 elif user.access == 2:
-                    return redirect(url_for('views.admin'))
+                    return redirect(url_for('views.peak'))
                 elif user.access == 3:
                     return redirect(url_for('views.superadmin'))
                 else:
@@ -78,7 +78,7 @@ def sign_up():
                 access = 0
                 # branch = 0
             new_user = User(email=email, first_name=first_name, last_name = last_name, access=access, \
-                            password=generate_password_hash(password1, method='sha256'), branch=0, team=None)
+                            password=generate_password_hash(password1, method='sha256'), branch=None, team=None)
             db.session.add(new_user)
             db.session.commit()
             login_user(new_user, remember=True)
@@ -96,6 +96,12 @@ def add_user():
         first_name = request.form['first_name']
         last_name = request.form['last_name'] 
         role = request.form.get('role')
+        if role == "admin":
+            branch = request.form.get('branch')
+            team = branch
+        elif role == "coach" or role == "athlete":
+            team = request.form['team']
+            branch = team 
 
         user = User.query.filter_by(email=email).first()
         if user:
@@ -113,7 +119,9 @@ def add_user():
                             last_name=last_name,
                             email=email,
                             access=access,
-                            password=generate_password_hash(password1, method='sha256'))
+                            password=generate_password_hash(password1, method='sha256'),
+                            branch=branch, 
+                            team=team)
             db.session.add(new_user)
             flash('The user is added successfully!', category='success')
             db.session.commit()
@@ -166,5 +174,5 @@ def edit(user_id):
 
         flash('The user information has been changed', category='success')
 
-        return redirect(url_for('auth.edit', user_id=user.id))
-    return render_template('edit.html', user=user)
+        return redirect(url_for('auth.edit', current_user=current_user, user_id=user.id))
+    return render_template('edit.html', user=current_user, edit_user=user)

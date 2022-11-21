@@ -29,7 +29,7 @@ class User(db.Model, UserMixin):
     # 3: sports medicine
     # 4: performance psychology
     # 5: nutrition
-    branch = db.Column(db.Integer) 
+    branch = db.Column(db.String(150)) 
 
     def __repr__(self):
         return f'<User {self.first_name}>'
