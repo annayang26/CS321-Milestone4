@@ -52,7 +52,7 @@ def test_success_login(client):
                                 data={"email": "superadmin@colby.edu",
                                       "password": "1111111"})
         assert response.status_code == 302
-        # assert b'dashboard' in response.data
+        assert b'dashboard' in response.data
 
 def test_logout(client):
     with client: 
@@ -75,12 +75,27 @@ def test_add_user_success(client):
 
     with client:
         response = client.post("/add",
-                                data={"email":"athleteNew@colby.edu",
-                                      "first_name":"Athlete",
-                                      "last_name":"New",
-                                      "role":"athlete"})
+                                data={"email":"admin@colby.edu",
+                                      "first_name":"Admin",
+                                      "last_name":"One",
+                                      "role":"admin"})
         assert response.status_code == 302
-        assert b'add' in response.data
 
 def test_edit(client):
-        pass
+    response = client.get('/database')
+    assert response.status_code == 302
+
+    with client:
+        response = client.post("/add",
+                        data={"email":"admin@colby.edu",
+                                "first_name":"Admin",
+                                "last_name":"One",
+                                "role":"admin"})
+        response = client.post("/add",
+                        data={"email":"athlete@colby.edu",
+                                "first_name":"Athlete",
+                                "last_name":"One",
+                                "role":"athlete"})
+        response = client.post("/edit/1")
+        assert response.status_code == 400
+        
