@@ -1,11 +1,41 @@
 # authentication
-from flask import Blueprint, render_template, request, flash, redirect, url_for
+import os
+import random
+
+from flask import Blueprint, render_template, request, flash, redirect, session, url_for
 from .models import User 
 from werkzeug.security import generate_password_hash, check_password_hash
 from . import db 
-from flask_login import login_user, login_required, logout_user, current_user 
+from flask_login import login_user, login_required, logout_user, current_user
+import numpy as np 
+# from data import Data
+import pandas as pd
+
+import matplotlib.pyplot as plt
+
+import os
+import random
+import numpy as np
+import matplotlib.pyplot as plt
+import pandas as pd
+#import scipy as sp
+
+from mpl_toolkits.mplot3d import Axes3D
+
+plt.style.use(['seaborn-colorblind', 'seaborn-darkgrid'])
+plt.rcParams.update({'font.size': 10})
+plt.rcParams.update({'figure.figsize': [8,8]})
+
+np.set_printoptions(suppress=True, precision=5)
+
+
 
 auth = Blueprint('auth', __name__ )
+
+Emails = []
+
+SuperAminList = []
+AthleteList = []
 
 @auth.route('/login', methods=['GET', 'POST'])
 def login():
@@ -23,7 +53,7 @@ def login():
                 elif user.access == 1:
                     return redirect(url_for('views.coach'))
                 elif user.access == 2:
-                    return redirect(url_for('views.admin'))
+                    return redirect(url_for('views.peak'))
                 elif user.access == 3:
                     return redirect(url_for('views.superadmin'))
                 else:
@@ -78,7 +108,7 @@ def sign_up():
                 access = 0
                 # branch = 0
             new_user = User(email=email, first_name=first_name, last_name = last_name, access=access, \
-                            password=generate_password_hash(password1, method='sha256'), branch=0, team=None)
+                            password=generate_password_hash(password1, method='sha256'), branch=None, team=None)
             db.session.add(new_user)
             db.session.commit()
             login_user(new_user, remember=True)
@@ -96,6 +126,12 @@ def add_user():
         first_name = request.form['first_name']
         last_name = request.form['last_name'] 
         role = request.form.get('role')
+        if role == "admin":
+            branch = request.form.get('branch')
+            team = branch
+        elif role == "coach" or role == "athlete":
+            team = request.form['team']
+            branch = team 
 
         user = User.query.filter_by(email=email).first()
         if user:
@@ -113,13 +149,29 @@ def add_user():
                             last_name=last_name,
                             email=email,
                             access=access,
-                            password=generate_password_hash(password1, method='sha256'))
+                            password=generate_password_hash(password1, method='sha256'),
+                            branch=branch, 
+                            team=team)
             db.session.add(new_user)
             flash('The user is added successfully!', category='success')
             db.session.commit()
 
         return redirect(url_for('views.add'))
 
+@auth.route('/upload', methods=('GET', 'POST'))
+def upload():
+    flash(request.method)
+    if request.method == 'POST':
+        sleep_data_df = pd.read_csv("/data/sleep.csv")
+        sleep_data_df.to_csv("/data/sleep.csv")
+        return render_template('upload.html',tables=[sleep_data_df.to_html()],titles=[''], user=current_user, sleepData=sleep_data_df)
+    else:
+        # It's working because it shows None after you leave and come back meaning
+        # that there's no post funcion
+        #Use pandas to display the datas
+        sleep_data_df = None
+    return render_template("upload.html", user=current_user, sleepData = sleep_data_df)
+    
 @auth.route('/<int:user_id>/edit/', methods=('GET', 'POST'))
 def edit(user_id):
     user = User.query.get_or_404(user_id)
@@ -152,5 +204,5 @@ def edit(user_id):
 
         flash('The user information has been changed', category='success')
 
-        return redirect(url_for('auth.edit', user_id=user.id))
-    return render_template('edit.html', user=user)
+        return redirect(url_for('auth.edit', current_user=current_user, user_id=user.id))
+    return render_template('edit.html', user=current_user, edit_user=user)

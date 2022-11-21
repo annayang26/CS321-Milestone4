@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% block title %}
+<h1>Upload Data</h1>
+{% endblock %}
+{% block content %}
+<div class="row">>
+    <div class="card">
+        <div class="card-body">
+            <h4 class="card-title">{{UPLOAD}}</h4>
+            <div class="container">
+                <form method="post">
+                <p>
+                    <label>{{sleepData}}</label>
+                    <button type="condirm">Upload File</button>
+                </p>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<div align="center">
+    <table>
+        <h1>
+        <!--Displaying the converted table-->
+             {% for table in tables %}
+            <h2>{{titles[loop.index]}}</h2>                            
+            {{ table|safe }}
+            {% endfor %}     
+        </h1> 
+    </table>
+</div>
+{% endblock %}

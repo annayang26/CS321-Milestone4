@@ -3,16 +3,24 @@ from venv import create
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy 
 from os import path 
+import os
+from flask_migrate import Migrate
 from flask_login import LoginManager, current_user, login_required, UserMixin 
+from dotenv import load_dotenv 
 
+load_dotenv()
 db = SQLAlchemy()
 DB_NAME ="database.db"
 
 def create_app():
     app = Flask(__name__)
     app.config['SECRET_KEY'] = 'secret-key-goes-here'
-    app.config['SQLALCHEMY_DATABASE_URI'] = f'sqlite:///{DB_NAME}'
+    db_uri = os.environ.get('DATABASE_URL')
+    if db_uri.startswith("postgres://"):
+        db_uri = db_uri.replace("postgres://", "postgresql://", 1)
+    app.config['SQLALCHEMY_DATABASE_URI'] = db_uri
     db.init_app(app)
+    migrate = Migrate(app, db)
 
     from .views import views
     from .auth import auth
@@ -21,7 +29,7 @@ def create_app():
     app.register_blueprint(auth, url_prefix='/')
 
     from .models import User
-    create_database(app)
+    # create_database(app)
 
     loging_manager = LoginManager()
     loging_manager.login_view = 'auth.login'
