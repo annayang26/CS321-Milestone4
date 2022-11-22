@@ -11,8 +11,7 @@ def test_new_user():
     WHEN a new User is created
     THEN check the email, password, and active fields are defined correctly
     """
-    user = User('superadmin@colby.edu', '1111111', 'Super', 'Admin')
-    # user = User()
+    user = User('superadmin@colby.edu', '1111111', 'Super', 'Admin', 3, None, None)
     
     assert user.email == 'superadmin@colby.edu'
     assert user.password == '1111111'
