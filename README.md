@@ -51,6 +51,10 @@ The goal of this milestone was to implement and practice with CI/CD testing. Our
 | write in issues e.g. testing view.py, almost each function should be an issue| Test admin related functions, e.g. add_user, edit | Getting Graphs onto HTML pages | Connected component breakdown in coach’s team breakdown | Cleanup–Identified html files that were not in use and could be deleted | Getting Graphs onto HTML pages | Getting Graphs onto HTML pages |
 | | | Fixed off-center link in Admin Dashboard | Allowed the CSV button to download sample CSV | |
 
+
+## Reference/Acknowledgements (Milestone 6)
+We appreciate Professor Al Madi for helping us answer questions about testing and linting in our project.
+
 ## Abstract (Milestone 5)
 The goal of this milestone was to deploy the dynamic version of the Athletic Management System to the cloud. We deployed our website using Heroku and postgresql database. We also fixed some bugs found in our Flask website from the last milestone. These bugs include issues with the list not repopulating after a search was deleted in the search bar, and CSS issues that caused the list of athletes to appear as a green square. We added new functionality such as delete user and edit user for admin, populating athlete lists from the database instead of hard coding, and added a view and link to Peak Instagram posts on the nutrition page. In addition, for this milestone, we completed the component breakdowns(sleep, calories, and nutrition). We also updated our CSS for the admin dashboard and team breakdown to make our website cleaner. We then gave a short presentation to the class on our deployed Athletic Management System.
 
