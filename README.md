@@ -48,7 +48,7 @@ The goal of this milestone was to implement and practice with CI/CD testing. Our
 | Linn (Scrum Master) | Anna | Hayden | Adaobi | Sam | Dylan| Bryan |
 | ---                   | ---  | ---    | ---  | --- | ---  | ---   |
 | Worked on testing for views.py | Worked on testing for views.py | Worked on testing for __init__.py | Worked on testing for models.py | Worked on testing for views.py | Worked on testing for views.py | Worked on testing for auth.py |
-| write in issues e.g. testing view.py, almost each function should be an issue| Test admin related functions, e.g. add_user, edit | Graph Stuff | Connected component breakdown in coach’s team breakdown | Cleanup–Identified html files that were not in use and could be deleted | Graph Stuff| Graph Stuff |
+| write in issues e.g. testing view.py, almost each function should be an issue| Test admin related functions, e.g. add_user, edit | Getting Graphs onto HTML pages | Connected component breakdown in coach’s team breakdown | Cleanup–Identified html files that were not in use and could be deleted | Getting Graphs onto HTML pages | Getting Graphs onto HTML pages |
 | | | Fixed off-center link in Admin Dashboard | Allowed the CSV button to download sample CSV | |
 
 ## Abstract (Milestone 5)
