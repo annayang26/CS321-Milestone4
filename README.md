@@ -36,7 +36,7 @@ The goal of this milestone was to implement and practice with CI/CD testing. Our
 ![Github workflow on repository](/README-img/githubworkflow.png)
 
 ### Pytest in Github workflow
-![Pytest in Github workflow](/README-img/pytestingithubworkflow.png)
+![Pytest in Github workflow](/README-img/pytestingithubworkfloww.png)
 
 ### Pytest Coverage
 ![Pytest Coverage](/README-img/pytestcoverage.png)
