@@ -34,10 +34,18 @@ class User(db.Model, UserMixin):
     def __repr__(self):
         return f'<User {self.first_name}>'
     
-    def allowed(self, access_level):
-        return self.access >= access_level
+    # def allowed(self, access_level):
+    # #     return self.access >= access_level
     
-    def get_access(self):
-        return self.access
-        
+    # def get_access(self):
+    #     return self.access
+
+    def __init__(self, email, password, first_name, last_name, access, branch, team):
+        self.email = email
+        self.password = password
+        self.first_name = first_name
+        self.last_name = last_name
+        self.access = access
+        self.branch = branch
+        self.team = team
 

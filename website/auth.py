@@ -97,18 +97,14 @@ def sign_up():
             # if the user email is this, make them the superadmin
             if email == "superadmin@colby.edu":
                 access = 3
-                # branch = 0
             elif email == "admin1@colby.edu":
                 access = 2
-                # branch = 0
             elif email == "coach@colby.edu":
                 access = 1
-                # branch = 0
             else:
                 access = 0
-                # branch = 0
             new_user = User(email=email, first_name=first_name, last_name = last_name, access=access, \
-                            password=generate_password_hash(password1, method='sha256'), branch=0, team=None)
+                            password=generate_password_hash(password1, method='sha256'), branch=None, team=None)
             db.session.add(new_user)
             db.session.commit()
             login_user(new_user, remember=True)
@@ -158,52 +154,26 @@ def add_user():
 
         return redirect(url_for('views.add'))
 
-<<<<<<< HEAD
-=======
-# @auth.route()
-# def readFile(file):
-#     data = np.genfromtxt(file)
-
-# @auth.route("/upload", methods=('Get', 'POST'))
->>>>>>> main
 @auth.route('/upload', methods=('GET', 'POST'))
 def upload():
     flash(request.method)
     if request.method == 'POST':
-<<<<<<< HEAD
+        # This is how the file is read when project is being ran on github
         sleep_data_df = pd.read_csv("/data/sleep.csv")
-        sleep_data_df.to_csv("/data/sleep.csv")
-        return render_template('upload.html',tables=[sleep_data_df.to_html()],titles=[''], user=current_user, sleepData=sleep_data_df)
-=======
-        sleep_data_df = pd.read_csv("CS321-Milestone4\website\data\sleep.csv")
-        sleep_data_df.to_csv("CS321-Milestone4\website\data\sleep.csv")
-        return render_template('upload.html',tables=[sleep_data_df.to_html()],titles=[''], user=current_user, sleepData=sleep_data_df)
- 
-    
-    
->>>>>>> main
+        # This is how the file is read when project is being ran locally
+        # sleep_data_df = pd.read_csv("C:\CS321-Milestone4\website\data\sleep.csv", error_bad_lines=False)
+        # sleep_data_df.to_csv("/data/sleep.csv")
+        # I commented out this line because it used to show a sring representation on top of the table which was very annoying
+        # return render_template('upload.html',tables=[sleep_data_df.to_html()],titles=[''], user=current_user, sleepData=sleep_data_df)
+        return render_template('upload.html',tables=[sleep_data_df.to_html()],titles=[''], user=current_user)
     else:
         # It's working because it shows None after you leave and come back meaning
         # that there's no post funcion
         #Use pandas to display the datas
         sleep_data_df = None
-<<<<<<< HEAD
-    return render_template("upload.html", user=current_user, sleepData = sleep_data_df)
+    return render_template("upload.html", user=current_user, sleepData=sleep_data_df)
     
-=======
-
-
-    return render_template("upload.html", user=current_user, sleepData = sleep_data_df)
-    
-
-    
-    
-    
-
-
-
->>>>>>> main
-@auth.route('/<int:user_id>/edit/', methods=('GET', 'POST'))
+@auth.route('/edit/<int:user_id>', methods=('GET', 'POST'))
 def edit(user_id):
     user = User.query.get_or_404(user_id)
 
@@ -235,12 +205,5 @@ def edit(user_id):
 
         flash('The user information has been changed', category='success')
 
-<<<<<<< HEAD
         return redirect(url_for('auth.edit', current_user=current_user, user_id=user.id))
     return render_template('edit.html', user=current_user, edit_user=user)
-=======
-        return redirect(url_for('auth.edit', user_id=user.id))
-    return render_template('edit.html', user=user)
-
-
->>>>>>> main

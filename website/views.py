@@ -1,6 +1,6 @@
 # views.py
 # show route to different html files
-from . import db
+# from . import db
 from .models import User
 from flask import Blueprint, render_template, request, flash, redirect, url_for
 from urllib import request
@@ -86,17 +86,17 @@ def athlete_breakdown():
 @views.route('/sleep')
 @login_required
 def sleep_breakdown():
-    if current_user.access == 0 or current_user.access == 1:
+    if current_user.access >= 0:
         return render_template('sleep.html', user=current_user)
 
 @views.route('/recovery')
 @login_required
 def recovery_breakdown():
-    if current_user.access == 0 or current_user.access == 1:
+    if current_user.access >= 0:
         return render_template('recovery.html', user=current_user)
 
 @views.route('/calories')
 @login_required
 def calories_breakdown():
-    if current_user.access == 0 or current_user.access == 1:
+    if current_user.access >= 0:
         return render_template('calories.html', user=current_user)
