@@ -100,3 +100,8 @@ def recovery_breakdown():
 def calories_breakdown():
     if current_user.access >= 0:
         return render_template('calories.html', user=current_user)
+
+@views.route('/calendar')
+@login_required
+def calendar():
+    return render_template('calendar.html', user=current_user)
