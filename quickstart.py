@@ -82,8 +82,8 @@ def main():
         for event in events:
             start = event['start'].get('dateTime', event['start'].get('date'))
             # print(start, event['summary'])
-            time_list = start.split("T")
-            time = time_list[1].split("-")
+            time_list = start.split("T") # ["2022-12-07", "19:45:00-05:00"]
+            time = time_list[1].split("-") # ["19:45:00", "05:00"]
             print("Date: ", time_list[0])
             print("Time: ", time[0])
             print(event['summary'])
