@@ -10,7 +10,8 @@ from googleapiclient.discovery import build
 from googleapiclient.errors import HttpError
 
 # If modifying these scopes, delete the file token.json.
-SCOPES = ['https://www.googleapis.com/auth/calendar.readonly']
+# SCOPES = ['https://www.googleapis.com/auth/calendar.readonly']
+SCOPES = ['https://www.googleapis.com/auth/calendar']
 
 
 def main():
@@ -38,6 +39,33 @@ def main():
     try:
         service = build('calendar', 'v3', credentials=creds)
 
+        event = {
+            'summary': 'Google I/O 2015',
+            'location': '800 Howard St., San Francisco, CA 94103',
+            'description': 'A chance to hear more about Google\'s developer products.',
+            'start': {
+                'dateTime': '2022-12-06T09:00:00-05:00',
+                'timeZone': 'America/New_York',
+            },
+            'end': {
+                'dateTime': '2022-12-06T11:00:00-05:00',
+                'timeZone': 'America/New_York',
+            },
+            'attendees': [
+                {'email': 'htmerr24@colby.edu'},
+                {'email': 'zyang23@colby.edu'},
+            ],
+            'reminders': {
+                'useDefault': False,
+                'overrides': [
+                {'method': 'email', 'minutes': 24 * 60},
+                {'method': 'popup', 'minutes': 10},
+                ],
+            },
+        }
+
+        event = service.events().insert(calendarId='primary', body=event).execute()
+
         # Call the Calendar API
         now = datetime.datetime.utcnow().isoformat() + 'Z'  # 'Z' indicates UTC time
         print('Getting the upcoming 10 events')
@@ -53,7 +81,12 @@ def main():
         # Prints the start and name of the next 10 events
         for event in events:
             start = event['start'].get('dateTime', event['start'].get('date'))
-            print(start, event['summary'])
+            # print(start, event['summary'])
+            time_list = start.split("T")
+            time = time_list[1].split("-")
+            print("Date: ", time_list[0])
+            print("Time: ", time[0])
+            print(event['summary'])
 
     except HttpError as error:
         print('An error occurred: %s' % error)
