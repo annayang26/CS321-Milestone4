@@ -64,8 +64,12 @@ padding-top: 0.75rem;
 
 .no-bullets {
 list-style-type: none;
-padding: none;
-margin: none;
+padding: 0;
+margin-top: 10px;
+}
+
+.no-bullets > li:first-child {
+  font-weight: bold;
 }
 
 /* The following code is taken from https://codepen.io/hilar47/pen/RprXev */
