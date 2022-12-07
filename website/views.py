@@ -1,10 +1,15 @@
 # views.py
 # show route to different html files
 # from . import db
+
+from __future__ import print_function
 from .models import User
-from flask import Blueprint, render_template, request, flash, redirect, url_for
-from urllib import request
+from flask import Blueprint, render_template, request, flash, redirect, url_for, session
 from flask_login import login_required, current_user
+from . import db 
+from datetime import datetime, timedelta
+import os.path
+from .quickstart import *
 
 views = Blueprint('views', __name__)
 
@@ -100,3 +105,11 @@ def recovery_breakdown():
 def calories_breakdown():
     if current_user.access >= 0:
         return render_template('calories.html', user=current_user)
+
+@views.route('/calendar')
+@login_required
+def calendar():
+    creds = get_cred()
+    service = initialize_sheets(creds)
+    events = view_event(service)
+    return render_template('calendar.html', user=current_user, list_of_events=events)

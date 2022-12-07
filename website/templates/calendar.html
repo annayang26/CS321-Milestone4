@@ -1,0 +1,26 @@
+
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="row">
+  <div class="col-lg-12 grid-margin stretch-card">
+    <div class="card">
+      <div class="card-body">
+        <h4 class="card-title">Calendar</h4>
+        <ul>
+          {% for event in list_of_events %}
+            <li>
+              <ul class="no-bullets">
+                <li>{{ event[0] }}</li>
+                <li>{{ event[2] }} {{ event[1] }}</li>
+              </ul>
+            </li>
+          {% endfor %}
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}
