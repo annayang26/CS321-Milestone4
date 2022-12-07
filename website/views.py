@@ -1,10 +1,23 @@
 # views.py
 # show route to different html files
 # from . import db
+# from .models import User
+# from flask import Blueprint, render_template, request, flash, redirect, url_for
+# from urllib import request
+# from flask_login import login_required, current_user
+
+# views = Blueprint('views', __name__)
+
+from __future__ import print_function
 from .models import User
-from flask import Blueprint, render_template, request, flash, redirect, url_for
-from urllib import request
+from flask import Blueprint, render_template, request, flash, redirect, url_for, session
 from flask_login import login_required, current_user
+from . import db 
+from datetime import datetime, timedelta
+import os.path
+from .quickstart import *
+import google.oauth2.credentials
+import googleapiclient.discovery
 
 views = Blueprint('views', __name__)
 
@@ -100,3 +113,43 @@ def recovery_breakdown():
 def calories_breakdown():
     if current_user.access >= 0:
         return render_template('calories.html', user=current_user)
+
+@views.route('/calendar')
+@login_required
+def calendar():
+    creds = get_cred()
+    service = initialize_sheets(creds)
+    events = view_event(service)
+    # create_event()
+    return render_template('calendar.html', user=current_user, list_of_events=events)
+
+@views.route('/create-event', methods=['POST'])
+def create_event():
+    # Get form data
+    event_name = request.form['event-name']
+    event_description = request.form['event-description']
+    event_location = request.form['event-location']
+    event_start_date = request.form['event-start-date']
+    event_start_time = request.form['event-start-time']
+    event_end_date = request.form['event-end-date']
+    event_end_time = request.form['event-end-time']
+
+    # Create event on Google Calendar using the form data
+    event = {
+        'summary': event_name,
+        'location': event_location,
+        'description': event_description,
+        'start': {
+            'dateTime': event_start_date + 'T' + event_start_time,
+            'timeZone': 'America/New_York',
+        },
+        'end': {
+            'dateTime': event_end_date + 'T' + event_end_time,
+            'timeZone': 'America/New_York',
+        }
+        # 'reminders': {
+        # 'useDefault': true
+        # }
+    }
+
+    return event['htmlLink']
