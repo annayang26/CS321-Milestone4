@@ -120,36 +120,61 @@ def calendar():
     creds = get_cred()
     service = initialize_sheets(creds)
     events = view_event(service)
+    print("hi")
     # create_event()
     return render_template('calendar.html', user=current_user, list_of_events=events)
 
-@views.route('/create-event', methods=['POST'])
+@views.route('/create-event', methods=['GET', 'POST'])
 def create_event():
     # Get form data
-    event_name = request.form['event-name']
-    event_description = request.form['event-description']
-    event_location = request.form['event-location']
-    event_start_date = request.form['event-start-date']
-    event_start_time = request.form['event-start-time']
-    event_end_date = request.form['event-end-date']
-    event_end_time = request.form['event-end-time']
+    if request.method == 'POST':
+        event_name = request.form['event-name']
+        event_description = request.form['event-description']
+        event_location = request.form['event-location']
+        event_start_date = request.form['event-start-date']
+        event_start_time = request.form['event-start-time']
+        event_end_date = request.form['event-end-date']
+        event_end_time = request.form['event-end-time']
 
-    # Create event on Google Calendar using the form data
-    event = {
-        'summary': event_name,
-        'location': event_location,
-        'description': event_description,
-        'start': {
-            'dateTime': event_start_date + 'T' + event_start_time,
-            'timeZone': 'America/New_York',
-        },
-        'end': {
-            'dateTime': event_end_date + 'T' + event_end_time,
-            'timeZone': 'America/New_York',
-        }
-        # 'reminders': {
-        # 'useDefault': true
-        # }
-    }
+        # print(event_name)
 
-    return event['htmlLink']
+        cred = get_cred()
+        service = initialize_sheets(cred)
+
+        starttime = event_start_date + 'T' + event_start_time
+        endtime = event_end_date + 'T' + event_end_time
+
+        add_event(service, event_name, starttime, endtime, 'America/New_York', None, None, None)
+
+        # return render_template('calendar.html', user=current_user)
+        return redirect(url_for('views.calendar'))
+
+    # try: 
+    # # Create event on Google Calendar using the form data
+    #     event = {
+    #         'summary': event_name,
+    #         'location': event_location,
+    #         'description': event_description,
+    #         'start': {
+    #             'dateTime': event_start_date + 'T' + event_start_time,
+    #             'timeZone': 'America/New_York',
+    #         },
+    #         'end': {
+    #             'dateTime': event_end_date + 'T' + event_end_time,
+    #             'timeZone': 'America/New_York',
+    #         }
+    #         # 'reminders': {
+    #         # 'useDefault': true
+    #         # }
+    #     }
+    #     cred = get_cred()
+    #     service = initialize_sheets(cred)
+    #     event = service.events().insert(calendarId='primary', body=event).execute()
+    #     print("hey")
+
+    #     # return event['https://calendar.google.com/calendar/u/0/r']
+    #     return event
+
+    # except HttpError as error:
+    #     print('An error occurred: %s' % error)
+    # return event['htmlLink']
