@@ -12,7 +12,7 @@
         <div class="card-body">
           <h4 class="card-title">Recovery</h4>
           <button type="button" class="btn btn-secondary btn-primary btn-fw btn-secondary-coach"> <a class="mdi mdi-download"> </a><a href="../static/images/samples/sampleCSV.csv" download="sampleCSV.csv"> Download CSV </a></button>
-          <canvas id="areaChart" style="height:250px"></canvas>
+          <div id="recpie"></div>
         </div>
       </div>
     </div>
@@ -86,4 +86,10 @@
         </div>
       </div>
     </div>
+  <!-- Plotly CDN -->
+  <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+  <script>
+    var recpie = {{recfigJSON | safe}};
+    Plotly.plot("recpie", recpie, {})
+  </script>
 {% endblock %}

@@ -12,7 +12,7 @@
         <div class="card-body">
           <h4 class="card-title">Calories</h4>
           <button type="button" class="btn btn-secondary btn-primary btn-fw btn-secondary-coach"> <a class="mdi mdi-download"> </a><a href="../static/images/samples/sampleCSV.csv" download="sampleCSV.csv"> Download CSV </a></button>
-          <canvas id="pieChart" style="height:250px"></canvas>
+          <div id="nutpie"></div>
         </div>
       </div>
     </div>
@@ -22,4 +22,10 @@
             <h4 class="card-title">Calorie Breakdown</h4>              
             <script src="https://apps.elfsight.com/p/platform.js" defer></script>
             <div class="elfsight-app-09e53038-bc8c-41cc-b03a-6935de45eb9e"></div>
+  <!-- Plotly CDN -->
+  <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+  <script>
+    var nutpie = {{nutfigJSON | safe}};
+    Plotly.plot("nutpie", nutpie, {})
+  </script>
 {% endblock %}

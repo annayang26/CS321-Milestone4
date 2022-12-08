@@ -5,6 +5,13 @@ from .models import User
 from flask import Blueprint, render_template, request, flash, redirect, url_for
 from urllib import request
 from flask_login import login_required, current_user
+import pandas as pd
+import json
+import plotly
+import plotly.express as px
+from .nutritiondonut import nutpie
+from .sleeppiechart import sleeppie
+from .recoverydonut import recpie
 
 views = Blueprint('views', __name__)
 
@@ -15,9 +22,18 @@ def login_page():
 @views.route('/athlete')
 @login_required
 def athlete():
+    nutfig = nutpie('website/data/Nutrition.csv', 2000)
+    nutfigJSON = json.dumps(nutfig, cls=plotly.utils.PlotlyJSONEncoder)
+    sleepfig = sleeppie('website/data/sleep.csv', 10)
+    sleepfigJSON = json.dumps(sleepfig, cls=plotly.utils.PlotlyJSONEncoder)
+    recfig = recpie('website/data/physiological cycles.csv', 10)
+    recfigJSON = json.dumps(recfig, cls=plotly.utils.PlotlyJSONEncoder)
     # check if the user has access to the page
     if current_user.access == 0:
-        return render_template('athlete.html', user=current_user)
+        return render_template('athlete.html', user=current_user, 
+            nutfigJSON = nutfigJSON, 
+            sleepfigJSON=sleepfigJSON, 
+            recfigJSON=recfigJSON)
     # if not, then return the user to their own home page
     flash("you don't have access to this page", category='error')
 
@@ -86,17 +102,33 @@ def athlete_breakdown():
 @views.route('/sleep')
 @login_required
 def sleep_breakdown():
+    # Attempting Sleep breakdown
+    # sleep_csv = sleepcsv()
+    # # with open(sleep_csv) as file:
+    # reader = csv.reader(sleep_csv)
+    # if current_user.access >= 0:
+    #     return render_template('sleep.html', user=current_user,
+    #         sleep_csv = reader)
+    sleepfig = sleeppie('website/data/sleep.csv', 10)
+    sleepfigJSON = json.dumps(sleepfig, cls=plotly.utils.PlotlyJSONEncoder)
     if current_user.access >= 0:
-        return render_template('sleep.html', user=current_user)
+        return render_template('sleep.html', user=current_user, 
+            sleepfigJSON=sleepfigJSON)
 
 @views.route('/recovery')
 @login_required
 def recovery_breakdown():
+    recfig = recpie('website/data/physiological cycles.csv', 10)
+    recfigJSON = json.dumps(recfig, cls=plotly.utils.PlotlyJSONEncoder)
     if current_user.access >= 0:
-        return render_template('recovery.html', user=current_user)
+        return render_template('recovery.html', user=current_user,
+            recfigJSON=recfigJSON)
 
 @views.route('/calories')
 @login_required
 def calories_breakdown():
+    nutfig = nutpie('website/data/Nutrition.csv', 2000)
+    nutfigJSON = json.dumps(nutfig, cls=plotly.utils.PlotlyJSONEncoder)
     if current_user.access >= 0:
-        return render_template('calories.html', user=current_user)
+        return render_template('calories.html', user=current_user,
+            nutfigJSON=nutfigJSON)

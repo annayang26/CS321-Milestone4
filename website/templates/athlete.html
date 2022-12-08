@@ -56,7 +56,7 @@
               <div class="card">
                 <div class="card-body"> 
                   <h4 class="card-title"> <a class="nav-link" href="\sleep"> Sleep </a> </h4>
-                  <canvas id="doughnutChart" style="height:250px"></canvas>
+                  <div id="sleeppie"></div>
                 </div>
               </div>
             </div>
@@ -64,7 +64,7 @@
               <div class="card">
                 <div class="card-body">
                   <h4 class="card-title"> <a class="nav-link" href="\recovery"> Recovery </a> </h4>
-                  <canvas id="areaChart" style="height:250px"></canvas>
+                  <div id="recpie"></div>
                 </div>
               </div>
             </div>
@@ -72,7 +72,7 @@
               <div class="card">
                 <div class="card-body">
                   <h4 class="card-title"> <a class ="nav-link" href="\calories"> Calories </a> </h4>
-                  <canvas id="pieChart" style="height:250px"></canvas>
+                  <div id="nutpie"></div>
                 </div>
               </div>
             </div>
@@ -169,5 +169,15 @@
     <!-- </div> -->
     <!-- page-body-wrapper ends -->
     <!-- </div> -->
+    <!-- Plotly CDN -->
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <script>
+      var nutpie = {{nutfigJSON | safe}};
+      Plotly.plot("nutpie", nutpie, {})
+      var recpie = {{recfigJSON | safe}};
+      Plotly.plot("recpie", recpie, {})
+      var sleeppie = {{sleepfigJSON | safe}};
+      Plotly.plot("sleeppie", sleeppie, {})
+    </script>
 
 {% endblock %}
