@@ -15,7 +15,6 @@ from flask_login import login_required, current_user
 from . import db 
 from datetime import datetime, timedelta
 import os.path
-from .quickstart import *
 import google.oauth2.credentials
 import googleapiclient.discovery
 import pandas as pd
@@ -25,6 +24,15 @@ import plotly.express as px
 from .nutritiondonut import nutpie
 from .sleeppiechart import sleeppie
 from .recoverydonut import recpie
+from . import db 
+from datetime import datetime, timedelta
+import os.path
+
+from . import gcal_utils as gcal
+import google.oauth2.credentials
+import google_auth_oauthlib.flow
+import googleapiclient.discovery
+import google.auth.transport.requests
 
 views = Blueprint('views', __name__)
 
@@ -143,22 +151,85 @@ def calories_breakdown():
     nutfig = nutpie('website/data/Nutrition.csv', 2000)
     nutfigJSON = json.dumps(nutfig, cls=plotly.utils.PlotlyJSONEncoder)
     if current_user.access >= 0:
-        return render_template('calories.html', user=current_user,
-            nutfigJSON=nutfigJSON)
+    return render_template('calories.html', user=current_user,
+                nutfigJSON=nutfigJSON)
+
+GCAL_OAUTH_SCOPES = ['https://www.googleapis.com/auth/calendar']
+GCAL_SECRETS_FILE = 'oauth_credentials.json'
+REDIRECT_URI = 'http://localhost:5000/oauth2callback'
+
+@views.route('/gcal_authorize')
+def gcal_authorize():
+    # Create flow instance to manage the OAuth 2.0 Authorization Grant Flow steps.
+    flow = google_auth_oauthlib.flow.Flow.from_client_secrets_file(
+        GCAL_SECRETS_FILE, scopes=GCAL_OAUTH_SCOPES)
+
+    # The URI created here must exactly match one of the authorized redirect URIs
+    # for the OAuth 2.0 client, which you configured in the API Console. If this
+    # value doesn't match an authorized URI, you will get a 'redirect_uri_mismatch'
+    # error.
+    flow.redirect_uri = REDIRECT_URI
+
+    authorization_url, state = flow.authorization_url(
+        # Enable offline access so that you can refresh an access token without
+        # re-prompting the user for permission. Recommended for web server apps.
+        access_type='offline',
+        prompt='consent',
+        # Enable incremental authorization. Recommended as a best practice.
+        include_granted_scopes='true')
+
+    # Store the state so the callback can verify the auth server response.
+    # print("*************", state)
+    session['state'] = state
+
+    return redirect(authorization_url)
+
+
+
+@views.route('/oauth2callback')
+def gcal_oauth2callback():
+    # Specify the state when creating the flow in the callback so that it can
+    # verified in the authorization server response.
+    state = session['state']
+
+    flow = google_auth_oauthlib.flow.Flow.from_client_secrets_file(
+        GCAL_SECRETS_FILE, scopes=GCAL_OAUTH_SCOPES, state=state)
+    flow.redirect_uri = REDIRECT_URI
+    # Use the authorization server's response to fetch the OAuth 2.0 tokens.
+    authorization_response = request.url
+    # print("&&&&&&&&&&&&&&&", request.args.get('state'), session.get('_google_authlib_state_'))
+    flow.fetch_token(authorization_response=authorization_response)
+
+    # Store credentials in the session.
+    # ACTION ITEM: In a production app, you likely want to save these
+    #              credentials in a persistent database instead.
+    credentials = flow.credentials
+    session['credentials'] = credentials_to_dict(credentials)
+
+    return redirect('/calendar')
+
 
 @views.route('/calendar')
 @login_required
 def calendar():
-    creds = get_cred()
-    service = initialize_sheets(creds)
-    events = view_event(service)
-    print("hi")
-    # create_event()
+    if 'credentials' not in session:
+        return redirect('/gcal_authorize')
+
+    # Load credentials from the session.
+    credentials = google.oauth2.credentials.Credentials(
+        **session['credentials'])
+
+    calendar_service = googleapiclient.discovery.build(
+        'calendar', 'v3', credentials=credentials)
+    
+    events = gcal.view_event(calendar_service)
+
+    session['credentials'] = credentials_to_dict(credentials)
+
     return render_template('calendar.html', user=current_user, list_of_events=events)
 
 @views.route('/create-event', methods=['GET', 'POST'])
 def create_event():
-    # Get form data
     if request.method == 'POST':
         event_name = request.form['event-name']
         event_description = request.form['event-description']
@@ -168,15 +239,46 @@ def create_event():
         event_end_date = request.form['event-end-date']
         event_end_time = request.form['event-end-time']
 
-        # print(event_name)
-
-        cred = get_cred()
-        service = initialize_sheets(cred)
+        credentials = google.oauth2.credentials.Credentials(
+            **session['credentials'])
+        calendar_service = googleapiclient.discovery.build(
+            'calendar', 'v3', credentials=credentials)
 
         starttime = event_start_date + 'T' + event_start_time + ':00'
         endtime = event_end_date + 'T' + event_end_time + ':00'
 
-        add_event(service, event_name, starttime, endtime, 'America/New_York', None, None, None)
+        event = {
+            'summary': event_name,
+            'location': event_location,
+            'description': event_description,
+            'start': {
+                'dateTime': starttime,
+                'timeZone': 'America/New_York',
+            },
+            'end': {
+                'dateTime': endtime,
+                'timeZone': 'America/New_York',
+            },
+            'attendees': [
+                None,
+            ],
+            'reminders': {
+                'useDefault': False,
+                'overrides': [
+                    {'method': 'email', 'minutes': 24 * 60},
+                    {'method': 'popup', 'minutes': 10},
+                ],
+            },
+            }
 
-        # return render_template('calendar.html', user=current_user)
+        event = calendar_service.events().insert(calendarId='primary', body=event).execute()
+
         return redirect(url_for('views.calendar'))
+
+def credentials_to_dict(credentials):
+  return {'token': credentials.token,
+          'refresh_token': credentials.refresh_token,
+          'token_uri': credentials.token_uri,
+          'client_id': credentials.client_id,
+          'client_secret': credentials.client_secret,
+          'scopes': credentials.scopes}
