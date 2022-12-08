@@ -186,6 +186,53 @@ def calendar():
 
     return render_template('calendar.html', user=current_user, list_of_events=events)
 
+@views.route('/create-event', methods=['GET', 'POST'])
+def create_event():
+    if request.method == 'POST':
+        event_name = request.form['event-name']
+        event_description = request.form['event-description']
+        event_location = request.form['event-location']
+        event_start_date = request.form['event-start-date']
+        event_start_time = request.form['event-start-time']
+        event_end_date = request.form['event-end-date']
+        event_end_time = request.form['event-end-time']
+
+        credentials = google.oauth2.credentials.Credentials(
+            **session['credentials'])
+        calendar_service = googleapiclient.discovery.build(
+            'calendar', 'v3', credentials=credentials)
+
+        starttime = event_start_date + 'T' + event_start_time + ':00'
+        endtime = event_end_date + 'T' + event_end_time + ':00'
+
+        event = {
+            'summary': event_name,
+            'location': event_location,
+            'description': event_description,
+            'start': {
+                'dateTime': starttime,
+                'timeZone': 'America/New_York',
+            },
+            'end': {
+                'dateTime': endtime,
+                'timeZone': 'America/New_York',
+            },
+            'attendees': [
+                None,
+            ],
+            'reminders': {
+                'useDefault': False,
+                'overrides': [
+                    {'method': 'email', 'minutes': 24 * 60},
+                    {'method': 'popup', 'minutes': 10},
+                ],
+            },
+            }
+
+        event = calendar_service.events().insert(calendarId='primary', body=event).execute()
+
+        return redirect(url_for('views.calendar'))
+
 def credentials_to_dict(credentials):
   return {'token': credentials.token,
           'refresh_token': credentials.refresh_token,
