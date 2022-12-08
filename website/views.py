@@ -1,10 +1,23 @@
 # views.py
 # show route to different html files
 # from . import db
+# from .models import User
+# from flask import Blueprint, render_template, request, flash, redirect, url_for
+# from urllib import request
+# from flask_login import login_required, current_user
+
+# views = Blueprint('views', __name__)
+
+from __future__ import print_function
 from .models import User
-from flask import Blueprint, render_template, request, flash, redirect, url_for
-from urllib import request
+from flask import Blueprint, render_template, request, flash, redirect, url_for, session
 from flask_login import login_required, current_user
+from . import db 
+from datetime import datetime, timedelta
+import os.path
+from .quickstart import *
+import google.oauth2.credentials
+import googleapiclient.discovery
 import pandas as pd
 import json
 import plotly
@@ -132,3 +145,38 @@ def calories_breakdown():
     if current_user.access >= 0:
         return render_template('calories.html', user=current_user,
             nutfigJSON=nutfigJSON)
+
+@views.route('/calendar')
+@login_required
+def calendar():
+    creds = get_cred()
+    service = initialize_sheets(creds)
+    events = view_event(service)
+    print("hi")
+    # create_event()
+    return render_template('calendar.html', user=current_user, list_of_events=events)
+
+@views.route('/create-event', methods=['GET', 'POST'])
+def create_event():
+    # Get form data
+    if request.method == 'POST':
+        event_name = request.form['event-name']
+        event_description = request.form['event-description']
+        event_location = request.form['event-location']
+        event_start_date = request.form['event-start-date']
+        event_start_time = request.form['event-start-time']
+        event_end_date = request.form['event-end-date']
+        event_end_time = request.form['event-end-time']
+
+        # print(event_name)
+
+        cred = get_cred()
+        service = initialize_sheets(cred)
+
+        starttime = event_start_date + 'T' + event_start_time + ':00'
+        endtime = event_end_date + 'T' + event_end_time + ':00'
+
+        add_event(service, event_name, starttime, endtime, 'America/New_York', None, None, None)
+
+        # return render_template('calendar.html', user=current_user)
+        return redirect(url_for('views.calendar'))
