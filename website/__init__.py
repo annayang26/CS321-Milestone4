@@ -18,13 +18,13 @@ def create_app():
     db_uri = os.environ.get('DATABASE_URL')
     if db_uri.startswith("postgres://"):
         db_uri = db_uri.replace("postgres://", "postgresql://", 1)
+    
     app.config['SQLALCHEMY_DATABASE_URI'] = db_uri
     db.init_app(app)
     migrate = Migrate(app, db)
 
     from .views import views
     from .auth import auth
-
     app.register_blueprint(views, url_prefix='/')
     app.register_blueprint(auth, url_prefix='/')
 

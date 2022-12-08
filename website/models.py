@@ -2,10 +2,9 @@
 # with different levels of access
 from collections import UserList
 from time import timezone
-from .quickstart import *
-from . import db
 from flask_login import UserMixin
 from sqlalchemy.sql import func
+from . import db
 
 class User(db.Model, UserMixin):
     SCOPES = ['https://www.googleapis.com/auth/calendar']

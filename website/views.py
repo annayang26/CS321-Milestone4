@@ -150,7 +150,6 @@ def recovery_breakdown():
 def calories_breakdown():
     nutfig = nutpie('website/data/Nutrition.csv', 2000)
     nutfigJSON = json.dumps(nutfig, cls=plotly.utils.PlotlyJSONEncoder)
-    if current_user.access >= 0:
     return render_template('calories.html', user=current_user,
                 nutfigJSON=nutfigJSON)
 
