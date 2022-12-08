@@ -11,8 +11,14 @@
       <div class="card">
         <div class="card-body">
           <h4 class="card-title">Sleep</h4>
-          <button type="button" class="btn btn-secondary btn-primary btn-fw btn-secondary-coach"> <a class="mdi mdi-download"> </a><a href="../static/images/samples/sampleCSV.csv" download="sampleCSV.csv"> Download CSV </a></button>
-          <div id="sleeppie"></div>
+          <script src="https://apis.google.com/js/platform.js" async defer></script>
+          <button class="g-savetodrive"
+            data-src="https://docs.google.com/spreadsheets/d/e/2PACX-1vSb6bQGlzF9BecSQYmpnHsp22GXEzg_0LfSip9B9ymoXiuuUvVd1H-cPCoGkYV1Z5paBBKcwg8FjKuy/pub?gid=594433208&single=true&output=csv"
+            data-filename="My Sleep.csv"
+            data-sitename="Colby Athletic Management System">
+        </button>
+          <button type="button" class="btn btn-secondary btn-primary btn-fw btn-secondary-coach"> <a class="mdi mdi-download"> </a><a href="../static/images/samples/sleep.csv" download="sleep.csv"> Download CSV </a></button>
+          <canvas id="doughnutChart" width="30" height="30"></canvas>
         </div>
       </div>
     </div>

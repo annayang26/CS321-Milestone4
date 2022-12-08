@@ -21446,3 +21446,9 @@ div.tagsinput {
 .coach-link-hover:hover {
   cursor: pointer;
 }
+
+.wide-widget{
+  width: 100% !important;
+  margin-left: auto;
+  margin-right: auto;
+}
