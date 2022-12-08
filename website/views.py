@@ -141,8 +141,8 @@ def create_event():
         cred = get_cred()
         service = initialize_sheets(cred)
 
-        starttime = event_start_date + 'T' + event_start_time
-        endtime = event_end_date + 'T' + event_end_time
+        starttime = event_start_date + 'T' + event_start_time + ':00'
+        endtime = event_end_date + 'T' + event_end_time + ':00'
 
         add_event(service, event_name, starttime, endtime, 'America/New_York', None, None, None)
 
