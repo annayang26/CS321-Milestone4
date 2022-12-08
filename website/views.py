@@ -132,11 +132,12 @@ def gcal_authorize():
         # Enable offline access so that you can refresh an access token without
         # re-prompting the user for permission. Recommended for web server apps.
         access_type='offline',
-        # approval_prompt='force',
+        prompt='consent',
         # Enable incremental authorization. Recommended as a best practice.
         include_granted_scopes='true')
 
     # Store the state so the callback can verify the auth server response.
+    # print("*************", state)
     session['state'] = state
 
     return redirect(authorization_url)
@@ -154,6 +155,7 @@ def gcal_oauth2callback():
     flow.redirect_uri = REDIRECT_URI
     # Use the authorization server's response to fetch the OAuth 2.0 tokens.
     authorization_response = request.url
+    # print("&&&&&&&&&&&&&&&", request.args.get('state'), session.get('_google_authlib_state_'))
     flow.fetch_token(authorization_response=authorization_response)
 
     # Store credentials in the session.
