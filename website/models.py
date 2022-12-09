@@ -2,11 +2,12 @@
 # with different levels of access
 from collections import UserList
 from time import timezone
-from . import db
 from flask_login import UserMixin
 from sqlalchemy.sql import func
+from . import db
 
 class User(db.Model, UserMixin):
+    SCOPES = ['https://www.googleapis.com/auth/calendar']
     
     id = db.Column(db.Integer, primary_key=True)
 
@@ -22,6 +23,8 @@ class User(db.Model, UserMixin):
     # determine access level
     access = db.Column(db.Integer, nullable=False) 
     team = db.Column(db.String(150))
+
+    # credential = db.Column(db.String(150))
     
     # for PEAK members only. 
     # 1: sports science

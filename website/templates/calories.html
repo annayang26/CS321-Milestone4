@@ -11,15 +11,90 @@
       <div class="card">
         <div class="card-body">
           <h4 class="card-title">Calories</h4>
-          <button type="button" class="btn btn-secondary btn-primary btn-fw btn-secondary-coach"> <a class="mdi mdi-download"> </a><a href="../static/images/samples/sampleCSV.csv" download="sampleCSV.csv"> Download CSV </a></button>
+          <button type="button" class="btn btn-secondary btn-primary btn-fw btn-secondary-coach"> <a class="mdi mdi-download"> </a><a href="../static/images/samples/nutrition.csv" download="nutrition.csv"> Download CSV </a></button>
+          <script src="https://apis.google.com/js/platform.js" async defer></script>
+          <button class="g-savetodrive"
+            data-src="https://docs.google.com/spreadsheets/d/e/2PACX-1vSgoaEzVbpXGNHjYTt8ISD6o6CD6-utUhzxULOcdpQamzfFJRX6cw-Hj5bSubq_jqWVCO2N7nhVhADC/pub?gid=409893931&single=true&output=csv"
+            data-filename="My Calories.csv"
+            data-sitename="Colby Athletic Management System">
+        </button>
           <canvas id="pieChart" style="height:250px"></canvas>
         </div>
       </div>
     </div>
     <div class="col-lg-7 grid-margin stretch-card">
-        <div class="card">
-          <div class="card-body">
-            <h4 class="card-title">Calorie Breakdown</h4>              
-            <script src="https://apps.elfsight.com/p/platform.js" defer></script>
-            <div class="elfsight-app-09e53038-bc8c-41cc-b03a-6935de45eb9e"></div>
+      <div class="card">
+        <div class="card-body">
+          <h4 class="card-title">Calorie Breakdown</h4>
+          <p id="coach-passage-color">Emphasis on Vitamin D today - not much sun around here</p>
+          <p id="coach-passage-color"> Minimum 2000 calories today</p>
+          <div class="card card-inner-left-top">
+            <div class="card-body">
+              <div class="row">
+                <i class="mdi mdi-food-fork-drink"></i>
+                <div class="column inner-card-title">
+                  <h4>&nbsp; Last meal </h4>
+                  <p class="inner-card-color">&nbsp; 2hr ago</p>
+                </div>
+                <div class="column inner-card-specify">
+                  <h4>&nbsp; 2hr</h4>
+                  <p class="inner-card-color-1">&nbsp; 80%</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="card card-inner-right-top">
+            <div class="card-body">
+              <div class="row">
+                <i class="mdi mdi-food-apple"></i>
+                <div class="column inner-card-title">
+                  <h4>&nbsp; Calories </h4>
+                  <p class="inner-card-color">&nbsp; 132.2</p>
+                </div>
+                <div class="column inner-card-specify">
+                  <h4>&nbsp; 132.2</h4>
+                  <p class="inner-card-color-2">&nbsp; 33%</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="card card-inner-left-bottom">
+            <div class="card-body">
+              <div class="row">
+                <i class="mdi mdi-leaf"></i>
+                <div class="column inner-card-title">
+                  <h4>&nbsp; Recovery </h4>
+                  <p class="inner-card-color">&nbsp; Avg. 50%</p>
+                </div>
+                <div class="column inner-card-specify-2">
+                  <h4>&nbsp; 68%</h4>
+                  <p class="inner-card-color-2">&nbsp; 50%</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="card card-inner-right-bottom">
+            <div class="card-body">
+              <div class="row">
+                <i class="mdi mdi-battery-80"></i>
+                <div class="column inner-card-title">
+                  <h4>&nbsp; Protein</h4>
+                  <p class="inner-card-color">&nbsp; 30.5 </p>
+                </div>
+                <div class="column inner-card-specify-2">
+                  <h4>&nbsp; 30.5 </h4>
+                  <p class="inner-card-color-1">&nbsp; 30%</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  <!-- Plotly CDN -->
+  <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+  <script>
+    var nutpie = {{nutfigJSON | safe}};
+    Plotly.plot("nutpie", nutpie, {})
+  </script>
 {% endblock %}

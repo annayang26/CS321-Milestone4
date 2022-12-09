@@ -21157,6 +21157,7 @@ div.tagsinput {
 
 #coach-logo {
   height: 80px;
+  width: 100px;
   margin-right: 20px;
 }
 
@@ -21444,4 +21445,10 @@ div.tagsinput {
 
 .coach-link-hover:hover {
   cursor: pointer;
+}
+
+.wide-widget{
+  width: 100% !important;
+  margin-left: auto;
+  margin-right: auto;
 }

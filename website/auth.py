@@ -1,8 +1,16 @@
 # authentication
 import os
 import random
+from datetime import datetime, timedelta
+import os.path
+# from .quickstart import *
 
-from flask import Blueprint, render_template, request, flash, redirect, session, url_for
+from google.auth.transport.requests import Request
+from google.oauth2.credentials import Credentials
+from google_auth_oauthlib.flow import InstalledAppFlow
+from apiclient.discovery import build as api_build
+
+from flask import Blueprint, render_template, request, flash, redirect, session, url_for, jsonify
 from .models import User 
 from werkzeug.security import generate_password_hash, check_password_hash
 from . import db 
@@ -21,6 +29,9 @@ import pandas as pd
 #import scipy as sp
 
 from mpl_toolkits.mplot3d import Axes3D
+
+# try
+
 
 plt.style.use(['seaborn-colorblind', 'seaborn-darkgrid'])
 plt.rcParams.update({'font.size': 10})
@@ -47,7 +58,8 @@ def login():
         if user:
             if check_password_hash(user.password, password):
                 flash('Login successfully!', category='success')
-                login_user(user, remember=True)                                                                         
+                login_user(user, remember=True)
+                          
                 if user.access == 0:
                     return redirect(url_for('views.athlete'))
                 elif user.access == 1:
@@ -207,3 +219,4 @@ def edit(user_id):
 
         return redirect(url_for('auth.edit', current_user=current_user, user_id=user.id))
     return render_template('edit.html', user=current_user, edit_user=user)
+
