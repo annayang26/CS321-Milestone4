@@ -123,13 +123,6 @@ def athlete_breakdown():
 @views.route('/sleep')
 @login_required
 def sleep_breakdown():
-    # Attempting Sleep breakdown
-    # sleep_csv = sleepcsv()
-    # # with open(sleep_csv) as file:
-    # reader = csv.reader(sleep_csv)
-    # if current_user.access >= 0:
-    #     return render_template('sleep.html', user=current_user,
-    #         sleep_csv = reader)
     sleepfig = sleeppie('website/data/sleep.csv', 10)
     sleepfigJSON = json.dumps(sleepfig, cls=plotly.utils.PlotlyJSONEncoder)
     if current_user.access >= 0:
@@ -159,26 +152,16 @@ REDIRECT_URI = 'http://localhost:5000/oauth2callback'
 
 @views.route('/gcal_authorize')
 def gcal_authorize():
-    # Create flow instance to manage the OAuth 2.0 Authorization Grant Flow steps.
     flow = google_auth_oauthlib.flow.Flow.from_client_secrets_file(
         GCAL_SECRETS_FILE, scopes=GCAL_OAUTH_SCOPES)
 
-    # The URI created here must exactly match one of the authorized redirect URIs
-    # for the OAuth 2.0 client, which you configured in the API Console. If this
-    # value doesn't match an authorized URI, you will get a 'redirect_uri_mismatch'
-    # error.
     flow.redirect_uri = REDIRECT_URI
 
     authorization_url, state = flow.authorization_url(
-        # Enable offline access so that you can refresh an access token without
-        # re-prompting the user for permission. Recommended for web server apps.
         access_type='offline',
         prompt='consent',
-        # Enable incremental authorization. Recommended as a best practice.
         include_granted_scopes='true')
 
-    # Store the state so the callback can verify the auth server response.
-    # print("*************", state)
     session['state'] = state
 
     return redirect(authorization_url)
@@ -187,21 +170,14 @@ def gcal_authorize():
 
 @views.route('/oauth2callback')
 def gcal_oauth2callback():
-    # Specify the state when creating the flow in the callback so that it can
-    # verified in the authorization server response.
     state = session['state']
 
     flow = google_auth_oauthlib.flow.Flow.from_client_secrets_file(
         GCAL_SECRETS_FILE, scopes=GCAL_OAUTH_SCOPES, state=state)
     flow.redirect_uri = REDIRECT_URI
-    # Use the authorization server's response to fetch the OAuth 2.0 tokens.
     authorization_response = request.url
-    # print("&&&&&&&&&&&&&&&", request.args.get('state'), session.get('_google_authlib_state_'))
     flow.fetch_token(authorization_response=authorization_response)
 
-    # Store credentials in the session.
-    # ACTION ITEM: In a production app, you likely want to save these
-    #              credentials in a persistent database instead.
     credentials = flow.credentials
     session['credentials'] = credentials_to_dict(credentials)
 
@@ -214,7 +190,6 @@ def calendar():
     if 'credentials' not in session:
         return redirect('/gcal_authorize')
 
-    # Load credentials from the session.
     credentials = google.oauth2.credentials.Credentials(
         **session['credentials'])
 
