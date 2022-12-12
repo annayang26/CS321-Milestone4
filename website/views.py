@@ -1,22 +1,8 @@
 # views.py
-# show route to different html files
-# from . import db
-# from .models import User
-# from flask import Blueprint, render_template, request, flash, redirect, url_for
-# from urllib import request
-# from flask_login import login_required, current_user
-
-# views = Blueprint('views', __name__)
-
-from __future__ import print_function
 from .models import User
 from flask import Blueprint, render_template, request, flash, redirect, url_for, session
 from flask_login import login_required, current_user
 from . import db 
-from datetime import datetime, timedelta
-import os.path
-import google.oauth2.credentials
-import googleapiclient.discovery
 import pandas as pd
 import json
 import plotly
@@ -24,7 +10,6 @@ import plotly.express as px
 from .nutritiondonut import nutpie
 from .sleeppiechart import sleeppie
 from .recoverydonut import recpie
-from . import db 
 from datetime import datetime, timedelta
 import os.path
 
