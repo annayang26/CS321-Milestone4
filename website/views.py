@@ -156,7 +156,6 @@ def gcal_oauth2callback():
     flow = google_auth_oauthlib.flow.Flow.from_client_secrets_file(
         GCAL_SECRETS_FILE, scopes=GCAL_OAUTH_SCOPES, state=state)
     flow.redirect_uri = REDIRECT_URI
-    # Use the authorization server's response to fetch the OAuth 2.0 tokens.
     authorization_response = request.url
     flow.fetch_token(authorization_response=authorization_response)
 
@@ -172,7 +171,6 @@ def calendar():
     if 'credentials' not in session:
         return redirect('/gcal_authorize')
 
-    # Load credentials from the session.
     credentials = google.oauth2.credentials.Credentials(
         **session['credentials'])
 
