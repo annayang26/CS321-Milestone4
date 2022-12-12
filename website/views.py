@@ -122,7 +122,7 @@ def recovery_breakdown():
 @views.route('/calories')
 @login_required
 def calories_breakdown():
-    nutfig = nutpie('website/data/Nutrition.csv', 2000)
+    nutfig = nutpie('website/data/nutrition.csv', 2000)
     nutfigJSON = json.dumps(nutfig, cls=plotly.utils.PlotlyJSONEncoder)
     return render_template('calories.html', user=current_user,
                 nutfigJSON=nutfigJSON)
