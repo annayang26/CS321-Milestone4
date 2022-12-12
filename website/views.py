@@ -26,7 +26,7 @@ def login_page():
 @views.route('/athlete')
 @login_required
 def athlete():
-    nutfig = nutpie('website/data/Nutrition.csv', 2000)
+    nutfig = nutpie('website/data/nutrition.csv', 2000)
     nutfigJSON = json.dumps(nutfig, cls=plotly.utils.PlotlyJSONEncoder)
     sleepfig = sleeppie('website/data/sleep.csv', 10)
     sleepfigJSON = json.dumps(sleepfig, cls=plotly.utils.PlotlyJSONEncoder)
