@@ -99,3 +99,6 @@ def test_edit(client):
         response = client.post("/edit/1")
         assert response.status_code == 400
         
+def test_upload(client):
+    response = client.get('/upload')
+    assert response.status_code == 200
