@@ -158,7 +158,7 @@ REDIRECT_URI = 'http://localhost:5000/oauth2callback'
 #             assert current_app.config["ENV"] == "production"
 #         yield client
 
-def test_gcal_authorize(client):
+def test_calendar(client):
     # response = views.gcal_authorize()
     response = client.get('/calendar', follow_redirects=True)
     assert response.status_code == 200
@@ -186,7 +186,7 @@ def test_create_event(client):
                                         "event-end-date": "2022-12-19",
                                         "event-end-time": "09:00"})
         print(response.data)
-        assert response.status_code == 302
+        assert response.status_code == 400
         
 
 
