@@ -103,7 +103,7 @@ def sign_up():
         elif len(password1) < 7:
             flash('Password must be at least 7 characters.', category='error')
         elif password1 != password2:
-            flash('Passwords don\'t match.', category='error')
+            flash('Passwords do not match.', category='error')
         else:
             # add user to database
             # if the user email is this, make them the superadmin
