@@ -3,7 +3,7 @@ from flask import Blueprint, render_template, request, flash, redirect, url_for,
 from flask_login import login_required, current_user
 from . import db 
 from datetime import datetime, timedelta
-import os.path
+import os
 import pandas as pd
 import json
 import plotly
@@ -130,6 +130,16 @@ def calories_breakdown():
 GCAL_OAUTH_SCOPES = ['https://www.googleapis.com/auth/calendar']
 GCAL_SECRETS_FILE = 'oauth_credentials.json'
 REDIRECT_URI = 'http://localhost:5000/oauth2callback'
+in_heroku = os.environ.get('IN_HEROKU', None)
+# if run app in heroku environment
+if in_heroku:
+    # get the credential string
+    JSON = os.environ.get('GOOGLE_CREDENTIALS')
+    # set the file to json file
+    GCAL_SECRETS_FILE = json.loads(JSON)
+    GCAL_SECRETS_FILE['private_key'] = GCAL_SECRETS_FILE['private_key'].replace('\\n', '\n')
+    #change the redirect uri
+    REDIRECT_URI = 'https://colbyams1.herokuapp.com/oauth2callback'
 
 @views.route('/gcal_authorize')
 def gcal_authorize():
