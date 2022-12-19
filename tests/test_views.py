@@ -165,28 +165,28 @@ def test_gcal_authorize(client):
 
 # def test_sleep_breakdown(client):
 
-# def test_create_event(client):
-#     create_account_super(client)
-#     # response = client.get('/create-event', follow_redirects=True)
-#     # assert response.status_code == 200
-#     # assert b'event-name' in response.data
-#     # assert b'event-description' in response.data
-#     # assert b'event-location' in response.data
-#     # assert b'event-start-date' in response.data
-#     # assert b'event-start-time' in response.data
-#     # assert b'event-end-date' in response.data
+def test_create_event(client):
+    create_account_super(client)
+    # response = client.get('/create-event', follow_redirects=True)
+    # assert response.status_code == 200
+    # assert b'event-name' in response.data
+    # assert b'event-description' in response.data
+    # assert b'event-location' in response.data
+    # assert b'event-start-date' in response.data
+    # assert b'event-start-time' in response.data
+    # assert b'event-end-date' in response.data
 
-#     with client:
-#         response = client.post('/create-event',
-#                                 data={  "event-name": "testing",
-#                                         "event-description": "still testing",
-#                                         "event-location:": "Miller",
-#                                         "event-start-date": "2022-12-18",
-#                                         "event-start-time": "09:00",
-#                                         "event-end-date": "2022-12-19",
-#                                         "event-end-time": "09:00"})
-#         print(response.data)
-#         assert response.status_code == 302
+    with client:
+        response = client.post('/create-event',
+                                data={  "event-name": "testing",
+                                        "event-description": "still testing",
+                                        "event-location:": "Miller",
+                                        "event-start-date": "2022-12-18",
+                                        "event-start-time": "09:00",
+                                        "event-end-date": "2022-12-19",
+                                        "event-end-time": "09:00"})
+        print(response.data)
+        assert response.status_code == 302
         
 
 
