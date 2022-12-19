@@ -137,7 +137,7 @@ if in_heroku:
     JSON = os.environ.get('GOOGLE_CREDENTIALS')
     # set the file to json file
     GCAL_SECRETS_FILE = json.loads(JSON)
-    GCAL_SECRETS_FILE['private_key'] = GCAL_SECRETS_FILE['private_key'].replace('\\n', '\n')
+    # GCAL_SECRETS_FILE['private_key'] = GCAL_SECRETS_FILE['private_key'].replace('\\n', '\n')
     #change the redirect uri
     # TODO: check if using this uri is correct; use PORT? <-- seems to work
     base = os.environ.get('PORT')
