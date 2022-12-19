@@ -139,7 +139,7 @@ if in_heroku:
     GCAL_SECRETS_FILE = json.loads(JSON)
     GCAL_SECRETS_FILE['private_key'] = GCAL_SECRETS_FILE['private_key'].replace('\\n', '\n')
     #change the redirect uri
-    # TODO: check if using this uri is correct; use PORT? 
+    # TODO: check if using this uri is correct; use PORT? <-- seems to work
     base = os.environ.get('PORT')
     red_uri = base + 'oauth2callback'
     REDIRECT_URI = red_uri
