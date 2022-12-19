@@ -7,7 +7,8 @@ def app():
     app.config.update({
         "TESTING": True,
     })
-
+    app.config['SECRET_KEY'] = 'my-secret-key'
+    app.app_context().push()
     # other setup can go here
 
     yield app

@@ -101,6 +101,9 @@ def test_super_access(client):
     response = client.get('/calories', follow_redirects=True)
     assert response.status_code == 200
 
+    # response = client.get('/calendar', follow_redirects=True)
+    # assert response.status_code == 200
+
     response = client.get('/edit/1', follow_redirects=True)
     assert response.status_code == 200
     assert b'first_name' in response.data
@@ -143,9 +146,9 @@ def test_coach_access(client):
     assert response.status_code == 200 # redirect to calories breakdown
 
 
-# GCAL_OAUTH_SCOPES = ['https://www.googleapis.com/auth/calendar']
-# GCAL_SECRETS_FILE = 'oauth_credentials.json'
-# REDIRECT_URI = 'http://localhost:5000/oauth2callback'
+GCAL_OAUTH_SCOPES = ['https://www.googleapis.com/auth/calendar']
+GCAL_SECRETS_FILE = 'oauth_credentials.json'
+REDIRECT_URI = 'http://localhost:5000/oauth2callback'
 
 
 # @pytest.fixture
@@ -155,24 +158,23 @@ def test_coach_access(client):
 #             assert current_app.config["ENV"] == "production"
 #         yield client
 
-# @pytest.fixture
-# def test_gcal_authorize(client):
-#     with app.app_context():
-#         response = views.gcal_authorize()
-#         assert response.status_code == 200
+def test_gcal_authorize(client):
+    # response = views.gcal_authorize()
+    response = client.get('/calendar', follow_redirects=True)
+    assert response.status_code == 200
 
 # def test_sleep_breakdown(client):
 
 # def test_create_event(client):
-#     response = client.get('/create-event', follow_redirects=True)
-#     assert response.status_code == 200
-#     assert b'event-name' in response.data
-#     assert b'event-description' in response.data
-#     assert b'event-location' in response.data
-#     assert b'event-start-date' in response.data
-#     assert b'event-start-time' in response.data
-#     assert b'event-end-date' in response.data
-#     assert b'event-end-time' in response.data
+#     create_account_super(client)
+#     # response = client.get('/create-event', follow_redirects=True)
+#     # assert response.status_code == 200
+#     # assert b'event-name' in response.data
+#     # assert b'event-description' in response.data
+#     # assert b'event-location' in response.data
+#     # assert b'event-start-date' in response.data
+#     # assert b'event-start-time' in response.data
+#     # assert b'event-end-date' in response.data
 
 #     with client:
 #         response = client.post('/create-event',
@@ -183,6 +185,7 @@ def test_coach_access(client):
 #                                         "event-start-time": "09:00",
 #                                         "event-end-date": "2022-12-19",
 #                                         "event-end-time": "09:00"})
+#         print(response.data)
 #         assert response.status_code == 302
         
 
