@@ -61,6 +61,9 @@ def create_account_athlete(client):
 def test_athlete_access(client):
     create_account_athlete(client)
 
+    response = client.get('/athlete', follow_redirects=True)
+    assert response.status_code == 200
+
     response = client.get('/sleep', follow_redirects=True)
     assert response.status_code == 200 # redirect to sleep breakdown
 
@@ -73,6 +76,9 @@ def test_athlete_access(client):
 
 def test_super_access(client):
     create_account_super(client)
+    response = client.get('/admin_dashboard', follow_redirects=True)
+    assert response.status_code == 200
+
     response = client.get('/add', follow_redirects=True)
     assert response.status_code == 200
 
@@ -111,6 +117,9 @@ def test_super_access(client):
 
 def test_peak_access(client):
     create_account_peak(client)
+
+    response = client.get('/peak', follow_redirects=True)
+    assert response.status_code == 200
 
     response = client.get('/teambreakdown', follow_redirects=True)
     assert response.status_code == 200

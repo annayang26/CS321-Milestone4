@@ -240,13 +240,23 @@ def test_edit(client):
                                 "role":"athlete",
                                 "team":"Soccer"})
         response = client.post("/edit/1",
+                        data={"email":"admin@colby.edu",
+                                "first_name":"Admin",
+                                "last_name":"One",
+                                "role":"coach",
+                                "team":"Soccer"})
+        response = client.post("/edit/2",
                         data={"email":"athlete@colby.edu",
                                 "first_name":"Athlete",
                                 "last_name":"One",
                                 "role":"athlete",
                                 "team":"Swimming"})
-        assert response.status_code == 400
+        assert response.status_code == 302
         
 def test_upload(client):
     response = client.get('/upload')
     assert response.status_code == 200
+
+    with client:
+        response = client.post("/upload")
+        assert response.status_code == 200
