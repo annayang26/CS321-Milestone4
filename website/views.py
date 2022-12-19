@@ -139,7 +139,9 @@ if in_heroku:
     GCAL_SECRETS_FILE = json.loads(JSON)
     GCAL_SECRETS_FILE['private_key'] = GCAL_SECRETS_FILE['private_key'].replace('\\n', '\n')
     #change the redirect uri
+    # TODO: check if using this uri is correct; use PORT? 
     REDIRECT_URI = 'https://colbyams1.herokuapp.com/oauth2callback'
+
 
 @views.route('/gcal_authorize')
 def gcal_authorize():
