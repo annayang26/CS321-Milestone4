@@ -19,7 +19,7 @@ import googleapiclient.discovery
 
 views = Blueprint('views', __name__)
 
-@views.route('/')
+@views.route('/login')
 def login_page():
     return render_template('login.html', user=current_user)
 
