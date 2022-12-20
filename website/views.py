@@ -142,7 +142,7 @@ if in_heroku:
 
 @views.route('/gcal_authorize')
 def gcal_authorize():
-    print(type(GCAL_SECRETS_FILE))
+    print("-------------------------", type(GCAL_SECRETS_FILE))
     flow = google_auth_oauthlib.flow.Flow.from_client_secrets_file(
         GCAL_SECRETS_FILE, scopes=GCAL_OAUTH_SCOPES)
 
