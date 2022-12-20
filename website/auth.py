@@ -176,7 +176,7 @@ def edit(user_id):
         elif role == "coach":
             user.access = 1
         else:
-            user.access = 2
+            user.access = 0
 
         db.session.add(user)
         db.session.commit()
