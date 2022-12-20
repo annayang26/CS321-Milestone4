@@ -130,6 +130,11 @@ input[type="submit"] {
   cursor: pointer;
 }
 
+.no-bullets {
+  list-style-type: none;
+  padding: none;
+}
+
 /* The following code is taken from https://codepen.io/hilar47/pen/RprXev */
 * {
   -webkit-box-sizing: border-box;

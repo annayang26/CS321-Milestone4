@@ -1,8 +1,9 @@
-# views.py
 from .models import User
 from flask import Blueprint, render_template, request, flash, redirect, url_for, session
 from flask_login import login_required, current_user
 from . import db 
+from datetime import datetime, timedelta
+import os
 import pandas as pd
 import json
 import plotly
@@ -10,14 +11,11 @@ import plotly.express as px
 from .nutritiondonut import nutpie
 from .sleeppiechart import sleeppie
 from .recoverydonut import recpie
-from datetime import datetime, timedelta
-import os.path
-
 from . import gcal_utils as gcal
-import google.oauth2.credentials
 import google_auth_oauthlib.flow
-import googleapiclient.discovery
 import google.auth.transport.requests
+import google.oauth2.credentials
+import googleapiclient.discovery
 
 views = Blueprint('views', __name__)
 
@@ -28,19 +26,17 @@ def login_page():
 @views.route('/athlete')
 @login_required
 def athlete():
-    nutfig = nutpie('website/data/Nutrition.csv', 2000)
+    nutfig = nutpie('website/data/nutrition.csv', 2000)
     nutfigJSON = json.dumps(nutfig, cls=plotly.utils.PlotlyJSONEncoder)
     sleepfig = sleeppie('website/data/sleep.csv', 10)
     sleepfigJSON = json.dumps(sleepfig, cls=plotly.utils.PlotlyJSONEncoder)
     recfig = recpie('website/data/physiological cycles.csv', 10)
     recfigJSON = json.dumps(recfig, cls=plotly.utils.PlotlyJSONEncoder)
-    # check if the user has access to the page
     if current_user.access == 0:
         return render_template('athlete.html', user=current_user, 
             nutfigJSON = nutfigJSON, 
             sleepfigJSON=sleepfigJSON, 
             recfigJSON=recfigJSON)
-    # if not, then return the user to their own home page
     flash("you don't have access to this page", category='error')
 
 @views.route('/coach-dashboard')
@@ -126,7 +122,7 @@ def recovery_breakdown():
 @views.route('/calories')
 @login_required
 def calories_breakdown():
-    nutfig = nutpie('website/data/Nutrition.csv', 2000)
+    nutfig = nutpie('website/data/nutrition.csv', 2000)
     nutfigJSON = json.dumps(nutfig, cls=plotly.utils.PlotlyJSONEncoder)
     return render_template('calories.html', user=current_user,
                 nutfigJSON=nutfigJSON)
@@ -135,11 +131,20 @@ GCAL_OAUTH_SCOPES = ['https://www.googleapis.com/auth/calendar']
 GCAL_SECRETS_FILE = 'oauth_credentials.json'
 REDIRECT_URI = 'http://localhost:5000/oauth2callback'
 
+in_heroku = os.environ.get('IN_HEROKU', None)
+if in_heroku:
+    GCAL_SECRETS_FILE = os.environ.get('GOOGLE_APPLICATION_CREDENTIALS')
+    base = os.environ.get('PORT')
+    # print("---------------", base)
+    # red_uri = base + 'oauth2callback'
+    REDIRECT_URI = 'https://colbyams1.herokuapp.com/oauth2callback'
+
+
 @views.route('/gcal_authorize')
 def gcal_authorize():
     flow = google_auth_oauthlib.flow.Flow.from_client_secrets_file(
         GCAL_SECRETS_FILE, scopes=GCAL_OAUTH_SCOPES)
-
+    print("+++++++++++++++++++", REDIRECT_URI)
     flow.redirect_uri = REDIRECT_URI
 
     authorization_url, state = flow.authorization_url(
