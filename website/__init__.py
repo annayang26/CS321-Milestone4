@@ -1,8 +1,6 @@
-# create the app and database
 from venv import create
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy 
-from os import path 
 import os
 from flask_migrate import Migrate
 from flask_login import LoginManager, current_user, login_required, UserMixin 
@@ -14,7 +12,7 @@ DB_NAME ="database.db"
 
 def create_app():
     app = Flask(__name__)
-    app.config['SECRET_KEY'] = 'secret-key-goes-here'
+    app.config['SECRET_KEY'] = os.environ.get('FLASK_SECRET_KEY')
     db_uri = os.environ.get('DATABASE_URL')
     if db_uri.startswith("postgres://"):
         db_uri = db_uri.replace("postgres://", "postgresql://", 1)
@@ -73,7 +71,6 @@ def create_database(app):
         db.create_all()
 
 def drop_database(app):
-    #if path.exists('website/' + DB_NAME):
     with app.app_context():
         db.session.remove()
         db.drop_all()
