@@ -50,7 +50,7 @@ def coach():
 @login_required
 def peak():
     if current_user.access == 2:
-        return render_template('peak.html', user=current_user)
+        return render_template('PEAK.html', user=current_user)
     flash("you don't have access to this page", category='error')
 
 @views.route('/admin_dashboard')

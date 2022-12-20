@@ -1,45 +1,25 @@
-# authentication
 import os
-import random
 from datetime import datetime, timedelta
-import os.path
-# from .quickstart import *
-
 from google.auth.transport.requests import Request
 from google.oauth2.credentials import Credentials
 from google_auth_oauthlib.flow import InstalledAppFlow
-from apiclient.discovery import build as api_build
-
+from googleapiclient.discovery import build as api_build
 from flask import Blueprint, render_template, request, flash, redirect, session, url_for, jsonify
 from .models import User 
 from werkzeug.security import generate_password_hash, check_password_hash
 from . import db 
 from flask_login import login_user, login_required, logout_user, current_user
-import numpy as np 
-# from data import Data
-import pandas as pd
-
-import matplotlib.pyplot as plt
-
-import os
 import random
 import numpy as np
 import matplotlib.pyplot as plt
 import pandas as pd
-#import scipy as sp
-
 from mpl_toolkits.mplot3d import Axes3D
-
-# try
-
 
 plt.style.use(['seaborn-colorblind', 'seaborn-darkgrid'])
 plt.rcParams.update({'font.size': 10})
 plt.rcParams.update({'figure.figsize': [8,8]})
 
 np.set_printoptions(suppress=True, precision=5)
-
-
 
 auth = Blueprint('auth', __name__ )
 
@@ -60,16 +40,18 @@ def login():
                 flash('Login successfully!', category='success')
                 login_user(user, remember=True)
                           
-                if user.access == 0:
-                    return redirect(url_for('views.athlete'))
-                elif user.access == 1:
-                    return redirect(url_for('views.coach'))
+                if user.access == 3:
+                    return redirect(url_for('views.superadmin'))
                 elif user.access == 2:
                     return redirect(url_for('views.peak'))
-                elif user.access == 3:
-                    return redirect(url_for('views.superadmin'))
+                elif user.access == 1:
+                    return redirect(url_for('views.coach'))
                 else:
-                    flash('User not in the system, please contact PEAK team if you think this is incorrect.', category='error')
+                    return redirect(url_for('views.athlete'))
+                # elif user.access == 0:
+                #     return redirect(url_for('views.superadmin'))
+                # else:
+                #     flash('User not in the system, please contact PEAK team if you think this is incorrect.', category='error')
             else:
                 flash('Incorrect password, try again.', category='error')
         else:
@@ -105,14 +87,8 @@ def sign_up():
         elif password1 != password2:
             flash('Passwords do not match.', category='error')
         else:
-            # add user to database
-            # if the user email is this, make them the superadmin
             if email == "superadmin@colby.edu":
                 access = 3
-            elif email == "admin1@colby.edu":
-                access = 2
-            elif email == "coach@colby.edu":
-                access = 1
             else:
                 access = 0
             new_user = User(email=email, first_name=first_name, last_name = last_name, access=access, \
@@ -137,7 +113,7 @@ def add_user():
         if role == "admin":
             branch = request.form.get('branch')
             team = branch
-        elif role == "coach" or role == "athlete":
+        else:
             team = request.form['team']
             branch = team 
 
@@ -146,12 +122,12 @@ def add_user():
             flash('Email already exists.', category='error')
             return redirect(url_for('views.add'))
         else:
-            if role == "athlete":
-                access = 0
+            if role == "admin":
+                access = 2
             elif role == "coach":
                 access = 1
-            elif role == "admin":
-                access = 2
+            else:
+                access = 0
             password1 = '1111111'
             new_user = User(first_name=first_name,
                             last_name=last_name,
@@ -170,18 +146,9 @@ def add_user():
 def upload():
     flash(request.method)
     if request.method == 'POST':
-        # This is how the file is read when project is being ran on github
         sleep_data_df = pd.read_csv("website/data/sleep.csv")
-        # This is how the file is read when project is being ran locally
-        # sleep_data_df = pd.read_csv("C:\Users\linnxinh\CS321-Final\website\data\sleep.csv", error_bad_lines=False)
-        # sleep_data_df.to_csv("/data/sleep.csv")
-        # I commented out this line because it used to show a sring representation on top of the table which was very annoying
-        # return render_template('upload.html',tables=[sleep_data_df.to_html()],titles=[''], user=current_user, sleepData=sleep_data_df)
         return render_template('upload.html',tables=[sleep_data_df.to_html()],titles=[''], user=current_user)
     else:
-        # It's working because it shows None after you leave and come back meaning
-        # that there's no post funcion
-        #Use pandas to display the datas
         sleep_data_df = None
     return render_template("upload.html", user=current_user, sleepData=sleep_data_df)
     
@@ -197,7 +164,7 @@ def edit(user_id):
         if user.access == 2:
             branch = request.form['branch']
             user.branch = branch
-        elif user.access == 1 or user.access == 0: 
+        else: 
             team = request.form['team']
             user.team = team
 
@@ -205,11 +172,11 @@ def edit(user_id):
         user.last_name = last_name
         user.email = email 
 
-        if role == "athlete":
-            user.access = 0
+        if role == "admin":
+            user.access = 2
         elif role == "coach":
             user.access = 1
-        elif role == "admin":
+        else:
             user.access = 2
 
         db.session.add(user)
