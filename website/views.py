@@ -135,9 +135,9 @@ in_heroku = os.environ.get('IN_HEROKU', None)
 if in_heroku:
     GCAL_SECRETS_FILE = os.environ.get('GOOGLE_APPLICATION_CREDENTIALS')
     base = os.environ.get('PORT')
-    print("---------------", base)
-    red_uri = base + 'oauth2callback'
-    REDIRECT_URI = red_uri
+    # print("---------------", base)
+    # red_uri = base + 'oauth2callback'
+    REDIRECT_URI = 'https://colbyams1.herokuapp.com/oauth2callback'
 
 
 @views.route('/gcal_authorize')
