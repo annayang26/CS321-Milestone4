@@ -1,15 +1,6 @@
 {% extends "base.html" %}
 
 {% block content %}
-    <!-- partial -->
-    <!-- <div class="container-fluid page-body-wrapper">
-      <div class="container-fluid page-body-wrapper"> -->
-        <!-- partial:partials/_navbar.html -->
-        <!-- <nav class="navbar p-0 fixed-top d-flex flex-row">
-          <div class="navbar-brand-wrapper d-flex d-lg-none align-items-center justify-content-center">
-            <a class="navbar-brand brand-logo-mini" href="athlete.html"><img src="../static/images/ca_mini_logo.png" alt="logo" /></a>
-          </div> -->
-          <!-- <div class="navbar-menu-wrapper flex-grow d-flex align-items-stretch"> -->
             <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
               <span class="mdi mdi-menu"></span>
             </button>
@@ -46,11 +37,6 @@
           <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button" data-toggle="offcanvas">
             <span class="mdi mdi-format-line-spacing"></span>
           </button>
-        <!-- </div>
-      </nav> -->
-      <!-- partial -->
-      <!-- <div class="main-panel">
-        <div class="content-wrapper"> -->
           <div class="row">
             <div class="col-md-6 col-xl-4 grid-margin stretch-card">
               <div class="card">
@@ -161,23 +147,6 @@
                   <div class="embedsocial-hashtag" data-ref="f0d59f32b45a038c445d5928ebb3c4f139a4038e"></div><script>(function(d, s, id){var js; if (d.getElementById(id)) {return;} js = d.createElement(s); js.id = id; js.src = "https://embedsocial.com/cdn/ht.js"; d.getElementsByTagName("head")[0].appendChild(js);}(document, "script", "EmbedSocialHashtagScript"));</script>
             </div>
           </div>
-        <!-- </div>
-      </div> -->
-        <!-- content-wrapper ends -->
-        <!-- partial:partials/_footer.html -->
-        <!-- <footer class="footer">
-          <div class="d-sm-flex justify-content-center justify-content-sm-between">
-            <span class="text-muted d-block text-center text-sm-left d-sm-inline-block">Copyright © Colby Athletic Management System 2022</span>
-            <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center"> <a href="https://colbyathletics.com/" target="_blank">Check out the Colby Athletics Website</a></span>
-          </div>
-        </footer> -->
-        <!-- partial -->
-      <!-- </div> -->
-      <!-- main-panel ends -->
-    <!-- </div> -->
-    <!-- page-body-wrapper ends -->
-    <!-- </div> -->
-    <!-- Plotly CDN -->
     <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
     <script>
       var nutpie = {{nutfigJSON | safe}};
