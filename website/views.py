@@ -144,7 +144,7 @@ if in_heroku:
 def gcal_authorize():
     flow = google_auth_oauthlib.flow.Flow.from_client_secrets_file(
         GCAL_SECRETS_FILE, scopes=GCAL_OAUTH_SCOPES)
-
+    print("+++++++++++++++++++", REDIRECT_URI)
     flow.redirect_uri = REDIRECT_URI
 
     authorization_url, state = flow.authorization_url(
