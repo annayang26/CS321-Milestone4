@@ -130,16 +130,12 @@ def calories_breakdown():
 GCAL_OAUTH_SCOPES = ['https://www.googleapis.com/auth/calendar']
 GCAL_SECRETS_FILE = 'oauth_credentials.json'
 REDIRECT_URI = 'http://localhost:5000/oauth2callback'
+
 in_heroku = os.environ.get('IN_HEROKU', None)
-# if run app in heroku environment
 if in_heroku:
-    # get the credential string
     JSON = os.environ.get('GOOGLE_CREDENTIALS')
-    # set the file to json file
     GCAL_SECRETS_FILE = json.loads(JSON)
-    # GCAL_SECRETS_FILE['private_key'] = GCAL_SECRETS_FILE['private_key'].replace('\\n', '\n')
-    #change the redirect uri
-    # TODO: check if using this uri is correct; use PORT? <-- seems to work
+    print(type(GCAL_SECRETS_FILE))
     base = os.environ.get('PORT')
     red_uri = base + 'oauth2callback'
     REDIRECT_URI = red_uri
