@@ -134,9 +134,6 @@ REDIRECT_URI = 'http://localhost:5000/oauth2callback'
 in_heroku = os.environ.get('IN_HEROKU', None)
 if in_heroku:
     GCAL_SECRETS_FILE = os.environ.get('GOOGLE_APPLICATION_CREDENTIALS')
-    base = os.environ.get('PORT')
-    # print("---------------", base)
-    # red_uri = base + 'oauth2callback'
     REDIRECT_URI = 'https://colbyams1.herokuapp.com/oauth2callback'
 
 
@@ -144,7 +141,6 @@ if in_heroku:
 def gcal_authorize():
     flow = google_auth_oauthlib.flow.Flow.from_client_secrets_file(
         GCAL_SECRETS_FILE, scopes=GCAL_OAUTH_SCOPES)
-    print("+++++++++++++++++++", REDIRECT_URI)
     flow.redirect_uri = REDIRECT_URI
 
     authorization_url, state = flow.authorization_url(
