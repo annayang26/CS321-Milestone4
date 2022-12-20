@@ -3,7 +3,6 @@ from datetime import datetime, timedelta
 from google.auth.transport.requests import Request
 from google.oauth2.credentials import Credentials
 from google_auth_oauthlib.flow import InstalledAppFlow
-# from googleapiclient.discovery import build as api_build
 from flask import Blueprint, render_template, request, flash, redirect, session, url_for, jsonify
 from .models import User 
 from werkzeug.security import generate_password_hash, check_password_hash
