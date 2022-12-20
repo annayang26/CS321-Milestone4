@@ -134,8 +134,8 @@ REDIRECT_URI = 'http://localhost:5000/oauth2callback'
 in_heroku = os.environ.get('IN_HEROKU', None)
 if in_heroku:
     GCAL_SECRETS_FILE = os.environ.get('GOOGLE_APPLICATION_CREDENTIALS')
-    # GCAL_SECRETS_FILE = json.loads(JSON)
     base = os.environ.get('PORT')
+    print("---------------", base)
     red_uri = base + 'oauth2callback'
     REDIRECT_URI = red_uri
 
