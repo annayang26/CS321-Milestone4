@@ -89,6 +89,10 @@ def sign_up():
         else:
             if email == "superadmin@colby.edu":
                 access = 3
+            elif email == "admin1@colby.edu":
+                access = 2
+            elif email == "coach@colby.edu":
+                access = 1
             else:
                 access = 0
             new_user = User(email=email, first_name=first_name, last_name = last_name, access=access, \
