@@ -11,19 +11,12 @@ def app():
     })
     app.config['SECRET_KEY'] = 'my-secret-key'
     app.app_context().push()
-    # other setup can go here
 
     yield app
 
-    # clean up / reset resources here
     drop_database(app)
 
 
 @pytest.fixture()
 def client(app):
     return app.test_client()
-
-
-# @pytest.fixture()
-# def runner(app):
-#     return app.test_cli_runner()
