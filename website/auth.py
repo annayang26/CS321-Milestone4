@@ -3,7 +3,7 @@ from datetime import datetime, timedelta
 from google.auth.transport.requests import Request
 from google.oauth2.credentials import Credentials
 from google_auth_oauthlib.flow import InstalledAppFlow
-from googleapiclient.discovery import build as api_build
+# from googleapiclient.discovery import build as api_build
 from flask import Blueprint, render_template, request, flash, redirect, session, url_for, jsonify
 from .models import User 
 from werkzeug.security import generate_password_hash, check_password_hash
@@ -48,10 +48,6 @@ def login():
                     return redirect(url_for('views.coach'))
                 else:
                     return redirect(url_for('views.athlete'))
-                # elif user.access == 0:
-                #     return redirect(url_for('views.superadmin'))
-                # else:
-                #     flash('User not in the system, please contact PEAK team if you think this is incorrect.', category='error')
             else:
                 flash('Incorrect password, try again.', category='error')
         else:
