@@ -6,9 +6,90 @@
 <p align="center">
     <img src="https://img.shields.io/badge/CS321-Group1Milestone4-blue">
     <img src="https://img.shields.io/badge/CS321-Group1Milestone5-blue">
+    <img src="https://img.shields.io/badge/CS321-Group1Milestone6-blue">
+    <img src="https://img.shields.io/badge/CS321-Group1Milestone8-blue">
 </p>
 
 # 📈 Colby College Athletic Management System (Flask Web App)
+
+## Abstract (Milestone 8)
+The objective of this milestone is to finish our project by implementing remaining items in our product backlog and refactoring our code to enhance readability and maintainability. Specifically, we redeployed the app on Heroku, raised the test coverage from 74% to 90%, calculated the code metrics using Radon and reduced the complexity of the code.
+
+## Sprint Backlog (Milestone 8)
+- Super Admin User Stories - ESTIMATE: High Priority Drafts (1 week), Medium Priority (5 days), Low Priority (2 days) 
+    - As a super admin, I want to control the permissions (for both coaches and athletes) so that I can monitor who has access to the data and protect           student athletes’ personal data (High Priority) - COMPLETED
+    - As a super admin, I want to see all student-athletes data to track trends to inform the relevant people about injuries, wellbeing, etc. (High Priority) - COMPLETED
+    - As a super admin, I want to be able to generate and send reports to coaches so that they can be well informed about the trends in their team. (Medium Priority) - COMPLETE
+    - As a super admin, I want to view all athletes’ stats and coaches’ profiles so I can have an idea of who they are. (Medium Priority) - COMPLETE
+    - As a super admin, I want machine learning functionality so that I can make predictions based on trends in the data. (Low Priority)
+    - As a super admin, I want to see the nutrition logs of athletes so that I can ensure that they are fueling their bodies with the right nutrition. (Low Priority) - COMPLETE
+    - As a super admin, I want to be able to run analysis on available data so that I can provide coaches and athletes with useful information. (Low Priority)
+    - As a super admin, I want to be able to look at my schedule and upcoming events so that I know where I need to be at all times. (Low Priority) - COMPLETE
+- Coach User Stories - ESTIMATE: High Priority Drafts (1 week), Medium Priority (5 days)
+    - As a coach, I want to be able to view data and visualizations for all my athletes, honing in on individuals, including sleep data, readiness (based on Hawkin Dynamics, firstbeat - heart rate), and injury status so I can better manage my players, and adjust training plan, and ensure athletes get the relevant care they need. (High Priority) - COMPLETE 
+    - As a coach, I want these stats to be presented in a way that is easy to understand so that I can quickly access the information that I need. (Medium Priority) - COMPLETE
+- Athlete - ESTIMATE: High Priority (1 week), Medium Priority (5 days)
+    - As an athlete, I want to be able to see my own data so that I have information about my performance. (High Priority) - COMPLETE
+    - As an athlete, I want to have access to my own injury status, mental health information, and notes from the support staff so that I understand what is going on with my body. (Medium Priority) - COMPLETE
+    - As an athlete, I can see historical trends in my stats so that I can know how to optimize my performance. (Medium Priority) - COMPLETE
+
+## Results (Milestone 8)
+Deployed Colby Athletic Management System: https://colbyams1.herokuapp.com/ 
+
+** please select login button and then enter the credentials **
+- Super admin account: superadmin@colby.edu - password: 1111111
+- Coach account: coach@colby.edu - password: 1111111
+- Athlete account: athlete@colby.edu - password: 1111111
+
+GitHub repository: https://github.com/annayang26/CS321-Milestone4 
+
+### Metrics
+Before:
+
+!["Before" Metrics](/README-img/beforemetrics1.png)
+!["Before" Metrics](/README-img/beforemetrics2.png)
+
+!["Before" Metrics](/README-img/beforemetrics3.png)
+
+After:
+
+!["After" Metrics](/README-img/aftermetrics1.png)
+!["After" Metrics](/README-img/aftermetrics2.png)
+
+!["After" Metrics](/README-img/aftermetrics3.png)
+
+
+The Radon test before modification was fairly good, given that we have an average of 2.36 complexity. After cleaning up the code, we achieved a Radon score of 2.18, which is lower than the initial one. We were able to decrease code complexity of the function edit() from B to A by changing the elif statement to else because we only need to differentiate between admin and coach/athlete. Other elif statements in login and add_user functions were also changed to else if appropriate. However, since information security is important, and we use access level to ensure that, it is necessary to set strict levels using if and elif statements. Therefore, we can’t reduce the code complexity anymore in those two functions. On the other hand, since sign-up needs to make sure that the user doesn’t exist in the database, that the user creates a strong password, or that the user is filling a valid name, if and elif statements are also needed. In addition, we hard coded the super admin email in the login so that when running the app, we have an account to create more users of different levels and for testing. 
+
+### Test Coverage
+Before:
+
+!["Before" Test Coverage](/README-img/beforetestcoverage.png)
+
+After:
+
+!["After" Test Coverage](/README-img/aftertestcoverage.png)
+
+The test coverage was raised from 74% to 90%. We left out a lot of code in views.py because they were API codes.
+
+### Burndown Chart
+
+![Burndown Chart](/README-img/burndownchart8.png)
+
+## Contribution List (Milestone 8)
+| Linn | Anna | Hayden | Adaobi | Sam | Dylan| Bryan |
+| ---                   | ---  | ---    | ---  | --- | ---  | ---   |
+| Raised test coverage from 74% to 90% | Redeployed the app on Heroku | Burndown Chart |  |  |  |  |
+| Wrote report | Calculated code metrics and reduce code complexity  | Put report on README.md |  |  |  |  |
+| | Use Heroku Config Var to store credentials |  |  |  |
+
+## Extensions (Milestone 8)
+Wrote our report in Markdown as a readme file in our repository, including table images and appropriate tags and content.
+
+## References/Acknowledgements (Milestone 8)
+https://www.offerzen.com/blog/how-i-used-pytest-to-write-qa-tests-that-securely-bypass-2fa
+https://stackoverflow.com/questions/18827985/mocking-oauth-providers-while-testing
+
 
 ## Abstract (Milestone 6)
 The goal of this milestone was to implement and practice with CI/CD testing. Our team developed a CI/CD pipeline to lint, test, and deploy our dynamic Athletic Management System to the cloud. Another goal was to get practice with Pytest and we added tests with the goal of improving code quality and discovering problems earlier. In the end we were able to achieve 80% test coverage.

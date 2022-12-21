@@ -21,7 +21,7 @@ views = Blueprint('views', __name__)
 
 @views.route('/')
 def login_page():
-    return render_template('login.html', user=current_user)
+    return render_template('open_page.html', user=current_user)
 
 @views.route('/athlete')
 @login_required
