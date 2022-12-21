@@ -186,3 +186,21 @@ def edit(user_id):
         return redirect(url_for('auth.edit', current_user=current_user, user_id=user.id))
     return render_template('edit.html', user=current_user, edit_user=user)
 
+@auth.route('/settings', methods=['GET', 'POST'])
+def settings(user_id):
+    user = User.query.get_or_404(user_id)
+    if request.method == 'POST':
+        first_name = request.form.get('first_name', user.first_name)
+        last_name = request.form.get('last_name', user.last_name)
+        email = request.form.get('email', user.email)
+        # password = request.form['password']
+
+        user.first_name = first_name
+        user.last_name = last_name
+        user.email = email 
+        # user.password = generate_password_hash(password, method='sha256')
+
+        db.session.add(user)
+        db.session.commit()
+
+    return render_template('settings.html', user=current_user, edit_user=user)
