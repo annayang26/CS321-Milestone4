@@ -32,33 +32,47 @@ def athlete():
     sleepfigJSON = json.dumps(sleepfig, cls=plotly.utils.PlotlyJSONEncoder)
     recfig = recpie('website/data/physiological cycles.csv', 10)
     recfigJSON = json.dumps(recfig, cls=plotly.utils.PlotlyJSONEncoder)
-    if current_user.access == 0:
-        return render_template('athlete.html', user=current_user, 
+    return render_template('athlete.html', user=current_user, 
             nutfigJSON = nutfigJSON, 
             sleepfigJSON=sleepfigJSON, 
             recfigJSON=recfigJSON)
-    flash("you don't have access to this page", category='error')
 
 @views.route('/coach-dashboard')
 @login_required
 def coach():
-    if current_user.access == 1:
-        return render_template('coach-dashboard.html', user=current_user)
-    flash("you don't have access to this page", category='error')
+    nutfig = nutpie('website/data/nutrition.csv', 2000)
+    nutfigJSON = json.dumps(nutfig, cls=plotly.utils.PlotlyJSONEncoder)
+    sleepfig = sleeppie('website/data/sleep.csv', 10)
+    sleepfigJSON = json.dumps(sleepfig, cls=plotly.utils.PlotlyJSONEncoder)
+    recfig = recpie('website/data/physiological cycles.csv', 10)
+    recfigJSON = json.dumps(recfig, cls=plotly.utils.PlotlyJSONEncoder)
+    return render_template('coach-dashboard.html', user=current_user, 
+            nutfigJSON = nutfigJSON, 
+            sleepfigJSON=sleepfigJSON, 
+            recfigJSON=recfigJSON)
 
 @views.route('/peak')
 @login_required
 def peak():
-    if current_user.access == 2:
-        return render_template('PEAK.html', user=current_user)
-    flash("you don't have access to this page", category='error')
+    return render_template('PEAK.html', user=current_user)
 
 @views.route('/admin_dashboard')
 @login_required
 def superadmin():
+    return render_template('admin_dashboard.html', user=current_user)
+
+@views.route('/dashboard')
+@login_required
+def dashboard():
     if current_user.access == 3:
-        return render_template('admin_dashboard.html', user=current_user)
-    flash("you don't have access to this page", category='error')
+        return redirect(url_for('views.superadmin', current_user=current_user))
+    elif current_user.access == 2:
+        return redirect(url_for('views.peak', current_user=current_user))
+    elif current_user.access == 1:
+        return redirect(url_for('views.coach', current_user=current_user))
+    else:
+        return redirect(url_for('views.athlete', current_user=current_user))
+
 
 @views.route('/database')
 @login_required
@@ -152,8 +166,6 @@ def gcal_authorize():
 
     return redirect(authorization_url)
 
-
-
 @views.route('/oauth2callback')
 def gcal_oauth2callback():
     state = session['state']
@@ -168,7 +180,6 @@ def gcal_oauth2callback():
     session['credentials'] = credentials_to_dict(credentials)
 
     return redirect('/calendar')
-
 
 @views.route('/calendar')
 @login_required

@@ -38,15 +38,8 @@ def login():
             if check_password_hash(user.password, password):
                 flash('Login successfully!', category='success')
                 login_user(user, remember=True)
-                          
-                if user.access == 3:
-                    return redirect(url_for('views.superadmin'))
-                elif user.access == 2:
-                    return redirect(url_for('views.peak'))
-                elif user.access == 1:
-                    return redirect(url_for('views.coach'))
-                else:
-                    return redirect(url_for('views.athlete'))
+                
+                return redirect(url_for('views.dashboard', current_user=user))
             else:
                 flash('Incorrect password, try again.', category='error')
         else:
@@ -94,10 +87,7 @@ def sign_up():
                             password=generate_password_hash(password1, method='sha256'), branch=None, team=None)
             db.session.add(new_user)
             db.session.commit()
-            login_user(new_user, remember=True)
             flash('Account created!', category='success')
-            if new_user.access == 3:
-                return redirect(url_for('views.superadmin'))
             return redirect(url_for('auth.login'))
 
     return render_template("signup.html", user=current_user)
@@ -186,21 +176,24 @@ def edit(user_id):
         return redirect(url_for('auth.edit', current_user=current_user, user_id=user.id))
     return render_template('edit.html', user=current_user, edit_user=user)
 
-@auth.route('/settings', methods=['GET', 'POST'])
+@auth.route('/settings/<user_id>', methods=['GET', 'POST'])
 def settings(user_id):
     user = User.query.get_or_404(user_id)
+    
     if request.method == 'POST':
         first_name = request.form.get('first_name', user.first_name)
         last_name = request.form.get('last_name', user.last_name)
         email = request.form.get('email', user.email)
-        # password = request.form['password']
 
         user.first_name = first_name
         user.last_name = last_name
         user.email = email 
-        # user.password = generate_password_hash(password, method='sha256')
 
         db.session.add(user)
         db.session.commit()
+        
+        flash('The user information has been changed', category='success')
 
-    return render_template('settings.html', user=current_user, edit_user=user)
+        return redirect(url_for('auth.settings', current_user=user, user_id=user_id))
+
+    return render_template('settings.html', user=current_user, user_id=user_id)
