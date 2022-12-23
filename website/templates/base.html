@@ -173,10 +173,28 @@
 
                 </li>
               </ul>
-              <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button" data-toggle="offcanvas">
-                <span class="mdi mdi-format-line-spacing"></span>
-              </button>
             </div>
+            {% with messages = get_flashed_messages(with_categories=true) %} 
+            {% if messages %} 
+                {% for category, message in messages %} 
+                    {% if category == 'error' %}
+                        <div class="alert alert-danger alter-dismissable fade show" role="alert">
+                        {{ message }}
+                        <button type="button" class="close" data-dismiss="alert">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                        </div>
+                    {% else %}
+                        <div class="alert alert-success alter-dismissable fade show" role="alert">
+                        {{ message }}
+                        <button type="button" class="close" data-dismiss="alert">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                        </div>
+                    {% endif %} 
+                {% endfor %} 
+              {% endif %} 
+              {% endwith %}
           </nav>
         {% else %} 
           <nav class="sidebar sidebar-offcanvas" id="sidebar">
@@ -231,54 +249,15 @@
                       <span class="count bg-success"> </span>
                     </div>
                     <div class="profile-name">
-                      <!-- {% with user = current_user %} -->
+                      {% with user = current_user %}
                       <h5 class="mb-0 font-weight-normal"> {{user.first_name}} {{user.last_name}} </h5>
                       {% if user.access == 3 %}
                         <span> SuperAdmin </span>
-                      {% elif user.access == 2 %}
-                        <span> Admin </span>
-                      {% elif user.access == 1 %}
-                        <span> Coach </span>
                       {% else %}
-                        <span> Athlete </span>
+                        <span> Admin </span>
                       {% endif %}
-                      <!-- {% endwith %} -->
+                      {% endwith %}
                     </div>
-                  </div>
-                  <a href="#" id="profile-dropdown" data-toggle="dropdown"><i class="mdi mdi-dots-vertical"></i></a>
-                  <div class="dropdown-menu dropdown-menu-right sidebar-dropdown preview-list" aria-labelledby="profile-dropdown">
-                    <a href="#" class="dropdown-item preview-item">
-                      <div class="preview-thumbnail">
-                        <div class="preview-icon bg-dark rounded-circle">
-                          <i class="mdi mdi-settings text-primary"></i>
-                        </div>
-                      </div>
-                      <div class="preview-item-content">
-                        <p class="preview-subject ellipsis mb-1 text-small">Account settings</p>
-                      </div>
-                    </a>
-                    <div class="dropdown-divider"></div>
-                    <a href="#" class="dropdown-item preview-item">
-                      <div class="preview-thumbnail">
-                        <div class="preview-icon bg-dark rounded-circle">
-                          <i class="mdi mdi-onepassword  text-info"></i>
-                        </div>
-                      </div>
-                      <div class="preview-item-content">
-                        <p class="preview-subject ellipsis mb-1 text-small">Change Password</p>
-                      </div>
-                    </a>
-                    <div class="dropdown-divider"></div>
-                    <a href="#" class="dropdown-item preview-item">
-                      <div class="preview-thumbnail">
-                        <div class="preview-icon bg-dark rounded-circle">
-                          <i class="mdi mdi-calendar-today text-success"></i>
-                        </div>
-                      </div>
-                      <div class="preview-item-content">
-                        <p class="preview-subject ellipsis mb-1 text-small">To-do list</p>
-                      </div>
-                    </a>
                   </div>
                 </div>
               </li>
