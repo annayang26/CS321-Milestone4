@@ -40,16 +40,7 @@ def athlete():
 @views.route('/coach-dashboard')
 @login_required
 def coach():
-    nutfig = nutpie('website/data/nutrition.csv', 2000)
-    nutfigJSON = json.dumps(nutfig, cls=plotly.utils.PlotlyJSONEncoder)
-    sleepfig = sleeppie('website/data/sleep.csv', 10)
-    sleepfigJSON = json.dumps(sleepfig, cls=plotly.utils.PlotlyJSONEncoder)
-    recfig = recpie('website/data/physiological cycles.csv', 10)
-    recfigJSON = json.dumps(recfig, cls=plotly.utils.PlotlyJSONEncoder)
-    return render_template('coach-dashboard.html', user=current_user, 
-            nutfigJSON = nutfigJSON, 
-            sleepfigJSON=sleepfigJSON, 
-            recfigJSON=recfigJSON)
+    return render_template('coach-dashboard.html', user=current_user)
 
 @views.route('/peak')
 @login_required
@@ -253,3 +244,8 @@ def credentials_to_dict(credentials):
           'client_id': credentials.client_id,
           'client_secret': credentials.client_secret,
           'scopes': credentials.scopes}
+
+@views.route('/change_password')
+@login_required
+def change_password():
+    return render_template('change_password.html', user=current_user)
